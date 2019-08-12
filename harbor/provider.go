@@ -1,11 +1,6 @@
 package harbor
 
 import (
-	"github.com/go-openapi/strfmt"
-
-	httptransport "github.com/go-openapi/runtime/client"
-	apiclient "github.com/sandhose/terraform-provider-harbor/api/client"
-
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
 )
@@ -41,13 +36,10 @@ func Provider() terraform.ResourceProvider {
 }
 
 func providerConfigure(d *schema.ResourceData) (interface{}, error) {
-	cfg := apiclient.DefaultTransportConfig().
-		WithHost(d.Get("host").(string))
-	transport := httptransport.New(cfg.Host, cfg.BasePath, cfg.Schemes)
-	transport.DefaultAuthentication = httptransport.BasicAuth(
-		d.Get("username").(string),
-		d.Get("password").(string),
-	)
-	client := apiclient.New(transport, strfmt.Default)
-	return client, nil
+	cfg := &Config{
+		Host:     d.Get("host").(string),
+		Username: d.Get("username").(string),
+		Password: d.Get("password").(string),
+	}
+	return cfg.Config()
 }

@@ -82,10 +82,11 @@ func dataSourceHarborProjectRead(d *schema.ResourceData, meta interface{}) error
 
 	var project *apimodels.Project
 	if projectName != "" {
-		resp, err := client.Products.GetProjects(&products.GetProjectsParams{
-			Context: context.TODO(),
-			Name:    &projectName,
-		}, nil)
+		resp, err := client.Products.GetProjects(
+			products.NewGetProjectsParamsWithContext(context.TODO()).
+				WithName(&projectName),
+			nil,
+		)
 
 		if err != nil {
 			return err
@@ -98,10 +99,11 @@ func dataSourceHarborProjectRead(d *schema.ResourceData, meta interface{}) error
 			}
 		}
 	} else {
-		resp, err := client.Products.GetProjectsProjectID(&products.GetProjectsProjectIDParams{
-			Context:   context.TODO(),
-			ProjectID: projectID,
-		}, nil)
+		resp, err := client.Products.GetProjectsProjectID(
+			products.NewGetProjectsProjectIDParamsWithContext(context.TODO()).
+				WithProjectID(projectID),
+			nil,
+		)
 
 		if err != nil {
 			return err
