@@ -28,6 +28,7 @@ func Provider() terraform.ResourceProvider {
 			},
 		},
 		ResourcesMap: map[string]*schema.Resource{
+			"harbor_project":               resourceHarborProject(),
 			"harbor_project_robot_account": resourceHarborProjectRobotAccount(),
 		},
 		DataSourcesMap: map[string]*schema.Resource{

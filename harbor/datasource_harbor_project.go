@@ -116,17 +116,7 @@ func dataSourceHarborProjectRead(d *schema.ResourceData, meta interface{}) error
 		return fmt.Errorf("Project not found")
 	}
 
-	d.SetId(fmt.Sprint(project.ProjectID))
-
-	d.Set("project_id", project.ProjectID)
-	d.Set("name", project.Name)
-	d.Set("owner_id", project.OwnerID)
-	d.Set("owner_name", project.OwnerName)
-	d.Set("creation_time", project.CreationTime)
-	d.Set("update_time", project.UpdateTime)
-	d.Set("deleted", project.Deleted)
-	d.Set("repo_count", project.RepoCount)
-	d.Set("chart_count", project.ChartCount)
+	harborProjectUpdate(d, project)
 
 	return nil
 }
