@@ -27,7 +27,9 @@ func Provider() terraform.ResourceProvider {
 				Description: "The password to use for HTTP basic authentication when accessing the Harbor server.",
 			},
 		},
-		ResourcesMap: map[string]*schema.Resource{},
+		ResourcesMap: map[string]*schema.Resource{
+			"harbor_project_robot_account": resourceHarborProjectRobotAccount(),
+		},
 		DataSourcesMap: map[string]*schema.Resource{
 			"harbor_project": dataSourceHarborProject(),
 		},
