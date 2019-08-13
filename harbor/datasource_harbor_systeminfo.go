@@ -2,7 +2,6 @@ package harbor
 
 import (
 	"context"
-	"log"
 
 	apiclient "github.com/sandhose/terraform-provider-harbor/api/client"
 	"github.com/sandhose/terraform-provider-harbor/api/client/products"
