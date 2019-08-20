@@ -111,6 +111,7 @@ func resourceHarborUserGroupRead(d *schema.ResourceData, meta interface{}) error
 		nil,
 	)
 	if err != nil {
+		log.Printf("[DEBUG] User group loading failed")
 		return err
 	}
 
@@ -138,6 +139,7 @@ func resourceHarborUserGroupUpdate(d *schema.ResourceData, meta interface{}) err
 		nil,
 	)
 	if err != nil {
+		log.Printf("[DEBUG] User group update failed")
 		return err
 	}
 
@@ -158,6 +160,7 @@ func resourceHarborUserGroupDelete(d *schema.ResourceData, meta interface{}) err
 		nil,
 	)
 	if err != nil {
+		log.Printf("[DEBUG] User group deletion failed")
 		return err
 	}
 

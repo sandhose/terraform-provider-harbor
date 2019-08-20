@@ -1,6 +1,7 @@
 package harbor
 
 import (
+	"fmt"
 	"os"
 	"testing"
 
@@ -8,16 +9,23 @@ import (
 	apiclient "github.com/sandhose/terraform-provider-harbor/api/client"
 
 	"github.com/hashicorp/terraform/config"
+	"github.com/hashicorp/terraform/helper/acctest"
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
 )
 
 var (
-	testAccProvider  *schema.Provider
-	testAccProviders map[string]terraform.ResourceProvider
+	expectedDataSourceUserGroupName      string
+	expectedResourceUserGroupName        string
+	expectedResourceUpdatedUserGroupName string
+	testAccProvider                      *schema.Provider
+	testAccProviders                     map[string]terraform.ResourceProvider
 )
 
 func init() {
+	expectedDataSourceUserGroupName = fmt.Sprintf("tf-harbor-test-%s", acctest.RandString(5))
+	expectedResourceUserGroupName = fmt.Sprintf("tf-harbor-test-%s", acctest.RandString(5))
+	expectedResourceUpdatedUserGroupName = fmt.Sprintf("%s-updated", expectedResourceUserGroupName)
 	testAccProvider = Provider().(*schema.Provider)
 	testAccProviders = map[string]terraform.ResourceProvider{
 		"harbor": testAccProvider,

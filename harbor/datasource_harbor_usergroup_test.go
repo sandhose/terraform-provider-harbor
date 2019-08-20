@@ -4,13 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/hashicorp/terraform/helper/acctest"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-)
-
-var (
-	expectedUserGroupName string = fmt.Sprintf("tf-harbor-test-%s", acctest.RandString(5))
 )
 
 func TestAccHarborUserGroupDataSource_Basic(t *testing.T) {
@@ -19,7 +14,7 @@ func TestAccHarborUserGroupDataSource_Basic(t *testing.T) {
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccHarborUserGroupDataSourceConfig(expectedUserGroupName),
+				Config: testAccHarborUserGroupDataSourceConfig(expectedDataSourceUserGroupName),
 				Check: resource.ComposeTestCheckFunc(
 					testAccHarborUserGroupDataSource("data.harbor_usergroup.bar"),
 				),
@@ -37,8 +32,8 @@ func testAccHarborUserGroupDataSource(n string) resource.TestCheckFunc {
 			return fmt.Errorf("Expected to read user group data from Harbor")
 		}
 
-		if a["group_name"] != expectedUserGroupName {
-			return fmt.Errorf("Expected the user group name to be: %s, but got: %s", expectedUserGroupName, a["group_name"])
+		if a["group_name"] != expectedDataSourceUserGroupName {
+			return fmt.Errorf("Expected the user group name to be: %s, but got: %s", expectedDataSourceUserGroupName, a["group_name"])
 		}
 		return nil
 	}
