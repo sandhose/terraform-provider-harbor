@@ -20,7 +20,9 @@ func resourceHarborProjectRobotAccount() *schema.Resource {
 		Read:   resourceHarborProjectRobotAccountRead,
 		Update: resourceHarborProjectRobotAccountUpdate,
 		Delete: resourceHarborProjectRobotAccountDelete,
-
+		Importer: &schema.ResourceImporter{
+			State: schema.ImportStatePassthrough,
+		},
 		Schema: map[string]*schema.Schema{
 			"project_id": {
 				Type:     schema.TypeInt,
