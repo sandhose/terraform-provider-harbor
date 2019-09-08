@@ -19,16 +19,16 @@ func dataSourceHarborUserGroup() *schema.Resource {
 			"group_id": {
 				Type:          schema.TypeInt,
 				Optional:      true,
-				ConflictsWith: []string{"group_name"},
+				ConflictsWith: []string{"name"},
 			},
-			"group_name": {
+			"name": {
 				Type:          schema.TypeString,
 				Optional:      true,
 				ConflictsWith: []string{"group_id"},
 			},
 
 			// computed
-			"group_type": {
+			"type": {
 				Type:     schema.TypeInt,
 				Computed: true,
 			},
@@ -51,13 +51,13 @@ func dataSourceHarborUserGroupRead(d *schema.ResourceData, meta interface{}) err
 	}
 
 	var usergroupName string
-	if name, ok := d.GetOk("group_name"); ok {
+	if name, ok := d.GetOk("name"); ok {
 		usergroupName = name.(string)
 		set++
 	}
 
 	if set != 1 {
-		return fmt.Errorf("One of %q or %q has to be provided", "group_id", "group_name")
+		return fmt.Errorf("One of %q or %q has to be provided", "group_id", "name")
 	}
 
 	var usergroup *apimodels.UserGroup

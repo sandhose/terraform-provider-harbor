@@ -32,8 +32,8 @@ func testAccHarborUserGroupDataSource(n string) resource.TestCheckFunc {
 			return fmt.Errorf("Expected to read user group data from Harbor")
 		}
 
-		if a["group_name"] != expectedDataSourceUserGroupName {
-			return fmt.Errorf("Expected the user group name to be: %s, but got: %s", expectedDataSourceUserGroupName, a["group_name"])
+		if a["name"] != expectedDataSourceUserGroupName {
+			return fmt.Errorf("Expected the user group name to be: %s, but got: %s", expectedDataSourceUserGroupName, a["name"])
 		}
 		return nil
 	}
@@ -42,11 +42,11 @@ func testAccHarborUserGroupDataSource(n string) resource.TestCheckFunc {
 func testAccHarborUserGroupDataSourceConfig(rName string) string {
 	return fmt.Sprintf(`
 resource "harbor_usergroup" "foo" {
-	group_name = "%[1]s"
-	group_type = 2
+	name = "%[1]s"
+	type = 2
 }
 data "harbor_usergroup" "bar" {
-	group_name = "${harbor_usergroup.foo.group_name}"
+	name = "${harbor_usergroup.foo.name}"
 }
 `, rName)
 }

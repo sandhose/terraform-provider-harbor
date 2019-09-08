@@ -23,9 +23,9 @@ func TestAccHarborUserGroup_Basic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckHarborUserGroupExists("harbor_usergroup.foo"),
 					resource.TestCheckResourceAttr(
-						"harbor_usergroup.foo", "group_name", expectedResourceUserGroupName),
+						"harbor_usergroup.foo", "name", expectedResourceUserGroupName),
 					resource.TestCheckResourceAttr(
-						"harbor_usergroup.foo", "group_type", "2"),
+						"harbor_usergroup.foo", "type", "2"),
 				),
 			},
 			{
@@ -33,9 +33,9 @@ func TestAccHarborUserGroup_Basic(t *testing.T) {
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckHarborUserGroupExists("harbor_usergroup.foo"),
 					resource.TestCheckResourceAttr(
-						"harbor_usergroup.foo", "group_name", expectedResourceUpdatedUserGroupName),
+						"harbor_usergroup.foo", "name", expectedResourceUpdatedUserGroupName),
 					resource.TestCheckResourceAttr(
-						"harbor_usergroup.foo", "group_type", "2"),
+						"harbor_usergroup.foo", "type", "2"),
 				),
 			},
 		},
@@ -108,8 +108,8 @@ func testAccCheckHarborUserGroupExists(n string) resource.TestCheckFunc {
 func testAccHarborUserGroupConfig(rName string) string {
 	return fmt.Sprintf(`
 resource "harbor_usergroup" "foo" {
-	group_name = "%s"
-	group_type = 2
+	name = "%s"
+	type = 2
 }
 `, rName)
 }
@@ -117,8 +117,8 @@ resource "harbor_usergroup" "foo" {
 func testAccHarborUserGroupConfigUpdated(rName string) string {
 	return fmt.Sprintf(`
 resource "harbor_usergroup" "foo" {
-	group_name = "%s"
-	group_type = 2
+	name = "%s"
+	type = 2
 }
 `, rName)
 }

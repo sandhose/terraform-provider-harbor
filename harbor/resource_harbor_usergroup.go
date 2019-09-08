@@ -25,11 +25,11 @@ func resourceHarborUserGroup() *schema.Resource {
 			State: schema.ImportStatePassthrough,
 		},
 		Schema: map[string]*schema.Schema{
-			"group_name": {
+			"name": {
 				Type:     schema.TypeString,
 				Required: true,
 			},
-			"group_type": {
+			"type": {
 				Type:         schema.TypeInt,
 				Required:     true,
 				ValidateFunc: validation.IntInSlice([]int{1, 2}),
@@ -51,10 +51,10 @@ func resourceHarborUserGroup() *schema.Resource {
 func resourceHarborUserGroupCreate(d *schema.ResourceData, meta interface{}) error {
 	client := meta.(*apiclient.Harbor)
 	userGroupParams := &apimodels.UserGroup{
-		GroupName: d.Get("group_name").(string),
+		GroupName: d.Get("name").(string),
 	}
 
-	groupType := int64(d.Get("group_type").(int))
+	groupType := int64(d.Get("type").(int))
 
 	switch groupType {
 	case 1:
@@ -129,9 +129,9 @@ func resourceHarborUserGroupUpdate(d *schema.ResourceData, meta interface{}) err
 		return err
 	}
 
-	// Only the group_name can be mutated
+	// Only the name can be mutated
 	usergroupParams := &apimodels.UserGroup{
-		GroupName: d.Get("group_name").(string),
+		GroupName: d.Get("name").(string),
 	}
 
 	_, err = client.Products.PutUsergroupsGroupID(
@@ -173,7 +173,7 @@ func harborUserGroupUpdate(d *schema.ResourceData, u *apimodels.UserGroup) {
 	d.SetId(fmt.Sprint(u.ID))
 
 	d.Set("group_id", u.ID)
-	d.Set("group_name", u.GroupName)
-	d.Set("group_type", u.GroupType)
+	d.Set("name", u.GroupName)
+	d.Set("type", u.GroupType)
 	d.Set("ldap_group_dn", u.LdapGroupDn)
 }
