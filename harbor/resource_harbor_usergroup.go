@@ -21,7 +21,9 @@ func resourceHarborUserGroup() *schema.Resource {
 		Read:   resourceHarborUserGroupRead,
 		Update: resourceHarborUserGroupUpdate,
 		Delete: resourceHarborUserGroupDelete,
-
+		Importer: &schema.ResourceImporter{
+			State: schema.ImportStatePassthrough,
+		},
 		Schema: map[string]*schema.Schema{
 			"group_name": {
 				Type:     schema.TypeString,
