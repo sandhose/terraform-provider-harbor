@@ -1,0 +1,47 @@
+<% wrap_layout :inner do %>
+<% content_for :sidebar do %>
+<div class="docs-sidebar hidden-print affix-top" role="complementary">
+    <ul class="nav docs-sidenav">
+        <li<%= sidebar_current("docs-home") %>>
+            <a href="/docs/providers/index.html">All Providers</a>
+        </li>
+
+        <li<%= sidebar_current("docs-harbor-index") %>>
+            <a href="/docs/providers/harbor/index.html">Harbor Provider</a>
+        </li>
+
+        <li<%= sidebar_current("docs-harbor-datasource") %>>
+          <a href="#">Data Sources</a>
+            <ul class="nav nav-visible">
+              <li<%= sidebar_current("docs-harbor-datasource-project") %>>
+                <a href="/docs/providers/harbor/d/project.html">harbor_project</a>
+                </li>
+                <li<%= sidebar_current("docs-harbor-datasource-systeminfo") %>>
+                    <a href="/docs/providers/harbor/d/systeminfo.html">harbor_systeminfo</a>
+                </li>
+                <li<%= sidebar_current("docs-harbor-datasource-usergroup") %>>
+                    <a href="/docs/providers/harbor/d/usergroup.html">harbor_usergroup</a>
+                </li>
+            </ul>
+        </li>
+
+        <li<%= sidebar_current("docs-harbor-resource") %>>
+            <a href="#">Resources</a>
+            <ul class="nav nav-visible">
+                <li<%= sidebar_current("docs-harbor-resource-project") %>>
+                    <a href="/docs/providers/harbor/r/project.html">harbor_project</a>
+                </li>
+                <li<%= sidebar_current("docs-harbor-resource-project-robot-account") %>>
+                    <a href="/docs/providers/harbor/r/project_robot_account.html">harbor_project_robot_account</a>
+                </li>
+                <li<%= sidebar_current("docs-harbor-resource-usergroup") %>>
+                    <a href="/docs/providers/harbor/r/usergroup.html">harbor_usergroup</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<% end %>
+
+<%= yield %>
+<% end %>
