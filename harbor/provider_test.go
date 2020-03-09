@@ -8,7 +8,8 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	apiclient "github.com/sandhose/terraform-provider-harbor/api/client"
 
-	"github.com/hashicorp/terraform/config"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/terraform"
 	"github.com/hashicorp/terraform/helper/acctest"
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
@@ -45,12 +46,8 @@ func TestProviderParameters(t *testing.T) {
 		"username": "user",
 		"password": "hunter2",
 	}
-	rawConfig, err := config.NewRawConfig(raw)
-	if err != nil {
-		t.Fatalf("err: %s", err)
-	}
 
-	rawProvider.Configure(terraform.NewResourceConfig(rawConfig))
+	err := rawProvider.Configure(terraform.NewResourceConfigRaw(raw))
 	meta := rawProvider.(*schema.Provider).Meta()
 	if meta == nil {
 		t.Fatalf("Expected metadata, got nil: err: %s", err)

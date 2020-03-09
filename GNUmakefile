@@ -6,7 +6,7 @@ VERSION=$(shell git describe --tags --always)
 
 default: build
 
-build: fmtcheck
+build: fmtcheck # errcheck
 	go install -ldflags="-X github.com/terraform-providers/terraform-provider-harbor/version.ProviderVersion=$(VERSION)"
 
 test: fmtcheck

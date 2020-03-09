@@ -11,7 +11,7 @@ import (
 	"github.com/sandhose/terraform-provider-harbor/api/client/operations"
 	apimodels "github.com/sandhose/terraform-provider-harbor/api/models"
 
-	"github.com/hashicorp/terraform/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
 func resourceHarborProjectRobotAccount() *schema.Resource {
@@ -20,7 +20,9 @@ func resourceHarborProjectRobotAccount() *schema.Resource {
 		Read:   resourceHarborProjectRobotAccountRead,
 		Update: resourceHarborProjectRobotAccountUpdate,
 		Delete: resourceHarborProjectRobotAccountDelete,
-
+		Importer: &schema.ResourceImporter{
+			State: schema.ImportStatePassthrough,
+		},
 		Schema: map[string]*schema.Schema{
 			"project_id": {
 				Type:     schema.TypeInt,
