@@ -6,7 +6,7 @@ import (
 	apiclient "github.com/sandhose/terraform-provider-harbor/api/client"
 	"github.com/sandhose/terraform-provider-harbor/api/client/products"
 
-	"github.com/hashicorp/terraform/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
 func dataSourceHarborSystemInfo() *schema.Resource {
