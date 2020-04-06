@@ -7,9 +7,9 @@ import (
 	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
 	strfmt "github.com/go-openapi/strfmt"
-	"github.com/hashicorp/terraform/helper/logging"
-	"github.com/hashicorp/terraform/httpclient"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/logging"
 
+	cleanhttp "github.com/hashicorp/go-cleanhttp"
 	apiclient "github.com/sandhose/terraform-provider-harbor/api/client"
 )
 
@@ -43,7 +43,7 @@ type CombinedConfig struct {
 func (c *Config) Config() (*apiclient.Harbor, error) {
 	cfg := apiclient.DefaultTransportConfig().
 		WithHost(c.Host)
-	cli := httpclient.New()
+	cli := cleanhttp.DefaultPooledClient()
 	cli.Transport = &transport{transport: cli.Transport}
 	cli.Transport = logging.NewTransport("Harbor", cli.Transport)
 
