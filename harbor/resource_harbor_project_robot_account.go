@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	apiclient "github.com/sandhose/terraform-provider-harbor/api/client"
-	"github.com/sandhose/terraform-provider-harbor/api/client/operations"
+	"github.com/sandhose/terraform-provider-harbor/api/client/products"
 	apimodels "github.com/sandhose/terraform-provider-harbor/api/models"
 
 	"github.com/hashicorp/terraform/helper/schema"
@@ -108,8 +108,8 @@ func resourceHarborProjectRobotAccountCreate(d *schema.ResourceData, meta interf
 
 	projectID := int64(d.Get("project_id").(int))
 
-	resp, err := client.Operations.PostProjectsProjectIDRobots(
-		operations.NewPostProjectsProjectIDRobotsParamsWithContext(context.TODO()).
+	resp, err := client.Products.PostProjectsProjectIDRobots(
+		products.NewPostProjectsProjectIDRobotsParamsWithContext(context.TODO()).
 			WithProjectID(projectID).
 			WithRobot(&robotAccountCreate),
 		nil,
@@ -123,8 +123,8 @@ func resourceHarborProjectRobotAccountCreate(d *schema.ResourceData, meta interf
 	d.Set("username", resp.Payload.Name)
 	d.Set("token", resp.Payload.Token)
 
-	listResp, err := client.Operations.GetProjectsProjectIDRobots(
-		operations.NewGetProjectsProjectIDRobotsParamsWithContext(context.TODO()).
+	listResp, err := client.Products.GetProjectsProjectIDRobots(
+		products.NewGetProjectsProjectIDRobotsParamsWithContext(context.TODO()).
 			WithProjectID(projectID),
 		nil,
 	)
@@ -188,8 +188,8 @@ func resourceHarborProjectRobotAccountRead(d *schema.ResourceData, meta interfac
 		return err
 	}
 
-	resp, err := client.Operations.GetProjectsProjectIDRobotsRobotID(
-		operations.NewGetProjectsProjectIDRobotsRobotIDParamsWithContext(context.TODO()).
+	resp, err := client.Products.GetProjectsProjectIDRobotsRobotID(
+		products.NewGetProjectsProjectIDRobotsRobotIDParamsWithContext(context.TODO()).
 			WithProjectID(projectID).
 			WithRobotID(robotID),
 		nil,
@@ -214,8 +214,8 @@ func resourceHarborProjectRobotAccountUpdate(d *schema.ResourceData, meta interf
 
 	disabled := d.Get("disabled").(bool)
 
-	_, err = client.Operations.PutProjectsProjectIDRobotsRobotID(
-		operations.NewPutProjectsProjectIDRobotsRobotIDParamsWithContext(context.TODO()).
+	_, err = client.Products.PutProjectsProjectIDRobotsRobotID(
+		products.NewPutProjectsProjectIDRobotsRobotIDParamsWithContext(context.TODO()).
 			WithProjectID(projectID).
 			WithRobotID(robotID).
 			WithRobot(&apimodels.RobotAccountUpdate{
@@ -239,8 +239,8 @@ func resourceHarborProjectRobotAccountDelete(d *schema.ResourceData, meta interf
 		return err
 	}
 
-	_, err = client.Operations.DeleteProjectsProjectIDRobotsRobotID(
-		operations.NewDeleteProjectsProjectIDRobotsRobotIDParamsWithContext(context.TODO()).
+	_, err = client.Products.DeleteProjectsProjectIDRobotsRobotID(
+		products.NewDeleteProjectsProjectIDRobotsRobotIDParamsWithContext(context.TODO()).
 			WithProjectID(projectID).
 			WithRobotID(robotID),
 		nil,

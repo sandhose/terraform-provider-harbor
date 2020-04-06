@@ -21,49 +21,42 @@ type PostProjectsProjectIDMetadatasReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PostProjectsProjectIDMetadatasReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPostProjectsProjectIDMetadatasOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewPostProjectsProjectIDMetadatasBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 401:
 		result := NewPostProjectsProjectIDMetadatasUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewPostProjectsProjectIDMetadatasForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewPostProjectsProjectIDMetadatasNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 415:
 		result := NewPostProjectsProjectIDMetadatasUnsupportedMediaType()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewPostProjectsProjectIDMetadatasInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {

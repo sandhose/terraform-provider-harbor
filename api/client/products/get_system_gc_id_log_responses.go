@@ -22,42 +22,36 @@ type GetSystemGcIDLogReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetSystemGcIDLogReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetSystemGcIDLogOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetSystemGcIDLogBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 401:
 		result := NewGetSystemGcIDLogUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetSystemGcIDLogForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewGetSystemGcIDLogNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetSystemGcIDLogInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -85,6 +79,10 @@ type GetSystemGcIDLogOK struct {
 
 func (o *GetSystemGcIDLogOK) Error() string {
 	return fmt.Sprintf("[GET /system/gc/{id}/log][%d] getSystemGcIdLogOK  %+v", 200, o.Payload)
+}
+
+func (o *GetSystemGcIDLogOK) GetPayload() string {
+	return o.Payload
 }
 
 func (o *GetSystemGcIDLogOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

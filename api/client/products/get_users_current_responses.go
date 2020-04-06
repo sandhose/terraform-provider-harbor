@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetUsersCurrentReader is a Reader for the GetUsersCurrent structure.
@@ -24,14 +24,12 @@ type GetUsersCurrentReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetUsersCurrentReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetUsersCurrentOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 401:
 		result := NewGetUsersCurrentUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -59,6 +57,10 @@ type GetUsersCurrentOK struct {
 
 func (o *GetUsersCurrentOK) Error() string {
 	return fmt.Sprintf("[GET /users/current][%d] getUsersCurrentOK  %+v", 200, o.Payload)
+}
+
+func (o *GetUsersCurrentOK) GetPayload() *models.User {
+	return o.Payload
 }
 
 func (o *GetUsersCurrentOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

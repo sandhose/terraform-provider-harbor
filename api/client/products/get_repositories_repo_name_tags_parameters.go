@@ -13,6 +13,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/swag"
 
 	strfmt "github.com/go-openapi/strfmt"
 )
@@ -61,11 +62,16 @@ for the get repositories repo name tags operation typically these are written to
 */
 type GetRepositoriesRepoNameTagsParams struct {
 
-	/*LabelIds
-	  A list of comma separated label IDs.
+	/*Detail
+	  Bool value indicating whether return detailed information of the tag, such as vulnerability scan info, if set to false, only tag name is returned.
 
 	*/
-	LabelIds *string
+	Detail *bool
+	/*LabelID
+	  A label ID.
+
+	*/
+	LabelID *string
 	/*RepoName
 	  Relevant repository name.
 
@@ -110,15 +116,26 @@ func (o *GetRepositoriesRepoNameTagsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithLabelIds adds the labelIds to the get repositories repo name tags params
-func (o *GetRepositoriesRepoNameTagsParams) WithLabelIds(labelIds *string) *GetRepositoriesRepoNameTagsParams {
-	o.SetLabelIds(labelIds)
+// WithDetail adds the detail to the get repositories repo name tags params
+func (o *GetRepositoriesRepoNameTagsParams) WithDetail(detail *bool) *GetRepositoriesRepoNameTagsParams {
+	o.SetDetail(detail)
 	return o
 }
 
-// SetLabelIds adds the labelIds to the get repositories repo name tags params
-func (o *GetRepositoriesRepoNameTagsParams) SetLabelIds(labelIds *string) {
-	o.LabelIds = labelIds
+// SetDetail adds the detail to the get repositories repo name tags params
+func (o *GetRepositoriesRepoNameTagsParams) SetDetail(detail *bool) {
+	o.Detail = detail
+}
+
+// WithLabelID adds the labelID to the get repositories repo name tags params
+func (o *GetRepositoriesRepoNameTagsParams) WithLabelID(labelID *string) *GetRepositoriesRepoNameTagsParams {
+	o.SetLabelID(labelID)
+	return o
+}
+
+// SetLabelID adds the labelId to the get repositories repo name tags params
+func (o *GetRepositoriesRepoNameTagsParams) SetLabelID(labelID *string) {
+	o.LabelID = labelID
 }
 
 // WithRepoName adds the repoName to the get repositories repo name tags params
@@ -140,16 +157,32 @@ func (o *GetRepositoriesRepoNameTagsParams) WriteToRequest(r runtime.ClientReque
 	}
 	var res []error
 
-	if o.LabelIds != nil {
+	if o.Detail != nil {
 
-		// query param label_ids
-		var qrLabelIds string
-		if o.LabelIds != nil {
-			qrLabelIds = *o.LabelIds
+		// query param detail
+		var qrDetail bool
+		if o.Detail != nil {
+			qrDetail = *o.Detail
 		}
-		qLabelIds := qrLabelIds
-		if qLabelIds != "" {
-			if err := r.SetQueryParam("label_ids", qLabelIds); err != nil {
+		qDetail := swag.FormatBool(qrDetail)
+		if qDetail != "" {
+			if err := r.SetQueryParam("detail", qDetail); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.LabelID != nil {
+
+		// query param label_id
+		var qrLabelID string
+		if o.LabelID != nil {
+			qrLabelID = *o.LabelID
+		}
+		qLabelID := qrLabelID
+		if qLabelID != "" {
+			if err := r.SetQueryParam("label_id", qLabelID); err != nil {
 				return err
 			}
 		}

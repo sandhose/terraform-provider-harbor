@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetReplicationExecutionsReader is a Reader for the GetReplicationExecutions structure.
@@ -24,28 +24,24 @@ type GetReplicationExecutionsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetReplicationExecutionsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetReplicationExecutionsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 401:
 		result := NewGetReplicationExecutionsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetReplicationExecutionsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetReplicationExecutionsInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -73,6 +69,10 @@ type GetReplicationExecutionsOK struct {
 
 func (o *GetReplicationExecutionsOK) Error() string {
 	return fmt.Sprintf("[GET /replication/executions][%d] getReplicationExecutionsOK  %+v", 200, o.Payload)
+}
+
+func (o *GetReplicationExecutionsOK) GetPayload() []*models.ReplicationExecution {
+	return o.Payload
 }
 
 func (o *GetReplicationExecutionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

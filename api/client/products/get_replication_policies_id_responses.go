@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetReplicationPoliciesIDReader is a Reader for the GetReplicationPoliciesID structure.
@@ -24,42 +24,36 @@ type GetReplicationPoliciesIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetReplicationPoliciesIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetReplicationPoliciesIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetReplicationPoliciesIDBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 401:
 		result := NewGetReplicationPoliciesIDUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetReplicationPoliciesIDForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewGetReplicationPoliciesIDNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetReplicationPoliciesIDInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -87,6 +81,10 @@ type GetReplicationPoliciesIDOK struct {
 
 func (o *GetReplicationPoliciesIDOK) Error() string {
 	return fmt.Sprintf("[GET /replication/policies/{id}][%d] getReplicationPoliciesIdOK  %+v", 200, o.Payload)
+}
+
+func (o *GetReplicationPoliciesIDOK) GetPayload() *models.ReplicationPolicy {
+	return o.Payload
 }
 
 func (o *GetReplicationPoliciesIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

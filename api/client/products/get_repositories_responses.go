@@ -15,7 +15,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetRepositoriesReader is a Reader for the GetRepositories structure.
@@ -26,35 +26,30 @@ type GetRepositoriesReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetRepositoriesReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetRepositoriesOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetRepositoriesBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetRepositoriesForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewGetRepositoriesNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetRepositoriesInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -89,6 +84,10 @@ type GetRepositoriesOK struct {
 
 func (o *GetRepositoriesOK) Error() string {
 	return fmt.Sprintf("[GET /repositories][%d] getRepositoriesOK  %+v", 200, o.Payload)
+}
+
+func (o *GetRepositoriesOK) GetPayload() []*models.Repository {
+	return o.Payload
 }
 
 func (o *GetRepositoriesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

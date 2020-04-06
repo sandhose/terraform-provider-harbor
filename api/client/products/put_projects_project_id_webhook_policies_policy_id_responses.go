@@ -21,42 +21,36 @@ type PutProjectsProjectIDWebhookPoliciesPolicyIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PutProjectsProjectIDWebhookPoliciesPolicyIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPutProjectsProjectIDWebhookPoliciesPolicyIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewPutProjectsProjectIDWebhookPoliciesPolicyIDBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 401:
 		result := NewPutProjectsProjectIDWebhookPoliciesPolicyIDUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewPutProjectsProjectIDWebhookPoliciesPolicyIDForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewPutProjectsProjectIDWebhookPoliciesPolicyIDNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewPutProjectsProjectIDWebhookPoliciesPolicyIDInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {

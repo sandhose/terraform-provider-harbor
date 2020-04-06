@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetSysteminfoReader is a Reader for the GetSysteminfo structure.
@@ -24,14 +24,12 @@ type GetSysteminfoReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetSysteminfoReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetSysteminfoOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 500:
 		result := NewGetSysteminfoInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -59,6 +57,10 @@ type GetSysteminfoOK struct {
 
 func (o *GetSysteminfoOK) Error() string {
 	return fmt.Sprintf("[GET /systeminfo][%d] getSysteminfoOK  %+v", 200, o.Payload)
+}
+
+func (o *GetSysteminfoOK) GetPayload() *models.GeneralInfo {
+	return o.Payload
 }
 
 func (o *GetSysteminfoOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

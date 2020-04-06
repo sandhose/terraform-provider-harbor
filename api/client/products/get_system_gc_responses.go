@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetSystemGcReader is a Reader for the GetSystemGc structure.
@@ -24,28 +24,24 @@ type GetSystemGcReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetSystemGcReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetSystemGcOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 401:
 		result := NewGetSystemGcUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetSystemGcForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetSystemGcInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -73,6 +69,10 @@ type GetSystemGcOK struct {
 
 func (o *GetSystemGcOK) Error() string {
 	return fmt.Sprintf("[GET /system/gc][%d] getSystemGcOK  %+v", 200, o.Payload)
+}
+
+func (o *GetSystemGcOK) GetPayload() []*models.GCResult {
+	return o.Payload
 }
 
 func (o *GetSystemGcOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

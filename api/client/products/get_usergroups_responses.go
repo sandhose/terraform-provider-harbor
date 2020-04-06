@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetUsergroupsReader is a Reader for the GetUsergroups structure.
@@ -24,28 +24,24 @@ type GetUsergroupsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetUsergroupsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetUsergroupsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 401:
 		result := NewGetUsergroupsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetUsergroupsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetUsergroupsInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -73,6 +69,10 @@ type GetUsergroupsOK struct {
 
 func (o *GetUsergroupsOK) Error() string {
 	return fmt.Sprintf("[GET /usergroups][%d] getUsergroupsOK  %+v", 200, o.Payload)
+}
+
+func (o *GetUsergroupsOK) GetPayload() []*models.UserGroup {
+	return o.Payload
 }
 
 func (o *GetUsergroupsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

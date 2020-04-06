@@ -21,42 +21,36 @@ type GetReplicationExecutionsIDTasksTaskIDLogReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetReplicationExecutionsIDTasksTaskIDLogReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetReplicationExecutionsIDTasksTaskIDLogOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetReplicationExecutionsIDTasksTaskIDLogBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 401:
 		result := NewGetReplicationExecutionsIDTasksTaskIDLogUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetReplicationExecutionsIDTasksTaskIDLogForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewGetReplicationExecutionsIDTasksTaskIDLogNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetReplicationExecutionsIDTasksTaskIDLogInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {

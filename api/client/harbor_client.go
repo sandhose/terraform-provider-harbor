@@ -6,14 +6,14 @@ package client
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
 
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	"github.com/sandhose/terraform-provider-harbor/api/client/operations"
 	"github.com/sandhose/terraform-provider-harbor/api/client/products"
-	"github.com/sandhose/terraform-provider-harbor/api/client/quota"
+	"github.com/sandhose/terraform-provider-harbor/api/client/scan"
+	"github.com/sandhose/terraform-provider-harbor/api/client/scanners"
 )
 
 // Default harbor HTTP client.
@@ -58,13 +58,9 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Harbor {
 
 	cli := new(Harbor)
 	cli.Transport = transport
-
-	cli.Operations = operations.New(transport, formats)
-
 	cli.Products = products.New(transport, formats)
-
-	cli.Quota = quota.New(transport, formats)
-
+	cli.Scan = scan.New(transport, formats)
+	cli.Scanners = scanners.New(transport, formats)
 	return cli
 }
 
@@ -109,11 +105,11 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // Harbor is a client for harbor
 type Harbor struct {
-	Operations *operations.Client
+	Products products.ClientService
 
-	Products *products.Client
+	Scan scan.ClientService
 
-	Quota *quota.Client
+	Scanners scanners.ClientService
 
 	Transport runtime.ClientTransport
 }
@@ -121,11 +117,7 @@ type Harbor struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *Harbor) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
-
-	c.Operations.SetTransport(transport)
-
 	c.Products.SetTransport(transport)
-
-	c.Quota.SetTransport(transport)
-
+	c.Scan.SetTransport(transport)
+	c.Scanners.SetTransport(transport)
 }

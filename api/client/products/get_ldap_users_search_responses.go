@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetLdapUsersSearchReader is a Reader for the GetLdapUsersSearch structure.
@@ -24,28 +24,24 @@ type GetLdapUsersSearchReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetLdapUsersSearchReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetLdapUsersSearchOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 401:
 		result := NewGetLdapUsersSearchUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetLdapUsersSearchForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetLdapUsersSearchInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -73,6 +69,10 @@ type GetLdapUsersSearchOK struct {
 
 func (o *GetLdapUsersSearchOK) Error() string {
 	return fmt.Sprintf("[GET /ldap/users/search][%d] getLdapUsersSearchOK  %+v", 200, o.Payload)
+}
+
+func (o *GetLdapUsersSearchOK) GetPayload() []*models.LdapUsers {
+	return o.Payload
 }
 
 func (o *GetLdapUsersSearchOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

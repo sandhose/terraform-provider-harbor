@@ -3,6 +3,7 @@ GOFMT_FILES?=$$(find . -name '*.go')
 WEBSITE_REPO=github.com/sandhose/terraform-provider-harbor
 PKG_NAME=harbor
 VERSION=$(shell git describe --tags --always)
+HARBOR_VERSION=1.10.1
 
 default: build
 
@@ -40,6 +41,12 @@ test-compile:
 	fi
 	go test -c $(TEST) $(TESTARGS)
 
+gen-api:
+	swagger generate client \
+	  --spec https://raw.githubusercontent.com/goharbor/harbor/v$(HARBOR_VERSION)/api/harbor/swagger.yaml \
+	  --skip-validation \
+	  --target api
+
 website:
 ifeq (,$(wildcard $(GOPATH)/src/$(WEBSITE_REPO)))
 	echo "$(WEBSITE_REPO) not found in your GOPATH (necessary for layouts and assets), get-ting..."
@@ -54,4 +61,4 @@ ifeq (,$(wildcard $(GOPATH)/src/$(WEBSITE_REPO)))
 endif
 	@$(MAKE) -C $(GOPATH)/src/$(WEBSITE_REPO) website-provider-test PROVIDER_PATH=$(shell pwd) PROVIDER_NAME=$(PKG_NAME)
 
-.PHONY: build test vet fmt fmtcheck errcheck test-compile website website-test
+.PHONY: build test vet fmt fmtcheck errcheck test-compile website website-test gen-api

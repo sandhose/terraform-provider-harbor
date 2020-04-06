@@ -21,42 +21,36 @@ type DeleteProjectsProjectIDWebhookPoliciesPolicyIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteProjectsProjectIDWebhookPoliciesPolicyIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteProjectsProjectIDWebhookPoliciesPolicyIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewDeleteProjectsProjectIDWebhookPoliciesPolicyIDBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 401:
 		result := NewDeleteProjectsProjectIDWebhookPoliciesPolicyIDUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewDeleteProjectsProjectIDWebhookPoliciesPolicyIDForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewDeleteProjectsProjectIDWebhookPoliciesPolicyIDNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewDeleteProjectsProjectIDWebhookPoliciesPolicyIDInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {

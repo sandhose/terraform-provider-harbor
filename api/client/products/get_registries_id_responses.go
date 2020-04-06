@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetRegistriesIDReader is a Reader for the GetRegistriesID structure.
@@ -24,28 +24,24 @@ type GetRegistriesIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetRegistriesIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetRegistriesIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 401:
 		result := NewGetRegistriesIDUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewGetRegistriesIDNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetRegistriesIDInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -73,6 +69,10 @@ type GetRegistriesIDOK struct {
 
 func (o *GetRegistriesIDOK) Error() string {
 	return fmt.Sprintf("[GET /registries/{id}][%d] getRegistriesIdOK  %+v", 200, o.Payload)
+}
+
+func (o *GetRegistriesIDOK) GetPayload() *models.Registry {
+	return o.Payload
 }
 
 func (o *GetRegistriesIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

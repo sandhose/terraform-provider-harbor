@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetRegistriesIDNamespaceReader is a Reader for the GetRegistriesIDNamespace structure.
@@ -24,35 +24,30 @@ type GetRegistriesIDNamespaceReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetRegistriesIDNamespaceReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetRegistriesIDNamespaceOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 401:
 		result := NewGetRegistriesIDNamespaceUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetRegistriesIDNamespaceForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewGetRegistriesIDNamespaceNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetRegistriesIDNamespaceInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -80,6 +75,10 @@ type GetRegistriesIDNamespaceOK struct {
 
 func (o *GetRegistriesIDNamespaceOK) Error() string {
 	return fmt.Sprintf("[GET /registries/{id}/namespace][%d] getRegistriesIdNamespaceOK  %+v", 200, o.Payload)
+}
+
+func (o *GetRegistriesIDNamespaceOK) GetPayload() []*models.Namespace {
+	return o.Payload
 }
 
 func (o *GetRegistriesIDNamespaceOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

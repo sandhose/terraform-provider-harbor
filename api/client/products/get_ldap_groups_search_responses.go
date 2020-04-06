@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetLdapGroupsSearchReader is a Reader for the GetLdapGroupsSearch structure.
@@ -24,28 +24,24 @@ type GetLdapGroupsSearchReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetLdapGroupsSearchReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetLdapGroupsSearchOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetLdapGroupsSearchBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewGetLdapGroupsSearchNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetLdapGroupsSearchInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -73,6 +69,10 @@ type GetLdapGroupsSearchOK struct {
 
 func (o *GetLdapGroupsSearchOK) Error() string {
 	return fmt.Sprintf("[GET /ldap/groups/search][%d] getLdapGroupsSearchOK  %+v", 200, o.Payload)
+}
+
+func (o *GetLdapGroupsSearchOK) GetPayload() []*models.UserGroup {
+	return o.Payload
 }
 
 func (o *GetLdapGroupsSearchOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

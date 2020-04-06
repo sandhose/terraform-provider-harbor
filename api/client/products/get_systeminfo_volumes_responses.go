@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetSysteminfoVolumesReader is a Reader for the GetSysteminfoVolumes structure.
@@ -24,28 +24,24 @@ type GetSysteminfoVolumesReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetSysteminfoVolumesReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetSysteminfoVolumesOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 401:
 		result := NewGetSysteminfoVolumesUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetSysteminfoVolumesForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetSysteminfoVolumesInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -73,6 +69,10 @@ type GetSysteminfoVolumesOK struct {
 
 func (o *GetSysteminfoVolumesOK) Error() string {
 	return fmt.Sprintf("[GET /systeminfo/volumes][%d] getSysteminfoVolumesOK  %+v", 200, o.Payload)
+}
+
+func (o *GetSysteminfoVolumesOK) GetPayload() *models.SystemInfo {
+	return o.Payload
 }
 
 func (o *GetSysteminfoVolumesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

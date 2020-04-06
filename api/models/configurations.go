@@ -6,9 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
@@ -79,8 +78,29 @@ type Configurations struct {
 	// The URL of LDAP server.
 	LdapURL string `json:"ldap_url,omitempty"`
 
+	// The client id of the OIDC.
+	OidcClientID string `json:"oidc_client_id,omitempty"`
+
+	// The client secret of the OIDC.
+	OidcClientSecret string `json:"oidc_client_secret,omitempty"`
+
+	// The URL of an OIDC-complaint server, must start with 'https://'.
+	OidcEndpoint string `json:"oidc_endpoint,omitempty"`
+
+	// The name of the OIDC provider.
+	OidcName string `json:"oidc_name,omitempty"`
+
+	// The scope sent to OIDC server during authentication, should be separated by comma. It has to contain “openid”, and “offline_access”. If you are using google, please remove “offline_access” from this field.
+	OidcScope string `json:"oidc_scope,omitempty"`
+
+	// Whether verify your OIDC server certificate, disable it if your OIDC server is hosted via self-hosted certificate.
+	OidcVerifyCert bool `json:"oidc_verify_cert,omitempty"`
+
 	// This attribute restricts what users have the permission to create project.  It can be "everyone" or "adminonly".
 	ProjectCreationRestriction string `json:"project_creation_restriction,omitempty"`
+
+	// This attribute indicates whether quota per project enabled in harbor
+	QuotaPerProjectEnable bool `json:"quota_per_project_enable,omitempty"`
 
 	// 'docker push' is prohibited by Harbor if you set it to true.
 	ReadOnly bool `json:"read_only,omitempty"`
@@ -216,7 +236,7 @@ func (m *ConfigurationsScanAllPolicy) UnmarshalBinary(b []byte) error {
 // swagger:model ConfigurationsScanAllPolicyParameter
 type ConfigurationsScanAllPolicyParameter struct {
 
-	// The offest in seconds of UTC 0 o'clock, only valid when the policy type is "daily"
+	// The offset in seconds of UTC 0 o'clock, only valid when the policy type is "daily"
 	DailyTime int64 `json:"daily_time,omitempty"`
 }
 

@@ -6,9 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
@@ -22,8 +21,11 @@ type Project struct {
 	// The creation time of the project.
 	CreationTime string `json:"creation_time,omitempty"`
 
-	// The role ID of the current user who triggered the API (for UI)
+	// The role ID with highest permission of the current user who triggered the API (for UI)
 	CurrentUserRoleID int64 `json:"current_user_role_id,omitempty"`
+
+	// The list of role ID of the current user who triggered the API (for UI)
+	CurrentUserRoleIds []int32 `json:"current_user_role_ids"`
 
 	// The CVE whitelist of this project.
 	CveWhitelist *CVEWhitelist `json:"cve_whitelist,omitempty"`

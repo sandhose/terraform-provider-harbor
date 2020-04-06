@@ -8,9 +8,8 @@ package models
 import (
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
@@ -42,8 +41,8 @@ type DetailedTag struct {
 	// The os of the image.
 	Os string `json:"os,omitempty"`
 
-	// scan overview
-	ScanOverview *DetailedTagScanOverview `json:"scan_overview,omitempty"`
+	// The overview of the scan result.
+	ScanOverview ScanOverview `json:"scan_overview,omitempty"`
 
 	// The signature of image, defined by RepoSignature. If it is null, the image is unsigned.
 	Signature interface{} `json:"signature,omitempty"`
@@ -101,13 +100,11 @@ func (m *DetailedTag) validateScanOverview(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if m.ScanOverview != nil {
-		if err := m.ScanOverview.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("scan_overview")
-			}
-			return err
+	if err := m.ScanOverview.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("scan_overview")
 		}
+		return err
 	}
 
 	return nil
@@ -124,147 +121,6 @@ func (m *DetailedTag) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *DetailedTag) UnmarshalBinary(b []byte) error {
 	var res DetailedTag
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// DetailedTagScanOverview The overview of the scan result.  This is an optional property.
-// swagger:model DetailedTagScanOverview
-type DetailedTagScanOverview struct {
-
-	// components
-	Components *DetailedTagScanOverviewComponents `json:"components,omitempty"`
-
-	// The top layer name of this image in Clair, this is for calling Clair API to get the vulnerability list of this image.
-	DetailsKey string `json:"details_key,omitempty"`
-
-	// The digest of the image.
-	Digest string `json:"digest,omitempty"`
-
-	// The ID of the job on jobservice to scan the image.
-	JobID int64 `json:"job_id,omitempty"`
-
-	// The status of the scan job, it can be "pendnig", "running", "finished", "error".
-	ScanStatus string `json:"scan_status,omitempty"`
-
-	// 0-Not scanned, 1-Negligible, 2-Unknown, 3-Low, 4-Medium, 5-High
-	Severity int64 `json:"severity,omitempty"`
-}
-
-// Validate validates this detailed tag scan overview
-func (m *DetailedTagScanOverview) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateComponents(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *DetailedTagScanOverview) validateComponents(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Components) { // not required
-		return nil
-	}
-
-	if m.Components != nil {
-		if err := m.Components.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("scan_overview" + "." + "components")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *DetailedTagScanOverview) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *DetailedTagScanOverview) UnmarshalBinary(b []byte) error {
-	var res DetailedTagScanOverview
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// DetailedTagScanOverviewComponents The components overview of the image.
-// swagger:model DetailedTagScanOverviewComponents
-type DetailedTagScanOverviewComponents struct {
-
-	// List of number of components of different severities.
-	Summary []*ComponentOverviewEntry `json:"summary"`
-
-	// Total number of the components in this image.
-	Total int64 `json:"total,omitempty"`
-}
-
-// Validate validates this detailed tag scan overview components
-func (m *DetailedTagScanOverviewComponents) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateSummary(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *DetailedTagScanOverviewComponents) validateSummary(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Summary) { // not required
-		return nil
-	}
-
-	for i := 0; i < len(m.Summary); i++ {
-		if swag.IsZero(m.Summary[i]) { // not required
-			continue
-		}
-
-		if m.Summary[i] != nil {
-			if err := m.Summary[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("scan_overview" + "." + "components" + "." + "summary" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *DetailedTagScanOverviewComponents) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *DetailedTagScanOverviewComponents) UnmarshalBinary(b []byte) error {
-	var res DetailedTagScanOverviewComponents
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

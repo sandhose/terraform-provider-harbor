@@ -21,35 +21,30 @@ type DeleteRepositoriesRepoNameTagsTagReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteRepositoriesRepoNameTagsTagReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteRepositoriesRepoNameTagsTagOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewDeleteRepositoriesRepoNameTagsTagBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 401:
 		result := NewDeleteRepositoriesRepoNameTagsTagUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewDeleteRepositoriesRepoNameTagsTagForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewDeleteRepositoriesRepoNameTagsTagNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {

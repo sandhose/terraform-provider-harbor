@@ -21,42 +21,42 @@ type PostRepositoriesRepoNameTagsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PostRepositoriesRepoNameTagsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPostRepositoriesRepoNameTagsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewPostRepositoriesRepoNameTagsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 401:
 		result := NewPostRepositoriesRepoNameTagsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
+	case 403:
+		result := NewPostRepositoriesRepoNameTagsForbidden()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 404:
 		result := NewPostRepositoriesRepoNameTagsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 409:
 		result := NewPostRepositoriesRepoNameTagsConflict()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewPostRepositoriesRepoNameTagsInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -128,6 +128,27 @@ func (o *PostRepositoriesRepoNameTagsUnauthorized) Error() string {
 }
 
 func (o *PostRepositoriesRepoNameTagsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewPostRepositoriesRepoNameTagsForbidden creates a PostRepositoriesRepoNameTagsForbidden with default headers values
+func NewPostRepositoriesRepoNameTagsForbidden() *PostRepositoriesRepoNameTagsForbidden {
+	return &PostRepositoriesRepoNameTagsForbidden{}
+}
+
+/*PostRepositoriesRepoNameTagsForbidden handles this case with default header values.
+
+Forbiden as quota exceeded.
+*/
+type PostRepositoriesRepoNameTagsForbidden struct {
+}
+
+func (o *PostRepositoriesRepoNameTagsForbidden) Error() string {
+	return fmt.Sprintf("[POST /repositories/{repo_name}/tags][%d] postRepositoriesRepoNameTagsForbidden ", 403)
+}
+
+func (o *PostRepositoriesRepoNameTagsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

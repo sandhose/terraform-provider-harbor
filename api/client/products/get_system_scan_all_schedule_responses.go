@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetSystemScanAllScheduleReader is a Reader for the GetSystemScanAllSchedule structure.
@@ -24,28 +24,24 @@ type GetSystemScanAllScheduleReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetSystemScanAllScheduleReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetSystemScanAllScheduleOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 401:
 		result := NewGetSystemScanAllScheduleUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetSystemScanAllScheduleForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetSystemScanAllScheduleInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -73,6 +69,10 @@ type GetSystemScanAllScheduleOK struct {
 
 func (o *GetSystemScanAllScheduleOK) Error() string {
 	return fmt.Sprintf("[GET /system/scanAll/schedule][%d] getSystemScanAllScheduleOK  %+v", 200, o.Payload)
+}
+
+func (o *GetSystemScanAllScheduleOK) GetPayload() *models.AdminJobSchedule {
+	return o.Payload
 }
 
 func (o *GetSystemScanAllScheduleOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

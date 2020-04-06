@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetHealthReader is a Reader for the GetHealth structure.
@@ -24,7 +24,6 @@ type GetHealthReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetHealthReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetHealthOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -52,6 +51,10 @@ type GetHealthOK struct {
 
 func (o *GetHealthOK) Error() string {
 	return fmt.Sprintf("[GET /health][%d] getHealthOK  %+v", 200, o.Payload)
+}
+
+func (o *GetHealthOK) GetPayload() *models.OverallHealthStatus {
+	return o.Payload
 }
 
 func (o *GetHealthOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

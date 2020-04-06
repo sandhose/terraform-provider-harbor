@@ -6,9 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
@@ -18,6 +17,9 @@ type ProjectReq struct {
 
 	// The count quota of the project.
 	CountLimit int64 `json:"count_limit,omitempty"`
+
+	// The CVE whitelist of the project.
+	CveWhitelist *CVEWhitelist `json:"cve_whitelist,omitempty"`
 
 	// The metadata of the project.
 	Metadata *ProjectMetadata `json:"metadata,omitempty"`
@@ -33,6 +35,10 @@ type ProjectReq struct {
 func (m *ProjectReq) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCveWhitelist(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMetadata(formats); err != nil {
 		res = append(res, err)
 	}
@@ -40,6 +46,24 @@ func (m *ProjectReq) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ProjectReq) validateCveWhitelist(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.CveWhitelist) { // not required
+		return nil
+	}
+
+	if m.CveWhitelist != nil {
+		if err := m.CveWhitelist.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cve_whitelist")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

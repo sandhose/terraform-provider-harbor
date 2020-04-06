@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetLabelsIDReader is a Reader for the GetLabelsID structure.
@@ -24,28 +24,24 @@ type GetLabelsIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetLabelsIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetLabelsIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 401:
 		result := NewGetLabelsIDUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewGetLabelsIDNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetLabelsIDInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -73,6 +69,10 @@ type GetLabelsIDOK struct {
 
 func (o *GetLabelsIDOK) Error() string {
 	return fmt.Sprintf("[GET /labels/{id}][%d] getLabelsIdOK  %+v", 200, o.Payload)
+}
+
+func (o *GetLabelsIDOK) GetPayload() *models.Label {
+	return o.Payload
 }
 
 func (o *GetLabelsIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

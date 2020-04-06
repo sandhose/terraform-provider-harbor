@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetRepositoriesRepoNameLabelsReader is a Reader for the GetRepositoriesRepoNameLabels structure.
@@ -24,28 +24,24 @@ type GetRepositoriesRepoNameLabelsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetRepositoriesRepoNameLabelsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetRepositoriesRepoNameLabelsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 401:
 		result := NewGetRepositoriesRepoNameLabelsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetRepositoriesRepoNameLabelsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewGetRepositoriesRepoNameLabelsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -73,6 +69,10 @@ type GetRepositoriesRepoNameLabelsOK struct {
 
 func (o *GetRepositoriesRepoNameLabelsOK) Error() string {
 	return fmt.Sprintf("[GET /repositories/{repo_name}/labels][%d] getRepositoriesRepoNameLabelsOK  %+v", 200, o.Payload)
+}
+
+func (o *GetRepositoriesRepoNameLabelsOK) GetPayload() []*models.Label {
+	return o.Payload
 }
 
 func (o *GetRepositoriesRepoNameLabelsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

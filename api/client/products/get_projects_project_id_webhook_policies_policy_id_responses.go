@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetProjectsProjectIDWebhookPoliciesPolicyIDReader is a Reader for the GetProjectsProjectIDWebhookPoliciesPolicyID structure.
@@ -24,42 +24,36 @@ type GetProjectsProjectIDWebhookPoliciesPolicyIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetProjectsProjectIDWebhookPoliciesPolicyIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetProjectsProjectIDWebhookPoliciesPolicyIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetProjectsProjectIDWebhookPoliciesPolicyIDBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 401:
 		result := NewGetProjectsProjectIDWebhookPoliciesPolicyIDUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetProjectsProjectIDWebhookPoliciesPolicyIDForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewGetProjectsProjectIDWebhookPoliciesPolicyIDNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetProjectsProjectIDWebhookPoliciesPolicyIDInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -87,6 +81,10 @@ type GetProjectsProjectIDWebhookPoliciesPolicyIDOK struct {
 
 func (o *GetProjectsProjectIDWebhookPoliciesPolicyIDOK) Error() string {
 	return fmt.Sprintf("[GET /projects/{project_id}/webhook/policies/{policy_id}][%d] getProjectsProjectIdWebhookPoliciesPolicyIdOK  %+v", 200, o.Payload)
+}
+
+func (o *GetProjectsProjectIDWebhookPoliciesPolicyIDOK) GetPayload() *models.WebhookPolicy {
+	return o.Payload
 }
 
 func (o *GetProjectsProjectIDWebhookPoliciesPolicyIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

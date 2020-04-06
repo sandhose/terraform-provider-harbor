@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetRepositoriesTopReader is a Reader for the GetRepositoriesTop structure.
@@ -24,21 +24,18 @@ type GetRepositoriesTopReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetRepositoriesTopReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetRepositoriesTopOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetRepositoriesTopBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetRepositoriesTopInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +63,10 @@ type GetRepositoriesTopOK struct {
 
 func (o *GetRepositoriesTopOK) Error() string {
 	return fmt.Sprintf("[GET /repositories/top][%d] getRepositoriesTopOK  %+v", 200, o.Payload)
+}
+
+func (o *GetRepositoriesTopOK) GetPayload() []*models.Repository {
+	return o.Payload
 }
 
 func (o *GetRepositoriesTopOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

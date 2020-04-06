@@ -62,13 +62,8 @@ for the get users search operation typically these are written to a http.Request
 */
 type GetUsersSearchParams struct {
 
-	/*Email
-	  Email for filtering results.
-
-	*/
-	Email *string
 	/*Page
-	  The page nubmer, default is 1.
+	  The page number, default is 1.
 
 	*/
 	Page *int32
@@ -81,7 +76,7 @@ type GetUsersSearchParams struct {
 	  Username for filtering results.
 
 	*/
-	Username *string
+	Username string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -121,17 +116,6 @@ func (o *GetUsersSearchParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithEmail adds the email to the get users search params
-func (o *GetUsersSearchParams) WithEmail(email *string) *GetUsersSearchParams {
-	o.SetEmail(email)
-	return o
-}
-
-// SetEmail adds the email to the get users search params
-func (o *GetUsersSearchParams) SetEmail(email *string) {
-	o.Email = email
-}
-
 // WithPage adds the page to the get users search params
 func (o *GetUsersSearchParams) WithPage(page *int32) *GetUsersSearchParams {
 	o.SetPage(page)
@@ -155,13 +139,13 @@ func (o *GetUsersSearchParams) SetPageSize(pageSize *int32) {
 }
 
 // WithUsername adds the username to the get users search params
-func (o *GetUsersSearchParams) WithUsername(username *string) *GetUsersSearchParams {
+func (o *GetUsersSearchParams) WithUsername(username string) *GetUsersSearchParams {
 	o.SetUsername(username)
 	return o
 }
 
 // SetUsername adds the username to the get users search params
-func (o *GetUsersSearchParams) SetUsername(username *string) {
+func (o *GetUsersSearchParams) SetUsername(username string) {
 	o.Username = username
 }
 
@@ -172,22 +156,6 @@ func (o *GetUsersSearchParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 	var res []error
-
-	if o.Email != nil {
-
-		// query param email
-		var qrEmail string
-		if o.Email != nil {
-			qrEmail = *o.Email
-		}
-		qEmail := qrEmail
-		if qEmail != "" {
-			if err := r.SetQueryParam("email", qEmail); err != nil {
-				return err
-			}
-		}
-
-	}
 
 	if o.Page != nil {
 
@@ -221,20 +189,13 @@ func (o *GetUsersSearchParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 
 	}
 
-	if o.Username != nil {
-
-		// query param username
-		var qrUsername string
-		if o.Username != nil {
-			qrUsername = *o.Username
+	// query param username
+	qrUsername := o.Username
+	qUsername := qrUsername
+	if qUsername != "" {
+		if err := r.SetQueryParam("username", qUsername); err != nil {
+			return err
 		}
-		qUsername := qrUsername
-		if qUsername != "" {
-			if err := r.SetQueryParam("username", qUsername); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	if len(res) > 0 {

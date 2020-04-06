@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetReplicationExecutionsIDReader is a Reader for the GetReplicationExecutionsID structure.
@@ -24,49 +24,42 @@ type GetReplicationExecutionsIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetReplicationExecutionsIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetReplicationExecutionsIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetReplicationExecutionsIDBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 401:
 		result := NewGetReplicationExecutionsIDUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetReplicationExecutionsIDForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewGetReplicationExecutionsIDNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 415:
 		result := NewGetReplicationExecutionsIDUnsupportedMediaType()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetReplicationExecutionsIDInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -94,6 +87,10 @@ type GetReplicationExecutionsIDOK struct {
 
 func (o *GetReplicationExecutionsIDOK) Error() string {
 	return fmt.Sprintf("[GET /replication/executions/{id}][%d] getReplicationExecutionsIdOK  %+v", 200, o.Payload)
+}
+
+func (o *GetReplicationExecutionsIDOK) GetPayload() *models.ReplicationExecution {
+	return o.Payload
 }
 
 func (o *GetReplicationExecutionsIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

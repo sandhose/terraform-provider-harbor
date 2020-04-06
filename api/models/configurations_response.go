@@ -6,9 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
@@ -79,8 +78,26 @@ type ConfigurationsResponse struct {
 	// The URL of LDAP server.
 	LdapURL *StringConfigItem `json:"ldap_url,omitempty"`
 
+	// The client id of the OIDC.
+	OidcClientID *StringConfigItem `json:"oidc_client_id,omitempty"`
+
+	// The URL of an OIDC-complaint server, must start with 'https://'.
+	OidcEndpoint *StringConfigItem `json:"oidc_endpoint,omitempty"`
+
+	// The name of the OIDC provider.
+	OidcName *StringConfigItem `json:"oidc_name,omitempty"`
+
+	// The scope sent to OIDC server during authentication, should be separated by comma. It has to contain “openid”, and “offline_access”. If you are using google, please remove “offline_access” from this field.
+	OidcScope *StringConfigItem `json:"oidc_scope,omitempty"`
+
+	// Whether verify your OIDC server certificate, disable it if your OIDC server is hosted via self-hosted certificate.
+	OidcVerifyCert *BoolConfigItem `json:"oidc_verify_cert,omitempty"`
+
 	// This attribute restricts what users have the permission to create project.  It can be "everyone" or "adminonly".
 	ProjectCreationRestriction *StringConfigItem `json:"project_creation_restriction,omitempty"`
+
+	// This attribute indicates whether quota per project enabled in harbor
+	QuotaPerProjectEnable *BoolConfigItem `json:"quota_per_project_enable,omitempty"`
 
 	// 'docker push' is prohibited by Harbor if you set it to true.
 	ReadOnly *BoolConfigItem `json:"read_only,omitempty"`
@@ -181,7 +198,31 @@ func (m *ConfigurationsResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateOidcClientID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOidcEndpoint(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOidcName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOidcScope(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOidcVerifyCert(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateProjectCreationRestriction(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateQuotaPerProjectEnable(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -557,6 +598,96 @@ func (m *ConfigurationsResponse) validateLdapURL(formats strfmt.Registry) error 
 	return nil
 }
 
+func (m *ConfigurationsResponse) validateOidcClientID(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.OidcClientID) { // not required
+		return nil
+	}
+
+	if m.OidcClientID != nil {
+		if err := m.OidcClientID.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("oidc_client_id")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ConfigurationsResponse) validateOidcEndpoint(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.OidcEndpoint) { // not required
+		return nil
+	}
+
+	if m.OidcEndpoint != nil {
+		if err := m.OidcEndpoint.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("oidc_endpoint")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ConfigurationsResponse) validateOidcName(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.OidcName) { // not required
+		return nil
+	}
+
+	if m.OidcName != nil {
+		if err := m.OidcName.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("oidc_name")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ConfigurationsResponse) validateOidcScope(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.OidcScope) { // not required
+		return nil
+	}
+
+	if m.OidcScope != nil {
+		if err := m.OidcScope.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("oidc_scope")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ConfigurationsResponse) validateOidcVerifyCert(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.OidcVerifyCert) { // not required
+		return nil
+	}
+
+	if m.OidcVerifyCert != nil {
+		if err := m.OidcVerifyCert.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("oidc_verify_cert")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *ConfigurationsResponse) validateProjectCreationRestriction(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.ProjectCreationRestriction) { // not required
@@ -567,6 +698,24 @@ func (m *ConfigurationsResponse) validateProjectCreationRestriction(formats strf
 		if err := m.ProjectCreationRestriction.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("project_creation_restriction")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ConfigurationsResponse) validateQuotaPerProjectEnable(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.QuotaPerProjectEnable) { // not required
+		return nil
+	}
+
+	if m.QuotaPerProjectEnable != nil {
+		if err := m.QuotaPerProjectEnable.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("quota_per_project_enable")
 			}
 			return err
 		}
@@ -766,7 +915,7 @@ func (m *ConfigurationsResponseScanAllPolicy) UnmarshalBinary(b []byte) error {
 // swagger:model ConfigurationsResponseScanAllPolicyParameter
 type ConfigurationsResponseScanAllPolicyParameter struct {
 
-	// The offest in seconds of UTC 0 o'clock, only valid when the policy type is "daily"
+	// The offset in seconds of UTC 0 o'clock, only valid when the policy type is "daily"
 	DailyTime int64 `json:"daily_time,omitempty"`
 }
 

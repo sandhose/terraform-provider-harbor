@@ -21,35 +21,30 @@ type DeleteProjectsProjectIDMembersMidReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteProjectsProjectIDMembersMidReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteProjectsProjectIDMembersMidOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewDeleteProjectsProjectIDMembersMidBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 401:
 		result := NewDeleteProjectsProjectIDMembersMidUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewDeleteProjectsProjectIDMembersMidForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewDeleteProjectsProjectIDMembersMidInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {

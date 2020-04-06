@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetSearchReader is a Reader for the GetSearch structure.
@@ -24,14 +24,12 @@ type GetSearchReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetSearchReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetSearchOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 500:
 		result := NewGetSearchInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -59,6 +57,10 @@ type GetSearchOK struct {
 
 func (o *GetSearchOK) Error() string {
 	return fmt.Sprintf("[GET /search][%d] getSearchOK  %+v", 200, o.Payload)
+}
+
+func (o *GetSearchOK) GetPayload() []*models.Search {
+	return o.Payload
 }
 
 func (o *GetSearchOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

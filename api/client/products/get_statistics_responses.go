@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetStatisticsReader is a Reader for the GetStatistics structure.
@@ -24,21 +24,18 @@ type GetStatisticsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetStatisticsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetStatisticsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 401:
 		result := NewGetStatisticsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetStatisticsInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +63,10 @@ type GetStatisticsOK struct {
 
 func (o *GetStatisticsOK) Error() string {
 	return fmt.Sprintf("[GET /statistics][%d] getStatisticsOK  %+v", 200, o.Payload)
+}
+
+func (o *GetStatisticsOK) GetPayload() *models.StatisticMap {
+	return o.Payload
 }
 
 func (o *GetStatisticsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -17,7 +17,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // NewPutProjectsProjectIDWebhookPoliciesPolicyIDParams creates a new PutProjectsProjectIDWebhookPoliciesPolicyIDParams object

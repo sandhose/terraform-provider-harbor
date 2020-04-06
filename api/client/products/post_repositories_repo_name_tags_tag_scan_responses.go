@@ -21,44 +21,32 @@ type PostRepositoriesRepoNameTagsTagScanReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PostRepositoriesRepoNameTagsTagScanReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
-	case 200:
-		result := NewPostRepositoriesRepoNameTagsTagScanOK()
+	case 202:
+		result := NewPostRepositoriesRepoNameTagsTagScanAccepted()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 401:
 		result := NewPostRepositoriesRepoNameTagsTagScanUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewPostRepositoriesRepoNameTagsTagScanForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewPostRepositoriesRepoNameTagsTagScanNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
-	case 415:
-		result := NewPostRepositoriesRepoNameTagsTagScanUnsupportedMediaType()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
-
-	case 503:
-		result := NewPostRepositoriesRepoNameTagsTagScanServiceUnavailable()
+	case 500:
+		result := NewPostRepositoriesRepoNameTagsTagScanInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -69,23 +57,23 @@ func (o *PostRepositoriesRepoNameTagsTagScanReader) ReadResponse(response runtim
 	}
 }
 
-// NewPostRepositoriesRepoNameTagsTagScanOK creates a PostRepositoriesRepoNameTagsTagScanOK with default headers values
-func NewPostRepositoriesRepoNameTagsTagScanOK() *PostRepositoriesRepoNameTagsTagScanOK {
-	return &PostRepositoriesRepoNameTagsTagScanOK{}
+// NewPostRepositoriesRepoNameTagsTagScanAccepted creates a PostRepositoriesRepoNameTagsTagScanAccepted with default headers values
+func NewPostRepositoriesRepoNameTagsTagScanAccepted() *PostRepositoriesRepoNameTagsTagScanAccepted {
+	return &PostRepositoriesRepoNameTagsTagScanAccepted{}
 }
 
-/*PostRepositoriesRepoNameTagsTagScanOK handles this case with default header values.
+/*PostRepositoriesRepoNameTagsTagScanAccepted handles this case with default header values.
 
-Successfully created the job to scan image.
+Scan request is successfully accepted
 */
-type PostRepositoriesRepoNameTagsTagScanOK struct {
+type PostRepositoriesRepoNameTagsTagScanAccepted struct {
 }
 
-func (o *PostRepositoriesRepoNameTagsTagScanOK) Error() string {
-	return fmt.Sprintf("[POST /repositories/{repo_name}/tags/{tag}/scan][%d] postRepositoriesRepoNameTagsTagScanOK ", 200)
+func (o *PostRepositoriesRepoNameTagsTagScanAccepted) Error() string {
+	return fmt.Sprintf("[POST /repositories/{repo_name}/tags/{tag}/scan][%d] postRepositoriesRepoNameTagsTagScanAccepted ", 202)
 }
 
-func (o *PostRepositoriesRepoNameTagsTagScanOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *PostRepositoriesRepoNameTagsTagScanAccepted) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
@@ -97,7 +85,7 @@ func NewPostRepositoriesRepoNameTagsTagScanUnauthorized() *PostRepositoriesRepoN
 
 /*PostRepositoriesRepoNameTagsTagScanUnauthorized handles this case with default header values.
 
-User needs to login or call the API with correct credentials.
+Unauthorized request
 */
 type PostRepositoriesRepoNameTagsTagScanUnauthorized struct {
 }
@@ -118,7 +106,7 @@ func NewPostRepositoriesRepoNameTagsTagScanForbidden() *PostRepositoriesRepoName
 
 /*PostRepositoriesRepoNameTagsTagScanForbidden handles this case with default header values.
 
-User doesn't have permission to perform the action.
+Request is not allowed
 */
 type PostRepositoriesRepoNameTagsTagScanForbidden struct {
 }
@@ -139,7 +127,7 @@ func NewPostRepositoriesRepoNameTagsTagScanNotFound() *PostRepositoriesRepoNameT
 
 /*PostRepositoriesRepoNameTagsTagScanNotFound handles this case with default header values.
 
-The image does not exist in Harbor.
+The target artifact is not found
 */
 type PostRepositoriesRepoNameTagsTagScanNotFound struct {
 }
@@ -153,44 +141,23 @@ func (o *PostRepositoriesRepoNameTagsTagScanNotFound) readResponse(response runt
 	return nil
 }
 
-// NewPostRepositoriesRepoNameTagsTagScanUnsupportedMediaType creates a PostRepositoriesRepoNameTagsTagScanUnsupportedMediaType with default headers values
-func NewPostRepositoriesRepoNameTagsTagScanUnsupportedMediaType() *PostRepositoriesRepoNameTagsTagScanUnsupportedMediaType {
-	return &PostRepositoriesRepoNameTagsTagScanUnsupportedMediaType{}
+// NewPostRepositoriesRepoNameTagsTagScanInternalServerError creates a PostRepositoriesRepoNameTagsTagScanInternalServerError with default headers values
+func NewPostRepositoriesRepoNameTagsTagScanInternalServerError() *PostRepositoriesRepoNameTagsTagScanInternalServerError {
+	return &PostRepositoriesRepoNameTagsTagScanInternalServerError{}
 }
 
-/*PostRepositoriesRepoNameTagsTagScanUnsupportedMediaType handles this case with default header values.
+/*PostRepositoriesRepoNameTagsTagScanInternalServerError handles this case with default header values.
 
-The Media Type of the request is not supported, it has to be "application/json"
+Internal server error happened
 */
-type PostRepositoriesRepoNameTagsTagScanUnsupportedMediaType struct {
+type PostRepositoriesRepoNameTagsTagScanInternalServerError struct {
 }
 
-func (o *PostRepositoriesRepoNameTagsTagScanUnsupportedMediaType) Error() string {
-	return fmt.Sprintf("[POST /repositories/{repo_name}/tags/{tag}/scan][%d] postRepositoriesRepoNameTagsTagScanUnsupportedMediaType ", 415)
+func (o *PostRepositoriesRepoNameTagsTagScanInternalServerError) Error() string {
+	return fmt.Sprintf("[POST /repositories/{repo_name}/tags/{tag}/scan][%d] postRepositoriesRepoNameTagsTagScanInternalServerError ", 500)
 }
 
-func (o *PostRepositoriesRepoNameTagsTagScanUnsupportedMediaType) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	return nil
-}
-
-// NewPostRepositoriesRepoNameTagsTagScanServiceUnavailable creates a PostRepositoriesRepoNameTagsTagScanServiceUnavailable with default headers values
-func NewPostRepositoriesRepoNameTagsTagScanServiceUnavailable() *PostRepositoriesRepoNameTagsTagScanServiceUnavailable {
-	return &PostRepositoriesRepoNameTagsTagScanServiceUnavailable{}
-}
-
-/*PostRepositoriesRepoNameTagsTagScanServiceUnavailable handles this case with default header values.
-
-Harbor is not deployed with Clair.
-*/
-type PostRepositoriesRepoNameTagsTagScanServiceUnavailable struct {
-}
-
-func (o *PostRepositoriesRepoNameTagsTagScanServiceUnavailable) Error() string {
-	return fmt.Sprintf("[POST /repositories/{repo_name}/tags/{tag}/scan][%d] postRepositoriesRepoNameTagsTagScanServiceUnavailable ", 503)
-}
-
-func (o *PostRepositoriesRepoNameTagsTagScanServiceUnavailable) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *PostRepositoriesRepoNameTagsTagScanInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

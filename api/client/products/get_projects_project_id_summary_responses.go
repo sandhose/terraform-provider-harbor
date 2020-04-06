@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetProjectsProjectIDSummaryReader is a Reader for the GetProjectsProjectIDSummary structure.
@@ -24,42 +24,36 @@ type GetProjectsProjectIDSummaryReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetProjectsProjectIDSummaryReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetProjectsProjectIDSummaryOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetProjectsProjectIDSummaryBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 401:
 		result := NewGetProjectsProjectIDSummaryUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetProjectsProjectIDSummaryForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewGetProjectsProjectIDSummaryNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetProjectsProjectIDSummaryInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -87,6 +81,10 @@ type GetProjectsProjectIDSummaryOK struct {
 
 func (o *GetProjectsProjectIDSummaryOK) Error() string {
 	return fmt.Sprintf("[GET /projects/{project_id}/summary][%d] getProjectsProjectIdSummaryOK  %+v", 200, o.Payload)
+}
+
+func (o *GetProjectsProjectIDSummaryOK) GetPayload() *models.ProjectSummary {
+	return o.Payload
 }
 
 func (o *GetProjectsProjectIDSummaryOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

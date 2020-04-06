@@ -22,28 +22,24 @@ type GetReplicationAdaptersReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetReplicationAdaptersReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetReplicationAdaptersOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 401:
 		result := NewGetReplicationAdaptersUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetReplicationAdaptersForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetReplicationAdaptersInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -71,6 +67,10 @@ type GetReplicationAdaptersOK struct {
 
 func (o *GetReplicationAdaptersOK) Error() string {
 	return fmt.Sprintf("[GET /replication/adapters][%d] getReplicationAdaptersOK  %+v", 200, o.Payload)
+}
+
+func (o *GetReplicationAdaptersOK) GetPayload() []string {
+	return o.Payload
 }
 
 func (o *GetReplicationAdaptersOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

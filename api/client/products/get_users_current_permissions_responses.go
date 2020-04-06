@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetUsersCurrentPermissionsReader is a Reader for the GetUsersCurrentPermissions structure.
@@ -24,21 +24,18 @@ type GetUsersCurrentPermissionsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetUsersCurrentPermissionsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetUsersCurrentPermissionsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 401:
 		result := NewGetUsersCurrentPermissionsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetUsersCurrentPermissionsInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +63,10 @@ type GetUsersCurrentPermissionsOK struct {
 
 func (o *GetUsersCurrentPermissionsOK) Error() string {
 	return fmt.Sprintf("[GET /users/current/permissions][%d] getUsersCurrentPermissionsOK  %+v", 200, o.Payload)
+}
+
+func (o *GetUsersCurrentPermissionsOK) GetPayload() []*models.Permission {
+	return o.Payload
 }
 
 func (o *GetUsersCurrentPermissionsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

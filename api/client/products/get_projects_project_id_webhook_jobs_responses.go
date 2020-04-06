@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetProjectsProjectIDWebhookJobsReader is a Reader for the GetProjectsProjectIDWebhookJobs structure.
@@ -24,35 +24,30 @@ type GetProjectsProjectIDWebhookJobsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetProjectsProjectIDWebhookJobsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetProjectsProjectIDWebhookJobsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetProjectsProjectIDWebhookJobsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 401:
 		result := NewGetProjectsProjectIDWebhookJobsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetProjectsProjectIDWebhookJobsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetProjectsProjectIDWebhookJobsInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -80,6 +75,10 @@ type GetProjectsProjectIDWebhookJobsOK struct {
 
 func (o *GetProjectsProjectIDWebhookJobsOK) Error() string {
 	return fmt.Sprintf("[GET /projects/{project_id}/webhook/jobs][%d] getProjectsProjectIdWebhookJobsOK  %+v", 200, o.Payload)
+}
+
+func (o *GetProjectsProjectIDWebhookJobsOK) GetPayload() []*models.WebhookJob {
+	return o.Payload
 }
 
 func (o *GetProjectsProjectIDWebhookJobsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

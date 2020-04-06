@@ -78,7 +78,7 @@ type GetProjectsProjectIDLogsParams struct {
 	*/
 	Operation *string
 	/*Page
-	  The page nubmer, default is 1.
+	  The page number, default is 1.
 
 	*/
 	Page *int32

@@ -21,42 +21,36 @@ type PutProjectsProjectIDMetadatasMetaNameReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PutProjectsProjectIDMetadatasMetaNameReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPutProjectsProjectIDMetadatasMetaNameOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewPutProjectsProjectIDMetadatasMetaNameBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 401:
 		result := NewPutProjectsProjectIDMetadatasMetaNameUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewPutProjectsProjectIDMetadatasMetaNameForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewPutProjectsProjectIDMetadatasMetaNameNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewPutProjectsProjectIDMetadatasMetaNameInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {

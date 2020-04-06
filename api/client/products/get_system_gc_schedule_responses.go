@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetSystemGcScheduleReader is a Reader for the GetSystemGcSchedule structure.
@@ -24,28 +24,24 @@ type GetSystemGcScheduleReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetSystemGcScheduleReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetSystemGcScheduleOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 401:
 		result := NewGetSystemGcScheduleUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetSystemGcScheduleForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetSystemGcScheduleInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -73,6 +69,10 @@ type GetSystemGcScheduleOK struct {
 
 func (o *GetSystemGcScheduleOK) Error() string {
 	return fmt.Sprintf("[GET /system/gc/schedule][%d] getSystemGcScheduleOK  %+v", 200, o.Payload)
+}
+
+func (o *GetSystemGcScheduleOK) GetPayload() *models.AdminJobSchedule {
+	return o.Payload
 }
 
 func (o *GetSystemGcScheduleOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

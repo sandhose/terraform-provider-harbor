@@ -21,28 +21,24 @@ type DeleteRepositoriesRepoNameLabelsLabelIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteRepositoriesRepoNameLabelsLabelIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteRepositoriesRepoNameLabelsLabelIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 401:
 		result := NewDeleteRepositoriesRepoNameLabelsLabelIDUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewDeleteRepositoriesRepoNameLabelsLabelIDForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewDeleteRepositoriesRepoNameLabelsLabelIDNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {

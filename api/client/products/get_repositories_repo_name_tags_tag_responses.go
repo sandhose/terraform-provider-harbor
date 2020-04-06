@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetRepositoriesRepoNameTagsTagReader is a Reader for the GetRepositoriesRepoNameTagsTag structure.
@@ -24,14 +24,12 @@ type GetRepositoriesRepoNameTagsTagReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetRepositoriesRepoNameTagsTagReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetRepositoriesRepoNameTagsTagOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 500:
 		result := NewGetRepositoriesRepoNameTagsTagInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -59,6 +57,10 @@ type GetRepositoriesRepoNameTagsTagOK struct {
 
 func (o *GetRepositoriesRepoNameTagsTagOK) Error() string {
 	return fmt.Sprintf("[GET /repositories/{repo_name}/tags/{tag}][%d] getRepositoriesRepoNameTagsTagOK  %+v", 200, o.Payload)
+}
+
+func (o *GetRepositoriesRepoNameTagsTagOK) GetPayload() *models.DetailedTag {
+	return o.Payload
 }
 
 func (o *GetRepositoriesRepoNameTagsTagOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

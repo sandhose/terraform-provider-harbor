@@ -7,7 +7,6 @@ package models
 
 import (
 	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/swag"
 )
 
@@ -15,7 +14,7 @@ import (
 // swagger:model ProjectMemberEntity
 type ProjectMemberEntity struct {
 
-	// the id of entity, if the member is an user, it is user_id in user table. if the member is an user group, it is the user group's ID in user_group table.
+	// the id of entity, if the member is a user, it is user_id in user table. if the member is a user group, it is the user group's ID in user_group table.
 	EntityID int64 `json:"entity_id,omitempty"`
 
 	// the name of the group member.

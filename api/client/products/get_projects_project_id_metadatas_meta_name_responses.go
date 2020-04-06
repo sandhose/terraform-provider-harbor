@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetProjectsProjectIDMetadatasMetaNameReader is a Reader for the GetProjectsProjectIDMetadatasMetaName structure.
@@ -24,21 +24,18 @@ type GetProjectsProjectIDMetadatasMetaNameReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetProjectsProjectIDMetadatasMetaNameReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetProjectsProjectIDMetadatasMetaNameOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 401:
 		result := NewGetProjectsProjectIDMetadatasMetaNameUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetProjectsProjectIDMetadatasMetaNameInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +63,10 @@ type GetProjectsProjectIDMetadatasMetaNameOK struct {
 
 func (o *GetProjectsProjectIDMetadatasMetaNameOK) Error() string {
 	return fmt.Sprintf("[GET /projects/{project_id}/metadatas/{meta_name}][%d] getProjectsProjectIdMetadatasMetaNameOK  %+v", 200, o.Payload)
+}
+
+func (o *GetProjectsProjectIDMetadatasMetaNameOK) GetPayload() *models.ProjectMetadata {
+	return o.Payload
 }
 
 func (o *GetProjectsProjectIDMetadatasMetaNameOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetReplicationExecutionsIDTasksReader is a Reader for the GetReplicationExecutionsIDTasks structure.
@@ -24,42 +24,36 @@ type GetReplicationExecutionsIDTasksReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetReplicationExecutionsIDTasksReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetReplicationExecutionsIDTasksOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetReplicationExecutionsIDTasksBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 401:
 		result := NewGetReplicationExecutionsIDTasksUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetReplicationExecutionsIDTasksForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewGetReplicationExecutionsIDTasksNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetReplicationExecutionsIDTasksInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -87,6 +81,10 @@ type GetReplicationExecutionsIDTasksOK struct {
 
 func (o *GetReplicationExecutionsIDTasksOK) Error() string {
 	return fmt.Sprintf("[GET /replication/executions/{id}/tasks][%d] getReplicationExecutionsIdTasksOK  %+v", 200, o.Payload)
+}
+
+func (o *GetReplicationExecutionsIDTasksOK) GetPayload() []*models.ReplicationTask {
+	return o.Payload
 }
 
 func (o *GetReplicationExecutionsIDTasksOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

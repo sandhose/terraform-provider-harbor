@@ -15,7 +15,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetProjectsProjectIDLogsReader is a Reader for the GetProjectsProjectIDLogs structure.
@@ -26,28 +26,24 @@ type GetProjectsProjectIDLogsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetProjectsProjectIDLogsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetProjectsProjectIDLogsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetProjectsProjectIDLogsBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 401:
 		result := NewGetProjectsProjectIDLogsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetProjectsProjectIDLogsInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -82,6 +78,10 @@ type GetProjectsProjectIDLogsOK struct {
 
 func (o *GetProjectsProjectIDLogsOK) Error() string {
 	return fmt.Sprintf("[GET /projects/{project_id}/logs][%d] getProjectsProjectIdLogsOK  %+v", 200, o.Payload)
+}
+
+func (o *GetProjectsProjectIDLogsOK) GetPayload() []*models.AccessLog {
+	return o.Payload
 }
 
 func (o *GetProjectsProjectIDLogsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

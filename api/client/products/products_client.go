@@ -6,13 +6,14 @@ package products
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"github.com/go-openapi/runtime"
+	"fmt"
 
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 )
 
 // New creates a new products API client.
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
+func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -24,10 +25,438 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-/*
-DeleteLabelsID deletes the label specified by ID
+// ClientService is the interface for Client methods
+type ClientService interface {
+	DeleteChartrepoRepoChartsName(params *DeleteChartrepoRepoChartsNameParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteChartrepoRepoChartsNameOK, error)
 
-Delete the label specified by ID.
+	DeleteChartrepoRepoChartsNameVersion(params *DeleteChartrepoRepoChartsNameVersionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteChartrepoRepoChartsNameVersionOK, error)
+
+	DeleteChartrepoRepoChartsNameVersionLabelsID(params *DeleteChartrepoRepoChartsNameVersionLabelsIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteChartrepoRepoChartsNameVersionLabelsIDOK, error)
+
+	DeleteLabelsID(params *DeleteLabelsIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteLabelsIDOK, error)
+
+	DeleteProjectsProjectID(params *DeleteProjectsProjectIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteProjectsProjectIDOK, error)
+
+	DeleteProjectsProjectIDImmutabletagrulesID(params *DeleteProjectsProjectIDImmutabletagrulesIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteProjectsProjectIDImmutabletagrulesIDOK, error)
+
+	DeleteProjectsProjectIDMembersMid(params *DeleteProjectsProjectIDMembersMidParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteProjectsProjectIDMembersMidOK, error)
+
+	DeleteProjectsProjectIDMetadatasMetaName(params *DeleteProjectsProjectIDMetadatasMetaNameParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteProjectsProjectIDMetadatasMetaNameOK, error)
+
+	DeleteProjectsProjectIDRobotsRobotID(params *DeleteProjectsProjectIDRobotsRobotIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteProjectsProjectIDRobotsRobotIDOK, error)
+
+	DeleteProjectsProjectIDWebhookPoliciesPolicyID(params *DeleteProjectsProjectIDWebhookPoliciesPolicyIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteProjectsProjectIDWebhookPoliciesPolicyIDOK, error)
+
+	DeleteRegistriesID(params *DeleteRegistriesIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRegistriesIDOK, error)
+
+	DeleteReplicationPoliciesID(params *DeleteReplicationPoliciesIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteReplicationPoliciesIDOK, error)
+
+	DeleteRepositoriesRepoName(params *DeleteRepositoriesRepoNameParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRepositoriesRepoNameOK, error)
+
+	DeleteRepositoriesRepoNameLabelsLabelID(params *DeleteRepositoriesRepoNameLabelsLabelIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRepositoriesRepoNameLabelsLabelIDOK, error)
+
+	DeleteRepositoriesRepoNameTagsTag(params *DeleteRepositoriesRepoNameTagsTagParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRepositoriesRepoNameTagsTagOK, error)
+
+	DeleteRepositoriesRepoNameTagsTagLabelsLabelID(params *DeleteRepositoriesRepoNameTagsTagLabelsLabelIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRepositoriesRepoNameTagsTagLabelsLabelIDOK, error)
+
+	DeleteUsergroupsGroupID(params *DeleteUsergroupsGroupIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUsergroupsGroupIDOK, error)
+
+	DeleteUsersUserID(params *DeleteUsersUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUsersUserIDOK, error)
+
+	GetChartrepoHealth(params *GetChartrepoHealthParams, authInfo runtime.ClientAuthInfoWriter) (*GetChartrepoHealthOK, error)
+
+	GetChartrepoRepoCharts(params *GetChartrepoRepoChartsParams, authInfo runtime.ClientAuthInfoWriter) (*GetChartrepoRepoChartsOK, error)
+
+	GetChartrepoRepoChartsName(params *GetChartrepoRepoChartsNameParams, authInfo runtime.ClientAuthInfoWriter) (*GetChartrepoRepoChartsNameOK, error)
+
+	GetChartrepoRepoChartsNameVersion(params *GetChartrepoRepoChartsNameVersionParams, authInfo runtime.ClientAuthInfoWriter) (*GetChartrepoRepoChartsNameVersionOK, error)
+
+	GetChartrepoRepoChartsNameVersionLabels(params *GetChartrepoRepoChartsNameVersionLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*GetChartrepoRepoChartsNameVersionLabelsOK, error)
+
+	GetConfigurations(params *GetConfigurationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetConfigurationsOK, error)
+
+	GetHealth(params *GetHealthParams, authInfo runtime.ClientAuthInfoWriter) (*GetHealthOK, error)
+
+	GetLabels(params *GetLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*GetLabelsOK, error)
+
+	GetLabelsID(params *GetLabelsIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetLabelsIDOK, error)
+
+	GetLabelsIDResources(params *GetLabelsIDResourcesParams, authInfo runtime.ClientAuthInfoWriter) (*GetLabelsIDResourcesOK, error)
+
+	GetLdapGroupsSearch(params *GetLdapGroupsSearchParams, authInfo runtime.ClientAuthInfoWriter) (*GetLdapGroupsSearchOK, error)
+
+	GetLdapUsersSearch(params *GetLdapUsersSearchParams, authInfo runtime.ClientAuthInfoWriter) (*GetLdapUsersSearchOK, error)
+
+	GetLogs(params *GetLogsParams, authInfo runtime.ClientAuthInfoWriter) (*GetLogsOK, error)
+
+	GetProjects(params *GetProjectsParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsOK, error)
+
+	GetProjectsProjectID(params *GetProjectsProjectIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDOK, error)
+
+	GetProjectsProjectIDImmutabletagrules(params *GetProjectsProjectIDImmutabletagrulesParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDImmutabletagrulesOK, error)
+
+	GetProjectsProjectIDLogs(params *GetProjectsProjectIDLogsParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDLogsOK, error)
+
+	GetProjectsProjectIDMembers(params *GetProjectsProjectIDMembersParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDMembersOK, error)
+
+	GetProjectsProjectIDMembersMid(params *GetProjectsProjectIDMembersMidParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDMembersMidOK, error)
+
+	GetProjectsProjectIDMetadatas(params *GetProjectsProjectIDMetadatasParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDMetadatasOK, error)
+
+	GetProjectsProjectIDMetadatasMetaName(params *GetProjectsProjectIDMetadatasMetaNameParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDMetadatasMetaNameOK, error)
+
+	GetProjectsProjectIDRobots(params *GetProjectsProjectIDRobotsParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDRobotsOK, error)
+
+	GetProjectsProjectIDRobotsRobotID(params *GetProjectsProjectIDRobotsRobotIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDRobotsRobotIDOK, error)
+
+	GetProjectsProjectIDScanner(params *GetProjectsProjectIDScannerParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDScannerOK, error)
+
+	GetProjectsProjectIDScannerCandidates(params *GetProjectsProjectIDScannerCandidatesParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDScannerCandidatesOK, error)
+
+	GetProjectsProjectIDSummary(params *GetProjectsProjectIDSummaryParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDSummaryOK, error)
+
+	GetProjectsProjectIDWebhookJobs(params *GetProjectsProjectIDWebhookJobsParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDWebhookJobsOK, error)
+
+	GetProjectsProjectIDWebhookLasttrigger(params *GetProjectsProjectIDWebhookLasttriggerParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDWebhookLasttriggerOK, error)
+
+	GetProjectsProjectIDWebhookPolicies(params *GetProjectsProjectIDWebhookPoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDWebhookPoliciesOK, error)
+
+	GetProjectsProjectIDWebhookPoliciesPolicyID(params *GetProjectsProjectIDWebhookPoliciesPolicyIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDWebhookPoliciesPolicyIDOK, error)
+
+	GetQuotas(params *GetQuotasParams, authInfo runtime.ClientAuthInfoWriter) (*GetQuotasOK, error)
+
+	GetQuotasID(params *GetQuotasIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetQuotasIDOK, error)
+
+	GetRegistries(params *GetRegistriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetRegistriesOK, error)
+
+	GetRegistriesID(params *GetRegistriesIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetRegistriesIDOK, error)
+
+	GetRegistriesIDInfo(params *GetRegistriesIDInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetRegistriesIDInfoOK, error)
+
+	GetRegistriesIDNamespace(params *GetRegistriesIDNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetRegistriesIDNamespaceOK, error)
+
+	GetReplicationAdapters(params *GetReplicationAdaptersParams, authInfo runtime.ClientAuthInfoWriter) (*GetReplicationAdaptersOK, error)
+
+	GetReplicationExecutions(params *GetReplicationExecutionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetReplicationExecutionsOK, error)
+
+	GetReplicationExecutionsID(params *GetReplicationExecutionsIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetReplicationExecutionsIDOK, error)
+
+	GetReplicationExecutionsIDTasks(params *GetReplicationExecutionsIDTasksParams, authInfo runtime.ClientAuthInfoWriter) (*GetReplicationExecutionsIDTasksOK, error)
+
+	GetReplicationExecutionsIDTasksTaskIDLog(params *GetReplicationExecutionsIDTasksTaskIDLogParams, authInfo runtime.ClientAuthInfoWriter) (*GetReplicationExecutionsIDTasksTaskIDLogOK, error)
+
+	GetReplicationPolicies(params *GetReplicationPoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*GetReplicationPoliciesOK, error)
+
+	GetReplicationPoliciesID(params *GetReplicationPoliciesIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetReplicationPoliciesIDOK, error)
+
+	GetRepositories(params *GetRepositoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoriesOK, error)
+
+	GetRepositoriesRepoNameLabels(params *GetRepositoriesRepoNameLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoriesRepoNameLabelsOK, error)
+
+	GetRepositoriesRepoNameSignatures(params *GetRepositoriesRepoNameSignaturesParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoriesRepoNameSignaturesOK, error)
+
+	GetRepositoriesRepoNameTags(params *GetRepositoriesRepoNameTagsParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoriesRepoNameTagsOK, error)
+
+	GetRepositoriesRepoNameTagsTag(params *GetRepositoriesRepoNameTagsTagParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoriesRepoNameTagsTagOK, error)
+
+	GetRepositoriesRepoNameTagsTagLabels(params *GetRepositoriesRepoNameTagsTagLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoriesRepoNameTagsTagLabelsOK, error)
+
+	GetRepositoriesRepoNameTagsTagManifest(params *GetRepositoriesRepoNameTagsTagManifestParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoriesRepoNameTagsTagManifestOK, error)
+
+	GetRepositoriesRepoNameTagsTagScanUUIDLog(params *GetRepositoriesRepoNameTagsTagScanUUIDLogParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoriesRepoNameTagsTagScanUUIDLogOK, error)
+
+	GetRepositoriesTop(params *GetRepositoriesTopParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoriesTopOK, error)
+
+	GetRetentionsID(params *GetRetentionsIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetRetentionsIDOK, error)
+
+	GetRetentionsIDExecutions(params *GetRetentionsIDExecutionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetRetentionsIDExecutionsOK, error)
+
+	GetRetentionsIDExecutionsEidTasks(params *GetRetentionsIDExecutionsEidTasksParams, authInfo runtime.ClientAuthInfoWriter) (*GetRetentionsIDExecutionsEidTasksOK, error)
+
+	GetRetentionsIDExecutionsEidTasksTid(params *GetRetentionsIDExecutionsEidTasksTidParams, authInfo runtime.ClientAuthInfoWriter) (*GetRetentionsIDExecutionsEidTasksTidOK, error)
+
+	GetRetentionsMetadatas(params *GetRetentionsMetadatasParams, authInfo runtime.ClientAuthInfoWriter) (*GetRetentionsMetadatasOK, error)
+
+	GetScanners(params *GetScannersParams, authInfo runtime.ClientAuthInfoWriter) (*GetScannersOK, error)
+
+	GetScannersRegistrationID(params *GetScannersRegistrationIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetScannersRegistrationIDOK, error)
+
+	GetScannersRegistrationIDMetadata(params *GetScannersRegistrationIDMetadataParams, authInfo runtime.ClientAuthInfoWriter) (*GetScannersRegistrationIDMetadataOK, error)
+
+	GetScansAllMetrics(params *GetScansAllMetricsParams, authInfo runtime.ClientAuthInfoWriter) (*GetScansAllMetricsOK, error)
+
+	GetScansScheduleMetrics(params *GetScansScheduleMetricsParams, authInfo runtime.ClientAuthInfoWriter) (*GetScansScheduleMetricsOK, error)
+
+	GetSearch(params *GetSearchParams, authInfo runtime.ClientAuthInfoWriter) (*GetSearchOK, error)
+
+	GetStatistics(params *GetStatisticsParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatisticsOK, error)
+
+	GetSystemCVEWhitelist(params *GetSystemCVEWhitelistParams, authInfo runtime.ClientAuthInfoWriter) (*GetSystemCVEWhitelistOK, error)
+
+	GetSystemGc(params *GetSystemGcParams, authInfo runtime.ClientAuthInfoWriter) (*GetSystemGcOK, error)
+
+	GetSystemGcID(params *GetSystemGcIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetSystemGcIDOK, error)
+
+	GetSystemGcIDLog(params *GetSystemGcIDLogParams, authInfo runtime.ClientAuthInfoWriter) (*GetSystemGcIDLogOK, error)
+
+	GetSystemGcSchedule(params *GetSystemGcScheduleParams, authInfo runtime.ClientAuthInfoWriter) (*GetSystemGcScheduleOK, error)
+
+	GetSystemScanAllSchedule(params *GetSystemScanAllScheduleParams, authInfo runtime.ClientAuthInfoWriter) (*GetSystemScanAllScheduleOK, error)
+
+	GetSysteminfo(params *GetSysteminfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetSysteminfoOK, error)
+
+	GetSysteminfoGetcert(params *GetSysteminfoGetcertParams, authInfo runtime.ClientAuthInfoWriter) (*GetSysteminfoGetcertOK, error)
+
+	GetSysteminfoVolumes(params *GetSysteminfoVolumesParams, authInfo runtime.ClientAuthInfoWriter) (*GetSysteminfoVolumesOK, error)
+
+	GetUsergroups(params *GetUsergroupsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUsergroupsOK, error)
+
+	GetUsergroupsGroupID(params *GetUsergroupsGroupIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUsergroupsGroupIDOK, error)
+
+	GetUsers(params *GetUsersParams, authInfo runtime.ClientAuthInfoWriter) (*GetUsersOK, error)
+
+	GetUsersCurrent(params *GetUsersCurrentParams, authInfo runtime.ClientAuthInfoWriter) (*GetUsersCurrentOK, error)
+
+	GetUsersCurrentPermissions(params *GetUsersCurrentPermissionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUsersCurrentPermissionsOK, error)
+
+	GetUsersSearch(params *GetUsersSearchParams, authInfo runtime.ClientAuthInfoWriter) (*GetUsersSearchOK, error)
+
+	GetUsersUserID(params *GetUsersUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUsersUserIDOK, error)
+
+	HeadProjects(params *HeadProjectsParams, authInfo runtime.ClientAuthInfoWriter) (*HeadProjectsOK, error)
+
+	PatchRetentionsIDExecutionsEid(params *PatchRetentionsIDExecutionsEidParams, authInfo runtime.ClientAuthInfoWriter) (*PatchRetentionsIDExecutionsEidOK, error)
+
+	PostChartrepoCharts(params *PostChartrepoChartsParams, authInfo runtime.ClientAuthInfoWriter) (*PostChartrepoChartsCreated, error)
+
+	PostChartrepoRepoCharts(params *PostChartrepoRepoChartsParams, authInfo runtime.ClientAuthInfoWriter) (*PostChartrepoRepoChartsCreated, error)
+
+	PostChartrepoRepoChartsNameVersionLabels(params *PostChartrepoRepoChartsNameVersionLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PostChartrepoRepoChartsNameVersionLabelsOK, error)
+
+	PostChartrepoRepoProv(params *PostChartrepoRepoProvParams, authInfo runtime.ClientAuthInfoWriter) (*PostChartrepoRepoProvCreated, error)
+
+	PostEmailPing(params *PostEmailPingParams, authInfo runtime.ClientAuthInfoWriter) (*PostEmailPingOK, error)
+
+	PostInternalSyncquota(params *PostInternalSyncquotaParams, authInfo runtime.ClientAuthInfoWriter) (*PostInternalSyncquotaOK, error)
+
+	PostInternalSyncregistry(params *PostInternalSyncregistryParams, authInfo runtime.ClientAuthInfoWriter) (*PostInternalSyncregistryOK, error)
+
+	PostLabels(params *PostLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PostLabelsCreated, error)
+
+	PostLdapPing(params *PostLdapPingParams, authInfo runtime.ClientAuthInfoWriter) (*PostLdapPingOK, error)
+
+	PostLdapUsersImport(params *PostLdapUsersImportParams, authInfo runtime.ClientAuthInfoWriter) (*PostLdapUsersImportOK, error)
+
+	PostProjects(params *PostProjectsParams, authInfo runtime.ClientAuthInfoWriter) (*PostProjectsCreated, error)
+
+	PostProjectsProjectIDImmutabletagrules(params *PostProjectsProjectIDImmutabletagrulesParams, authInfo runtime.ClientAuthInfoWriter) (*PostProjectsProjectIDImmutabletagrulesOK, error)
+
+	PostProjectsProjectIDMembers(params *PostProjectsProjectIDMembersParams, authInfo runtime.ClientAuthInfoWriter) (*PostProjectsProjectIDMembersCreated, error)
+
+	PostProjectsProjectIDMetadatas(params *PostProjectsProjectIDMetadatasParams, authInfo runtime.ClientAuthInfoWriter) (*PostProjectsProjectIDMetadatasOK, error)
+
+	PostProjectsProjectIDRobots(params *PostProjectsProjectIDRobotsParams, authInfo runtime.ClientAuthInfoWriter) (*PostProjectsProjectIDRobotsCreated, error)
+
+	PostProjectsProjectIDWebhookPolicies(params *PostProjectsProjectIDWebhookPoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*PostProjectsProjectIDWebhookPoliciesCreated, error)
+
+	PostProjectsProjectIDWebhookPoliciesTest(params *PostProjectsProjectIDWebhookPoliciesTestParams, authInfo runtime.ClientAuthInfoWriter) (*PostProjectsProjectIDWebhookPoliciesTestOK, error)
+
+	PostRegistries(params *PostRegistriesParams, authInfo runtime.ClientAuthInfoWriter) (*PostRegistriesCreated, error)
+
+	PostRegistriesPing(params *PostRegistriesPingParams, authInfo runtime.ClientAuthInfoWriter) (*PostRegistriesPingOK, error)
+
+	PostReplicationExecutions(params *PostReplicationExecutionsParams, authInfo runtime.ClientAuthInfoWriter) (*PostReplicationExecutionsCreated, error)
+
+	PostReplicationPolicies(params *PostReplicationPoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*PostReplicationPoliciesCreated, error)
+
+	PostRepositoriesRepoNameLabels(params *PostRepositoriesRepoNameLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PostRepositoriesRepoNameLabelsOK, error)
+
+	PostRepositoriesRepoNameTags(params *PostRepositoriesRepoNameTagsParams, authInfo runtime.ClientAuthInfoWriter) (*PostRepositoriesRepoNameTagsOK, error)
+
+	PostRepositoriesRepoNameTagsTagLabels(params *PostRepositoriesRepoNameTagsTagLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PostRepositoriesRepoNameTagsTagLabelsOK, error)
+
+	PostRepositoriesRepoNameTagsTagScan(params *PostRepositoriesRepoNameTagsTagScanParams, authInfo runtime.ClientAuthInfoWriter) (*PostRepositoriesRepoNameTagsTagScanAccepted, error)
+
+	PostRetentions(params *PostRetentionsParams, authInfo runtime.ClientAuthInfoWriter) (*PostRetentionsCreated, error)
+
+	PostRetentionsIDExecutions(params *PostRetentionsIDExecutionsParams, authInfo runtime.ClientAuthInfoWriter) (*PostRetentionsIDExecutionsOK, error)
+
+	PostScannersPing(params *PostScannersPingParams, authInfo runtime.ClientAuthInfoWriter) (*PostScannersPingOK, error)
+
+	PostSystemGcSchedule(params *PostSystemGcScheduleParams, authInfo runtime.ClientAuthInfoWriter) (*PostSystemGcScheduleOK, error)
+
+	PostSystemOidcPing(params *PostSystemOidcPingParams, authInfo runtime.ClientAuthInfoWriter) (*PostSystemOidcPingOK, error)
+
+	PostSystemScanAllSchedule(params *PostSystemScanAllScheduleParams, authInfo runtime.ClientAuthInfoWriter) (*PostSystemScanAllScheduleOK, error)
+
+	PostUsergroups(params *PostUsergroupsParams, authInfo runtime.ClientAuthInfoWriter) (*PostUsergroupsCreated, error)
+
+	PostUsers(params *PostUsersParams, authInfo runtime.ClientAuthInfoWriter) (*PostUsersCreated, error)
+
+	PutConfigurations(params *PutConfigurationsParams, authInfo runtime.ClientAuthInfoWriter) (*PutConfigurationsOK, error)
+
+	PutInternalSwitchquota(params *PutInternalSwitchquotaParams, authInfo runtime.ClientAuthInfoWriter) (*PutInternalSwitchquotaOK, error)
+
+	PutLabelsID(params *PutLabelsIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutLabelsIDOK, error)
+
+	PutProjectsProjectID(params *PutProjectsProjectIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutProjectsProjectIDOK, error)
+
+	PutProjectsProjectIDImmutabletagrulesID(params *PutProjectsProjectIDImmutabletagrulesIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutProjectsProjectIDImmutabletagrulesIDOK, error)
+
+	PutProjectsProjectIDMembersMid(params *PutProjectsProjectIDMembersMidParams, authInfo runtime.ClientAuthInfoWriter) (*PutProjectsProjectIDMembersMidOK, error)
+
+	PutProjectsProjectIDMetadatasMetaName(params *PutProjectsProjectIDMetadatasMetaNameParams, authInfo runtime.ClientAuthInfoWriter) (*PutProjectsProjectIDMetadatasMetaNameOK, error)
+
+	PutProjectsProjectIDRobotsRobotID(params *PutProjectsProjectIDRobotsRobotIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutProjectsProjectIDRobotsRobotIDOK, error)
+
+	PutProjectsProjectIDWebhookPoliciesPolicyID(params *PutProjectsProjectIDWebhookPoliciesPolicyIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutProjectsProjectIDWebhookPoliciesPolicyIDOK, error)
+
+	PutQuotasID(params *PutQuotasIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutQuotasIDOK, error)
+
+	PutRegistriesID(params *PutRegistriesIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutRegistriesIDOK, error)
+
+	PutReplicationExecutionsID(params *PutReplicationExecutionsIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutReplicationExecutionsIDOK, error)
+
+	PutReplicationPoliciesID(params *PutReplicationPoliciesIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutReplicationPoliciesIDOK, error)
+
+	PutRepositoriesRepoName(params *PutRepositoriesRepoNameParams, authInfo runtime.ClientAuthInfoWriter) (*PutRepositoriesRepoNameOK, error)
+
+	PutRetentionsID(params *PutRetentionsIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutRetentionsIDOK, error)
+
+	PutSystemCVEWhitelist(params *PutSystemCVEWhitelistParams, authInfo runtime.ClientAuthInfoWriter) (*PutSystemCVEWhitelistOK, error)
+
+	PutSystemGcSchedule(params *PutSystemGcScheduleParams, authInfo runtime.ClientAuthInfoWriter) (*PutSystemGcScheduleOK, error)
+
+	PutSystemScanAllSchedule(params *PutSystemScanAllScheduleParams, authInfo runtime.ClientAuthInfoWriter) (*PutSystemScanAllScheduleOK, error)
+
+	PutUsergroupsGroupID(params *PutUsergroupsGroupIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutUsergroupsGroupIDOK, error)
+
+	PutUsersUserID(params *PutUsersUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutUsersUserIDOK, error)
+
+	PutUsersUserIDCliSecret(params *PutUsersUserIDCliSecretParams, authInfo runtime.ClientAuthInfoWriter) (*PutUsersUserIDCliSecretOK, error)
+
+	PutUsersUserIDPassword(params *PutUsersUserIDPasswordParams, authInfo runtime.ClientAuthInfoWriter) (*PutUsersUserIDPasswordOK, error)
+
+	PutUsersUserIDSysadmin(params *PutUsersUserIDSysadminParams, authInfo runtime.ClientAuthInfoWriter) (*PutUsersUserIDSysadminOK, error)
+
+	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+  DeleteChartrepoRepoChartsName deletes all the versions of the specified chart
+
+  Delete all the versions of the specified chart
+*/
+func (a *Client) DeleteChartrepoRepoChartsName(params *DeleteChartrepoRepoChartsNameParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteChartrepoRepoChartsNameOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteChartrepoRepoChartsNameParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteChartrepoRepoChartsName",
+		Method:             "DELETE",
+		PathPattern:        "/chartrepo/{repo}/charts/{name}",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &DeleteChartrepoRepoChartsNameReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteChartrepoRepoChartsNameOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteChartrepoRepoChartsName: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DeleteChartrepoRepoChartsNameVersion deletes the specified chart version
+
+  Delete the specified chart version
+*/
+func (a *Client) DeleteChartrepoRepoChartsNameVersion(params *DeleteChartrepoRepoChartsNameVersionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteChartrepoRepoChartsNameVersionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteChartrepoRepoChartsNameVersionParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteChartrepoRepoChartsNameVersion",
+		Method:             "DELETE",
+		PathPattern:        "/chartrepo/{repo}/charts/{name}/{version}",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &DeleteChartrepoRepoChartsNameVersionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteChartrepoRepoChartsNameVersionOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteChartrepoRepoChartsNameVersion: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DeleteChartrepoRepoChartsNameVersionLabelsID removes label from chart
+
+  Remove label from the specified chart version.
+*/
+func (a *Client) DeleteChartrepoRepoChartsNameVersionLabelsID(params *DeleteChartrepoRepoChartsNameVersionLabelsIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteChartrepoRepoChartsNameVersionLabelsIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteChartrepoRepoChartsNameVersionLabelsIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteChartrepoRepoChartsNameVersionLabelsID",
+		Method:             "DELETE",
+		PathPattern:        "/chartrepo/{repo}/charts/{name}/{version}/labels/{id}",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &DeleteChartrepoRepoChartsNameVersionLabelsIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteChartrepoRepoChartsNameVersionLabelsIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteChartrepoRepoChartsNameVersionLabelsID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DeleteLabelsID deletes the label specified by ID
+
+  Delete the label specified by ID.
 
 */
 func (a *Client) DeleteLabelsID(params *DeleteLabelsIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteLabelsIDOK, error) {
@@ -52,14 +481,20 @@ func (a *Client) DeleteLabelsID(params *DeleteLabelsIDParams, authInfo runtime.C
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteLabelsIDOK), nil
-
+	success, ok := result.(*DeleteLabelsIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteLabelsID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-DeleteProjectsProjectID deletes project by project ID
+  DeleteProjectsProjectID deletes project by project ID
 
-This endpoint is aimed to delete project by project ID.
+  This endpoint is aimed to delete project by project ID.
 
 */
 func (a *Client) DeleteProjectsProjectID(params *DeleteProjectsProjectIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteProjectsProjectIDOK, error) {
@@ -84,12 +519,53 @@ func (a *Client) DeleteProjectsProjectID(params *DeleteProjectsProjectIDParams, 
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteProjectsProjectIDOK), nil
-
+	success, ok := result.(*DeleteProjectsProjectIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteProjectsProjectID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-DeleteProjectsProjectIDMembersMid deletes project member
+  DeleteProjectsProjectIDImmutabletagrulesID deletes the immutable tag rule
+*/
+func (a *Client) DeleteProjectsProjectIDImmutabletagrulesID(params *DeleteProjectsProjectIDImmutabletagrulesIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteProjectsProjectIDImmutabletagrulesIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteProjectsProjectIDImmutabletagrulesIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteProjectsProjectIDImmutabletagrulesID",
+		Method:             "DELETE",
+		PathPattern:        "/projects/{project_id}/immutabletagrules/{id}",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &DeleteProjectsProjectIDImmutabletagrulesIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteProjectsProjectIDImmutabletagrulesIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteProjectsProjectIDImmutabletagrulesID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DeleteProjectsProjectIDMembersMid deletes project member
 */
 func (a *Client) DeleteProjectsProjectIDMembersMid(params *DeleteProjectsProjectIDMembersMidParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteProjectsProjectIDMembersMidOK, error) {
 	// TODO: Validate the params before sending
@@ -113,14 +589,20 @@ func (a *Client) DeleteProjectsProjectIDMembersMid(params *DeleteProjectsProject
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteProjectsProjectIDMembersMidOK), nil
-
+	success, ok := result.(*DeleteProjectsProjectIDMembersMidOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteProjectsProjectIDMembersMid: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-DeleteProjectsProjectIDMetadatasMetaName deletes metadata of a project
+  DeleteProjectsProjectIDMetadatasMetaName deletes metadata of a project
 
-This endpoint is aimed to delete metadata of a project.
+  This endpoint is aimed to delete metadata of a project.
 
 */
 func (a *Client) DeleteProjectsProjectIDMetadatasMetaName(params *DeleteProjectsProjectIDMetadatasMetaNameParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteProjectsProjectIDMetadatasMetaNameOK, error) {
@@ -145,14 +627,57 @@ func (a *Client) DeleteProjectsProjectIDMetadatasMetaName(params *DeleteProjects
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteProjectsProjectIDMetadatasMetaNameOK), nil
-
+	success, ok := result.(*DeleteProjectsProjectIDMetadatasMetaNameOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteProjectsProjectIDMetadatasMetaName: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-DeleteProjectsProjectIDWebhookPoliciesPolicyID deletes webhook policy of a project
+  DeleteProjectsProjectIDRobotsRobotID deletes the specified robot account
 
-This endpoint is aimed to delete webhookpolicy of a project.
+  Delete the specified robot account
+*/
+func (a *Client) DeleteProjectsProjectIDRobotsRobotID(params *DeleteProjectsProjectIDRobotsRobotIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteProjectsProjectIDRobotsRobotIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteProjectsProjectIDRobotsRobotIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DeleteProjectsProjectIDRobotsRobotID",
+		Method:             "DELETE",
+		PathPattern:        "/projects/{project_id}/robots/{robot_id}",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &DeleteProjectsProjectIDRobotsRobotIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteProjectsProjectIDRobotsRobotIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteProjectsProjectIDRobotsRobotID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DeleteProjectsProjectIDWebhookPoliciesPolicyID deletes webhook policy of a project
+
+  This endpoint is aimed to delete webhookpolicy of a project.
 
 */
 func (a *Client) DeleteProjectsProjectIDWebhookPoliciesPolicyID(params *DeleteProjectsProjectIDWebhookPoliciesPolicyIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteProjectsProjectIDWebhookPoliciesPolicyIDOK, error) {
@@ -177,14 +702,20 @@ func (a *Client) DeleteProjectsProjectIDWebhookPoliciesPolicyID(params *DeletePr
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteProjectsProjectIDWebhookPoliciesPolicyIDOK), nil
-
+	success, ok := result.(*DeleteProjectsProjectIDWebhookPoliciesPolicyIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteProjectsProjectIDWebhookPoliciesPolicyID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-DeleteRegistriesID deletes specific registry
+  DeleteRegistriesID deletes specific registry
 
-This endpoint is for to delete specific registry.
+  This endpoint is for to delete specific registry.
 
 */
 func (a *Client) DeleteRegistriesID(params *DeleteRegistriesIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRegistriesIDOK, error) {
@@ -209,14 +740,20 @@ func (a *Client) DeleteRegistriesID(params *DeleteRegistriesIDParams, authInfo r
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteRegistriesIDOK), nil
-
+	success, ok := result.(*DeleteRegistriesIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteRegistriesID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-DeleteReplicationPoliciesID deletes the replication policy specified by ID
+  DeleteReplicationPoliciesID deletes the replication policy specified by ID
 
-Delete the replication policy specified by ID.
+  Delete the replication policy specified by ID.
 
 */
 func (a *Client) DeleteReplicationPoliciesID(params *DeleteReplicationPoliciesIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteReplicationPoliciesIDOK, error) {
@@ -241,14 +778,20 @@ func (a *Client) DeleteReplicationPoliciesID(params *DeleteReplicationPoliciesID
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteReplicationPoliciesIDOK), nil
-
+	success, ok := result.(*DeleteReplicationPoliciesIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteReplicationPoliciesID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-DeleteRepositoriesRepoName deletes a repository
+  DeleteRepositoriesRepoName deletes a repository
 
-This endpoint let user delete a repository with name.
+  This endpoint let user delete a repository with name.
 
 */
 func (a *Client) DeleteRepositoriesRepoName(params *DeleteRepositoriesRepoNameParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRepositoriesRepoNameOK, error) {
@@ -273,14 +816,20 @@ func (a *Client) DeleteRepositoriesRepoName(params *DeleteRepositoriesRepoNamePa
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteRepositoriesRepoNameOK), nil
-
+	success, ok := result.(*DeleteRepositoriesRepoNameOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteRepositoriesRepoName: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-DeleteRepositoriesRepoNameLabelsLabelID deletes label from the repository
+  DeleteRepositoriesRepoNameLabelsLabelID deletes label from the repository
 
-Delete the label from the repository specified by the repo_name.
+  Delete the label from the repository specified by the repo_name.
 
 */
 func (a *Client) DeleteRepositoriesRepoNameLabelsLabelID(params *DeleteRepositoriesRepoNameLabelsLabelIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRepositoriesRepoNameLabelsLabelIDOK, error) {
@@ -305,14 +854,20 @@ func (a *Client) DeleteRepositoriesRepoNameLabelsLabelID(params *DeleteRepositor
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteRepositoriesRepoNameLabelsLabelIDOK), nil
-
+	success, ok := result.(*DeleteRepositoriesRepoNameLabelsLabelIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteRepositoriesRepoNameLabelsLabelID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-DeleteRepositoriesRepoNameTagsTag deletes a tag in a repository
+  DeleteRepositoriesRepoNameTagsTag deletes a tag in a repository
 
-This endpoint let user delete tags with repo name and tag.
+  This endpoint let user delete tags with repo name and tag.
 
 */
 func (a *Client) DeleteRepositoriesRepoNameTagsTag(params *DeleteRepositoriesRepoNameTagsTagParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRepositoriesRepoNameTagsTagOK, error) {
@@ -337,14 +892,20 @@ func (a *Client) DeleteRepositoriesRepoNameTagsTag(params *DeleteRepositoriesRep
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteRepositoriesRepoNameTagsTagOK), nil
-
+	success, ok := result.(*DeleteRepositoriesRepoNameTagsTagOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteRepositoriesRepoNameTagsTag: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-DeleteRepositoriesRepoNameTagsTagLabelsLabelID deletes label from the image
+  DeleteRepositoriesRepoNameTagsTagLabelsLabelID deletes label from the image
 
-Delete the label from the image specified by the repo_name and tag.
+  Delete the label from the image specified by the repo_name and tag.
 
 */
 func (a *Client) DeleteRepositoriesRepoNameTagsTagLabelsLabelID(params *DeleteRepositoriesRepoNameTagsTagLabelsLabelIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteRepositoriesRepoNameTagsTagLabelsLabelIDOK, error) {
@@ -369,14 +930,20 @@ func (a *Client) DeleteRepositoriesRepoNameTagsTagLabelsLabelID(params *DeleteRe
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteRepositoriesRepoNameTagsTagLabelsLabelIDOK), nil
-
+	success, ok := result.(*DeleteRepositoriesRepoNameTagsTagLabelsLabelIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteRepositoriesRepoNameTagsTagLabelsLabelID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-DeleteUsergroupsGroupID deletes user group
+  DeleteUsergroupsGroupID deletes user group
 
-Delete user group
+  Delete user group
 */
 func (a *Client) DeleteUsergroupsGroupID(params *DeleteUsergroupsGroupIDParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUsergroupsGroupIDOK, error) {
 	// TODO: Validate the params before sending
@@ -400,14 +967,20 @@ func (a *Client) DeleteUsergroupsGroupID(params *DeleteUsergroupsGroupIDParams, 
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteUsergroupsGroupIDOK), nil
-
+	success, ok := result.(*DeleteUsergroupsGroupIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteUsergroupsGroupID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-DeleteUsersUserID marks a registered user as be removed
+  DeleteUsersUserID marks a registered user as be removed
 
-This endpoint let administrator of Harbor mark a registered user as
+  This endpoint let administrator of Harbor mark a registered user as
 be removed.It actually won't be deleted from DB.
 
 */
@@ -433,14 +1006,205 @@ func (a *Client) DeleteUsersUserID(params *DeleteUsersUserIDParams, authInfo run
 	if err != nil {
 		return nil, err
 	}
-	return result.(*DeleteUsersUserIDOK), nil
-
+	success, ok := result.(*DeleteUsersUserIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteUsersUserID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetConfigurations gets system configurations
+  GetChartrepoHealth checks the health of chart repository service
 
-This endpoint is for retrieving system configurations that only provides for admin user.
+  Check the health of chart repository service.
+*/
+func (a *Client) GetChartrepoHealth(params *GetChartrepoHealthParams, authInfo runtime.ClientAuthInfoWriter) (*GetChartrepoHealthOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetChartrepoHealthParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetChartrepoHealth",
+		Method:             "GET",
+		PathPattern:        "/chartrepo/health",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetChartrepoHealthReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetChartrepoHealthOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetChartrepoHealth: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetChartrepoRepoCharts gets all the charts under the specified project
+
+  Get all the charts under the specified project
+*/
+func (a *Client) GetChartrepoRepoCharts(params *GetChartrepoRepoChartsParams, authInfo runtime.ClientAuthInfoWriter) (*GetChartrepoRepoChartsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetChartrepoRepoChartsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetChartrepoRepoCharts",
+		Method:             "GET",
+		PathPattern:        "/chartrepo/{repo}/charts",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetChartrepoRepoChartsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetChartrepoRepoChartsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetChartrepoRepoCharts: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetChartrepoRepoChartsName gets all the versions of the specified chart
+
+  Get all the versions of the specified chart
+*/
+func (a *Client) GetChartrepoRepoChartsName(params *GetChartrepoRepoChartsNameParams, authInfo runtime.ClientAuthInfoWriter) (*GetChartrepoRepoChartsNameOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetChartrepoRepoChartsNameParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetChartrepoRepoChartsName",
+		Method:             "GET",
+		PathPattern:        "/chartrepo/{repo}/charts/{name}",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetChartrepoRepoChartsNameReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetChartrepoRepoChartsNameOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetChartrepoRepoChartsName: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetChartrepoRepoChartsNameVersion gets the specified chart version
+
+  Get the specified chart version
+*/
+func (a *Client) GetChartrepoRepoChartsNameVersion(params *GetChartrepoRepoChartsNameVersionParams, authInfo runtime.ClientAuthInfoWriter) (*GetChartrepoRepoChartsNameVersionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetChartrepoRepoChartsNameVersionParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetChartrepoRepoChartsNameVersion",
+		Method:             "GET",
+		PathPattern:        "/chartrepo/{repo}/charts/{name}/{version}",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetChartrepoRepoChartsNameVersionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetChartrepoRepoChartsNameVersionOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetChartrepoRepoChartsNameVersion: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetChartrepoRepoChartsNameVersionLabels returns the attahced labels of chart
+
+  Return the attahced labels of the specified chart version.
+*/
+func (a *Client) GetChartrepoRepoChartsNameVersionLabels(params *GetChartrepoRepoChartsNameVersionLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*GetChartrepoRepoChartsNameVersionLabelsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetChartrepoRepoChartsNameVersionLabelsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetChartrepoRepoChartsNameVersionLabels",
+		Method:             "GET",
+		PathPattern:        "/chartrepo/{repo}/charts/{name}/{version}/labels",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetChartrepoRepoChartsNameVersionLabelsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetChartrepoRepoChartsNameVersionLabelsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetChartrepoRepoChartsNameVersionLabels: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetConfigurations gets system configurations
+
+  This endpoint is for retrieving system configurations that only provides for admin user.
 
 */
 func (a *Client) GetConfigurations(params *GetConfigurationsParams, authInfo runtime.ClientAuthInfoWriter) (*GetConfigurationsOK, error) {
@@ -465,14 +1229,20 @@ func (a *Client) GetConfigurations(params *GetConfigurationsParams, authInfo run
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetConfigurationsOK), nil
-
+	success, ok := result.(*GetConfigurationsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetConfigurations: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetHealth healths check API
+  GetHealth healths check API
 
-The endpoint returns the health stauts of the system.
+  The endpoint returns the health stauts of the system.
 
 */
 func (a *Client) GetHealth(params *GetHealthParams, authInfo runtime.ClientAuthInfoWriter) (*GetHealthOK, error) {
@@ -497,14 +1267,20 @@ func (a *Client) GetHealth(params *GetHealthParams, authInfo runtime.ClientAuthI
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetHealthOK), nil
-
+	success, ok := result.(*GetHealthOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetHealth: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetLabels lists labels according to the query strings
+  GetLabels lists labels according to the query strings
 
-This endpoint let user list labels by name, scope and project_id
+  This endpoint let user list labels by name, scope and project_id
 
 */
 func (a *Client) GetLabels(params *GetLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*GetLabelsOK, error) {
@@ -529,14 +1305,20 @@ func (a *Client) GetLabels(params *GetLabelsParams, authInfo runtime.ClientAuthI
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetLabelsOK), nil
-
+	success, ok := result.(*GetLabelsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetLabels: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetLabelsID gets the label specified by ID
+  GetLabelsID gets the label specified by ID
 
-This endpoint let user get the label by specific ID.
+  This endpoint let user get the label by specific ID.
 
 */
 func (a *Client) GetLabelsID(params *GetLabelsIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetLabelsIDOK, error) {
@@ -561,14 +1343,20 @@ func (a *Client) GetLabelsID(params *GetLabelsIDParams, authInfo runtime.ClientA
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetLabelsIDOK), nil
-
+	success, ok := result.(*GetLabelsIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetLabelsID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetLabelsIDResources gets the resources that the label is referenced by
+  GetLabelsIDResources gets the resources that the label is referenced by
 
-This endpoint let user get the resources that the label is referenced by. Only the replication policies are returned for now.
+  This endpoint let user get the resources that the label is referenced by. Only the replication policies are returned for now.
 
 */
 func (a *Client) GetLabelsIDResources(params *GetLabelsIDResourcesParams, authInfo runtime.ClientAuthInfoWriter) (*GetLabelsIDResourcesOK, error) {
@@ -593,14 +1381,20 @@ func (a *Client) GetLabelsIDResources(params *GetLabelsIDResourcesParams, authIn
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetLabelsIDResourcesOK), nil
-
+	success, ok := result.(*GetLabelsIDResourcesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetLabelsIDResources: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetLdapGroupsSearch searches available ldap groups
+  GetLdapGroupsSearch searches available ldap groups
 
-This endpoint searches the available ldap groups based on related configuration parameters. support to search by groupname or groupdn.
+  This endpoint searches the available ldap groups based on related configuration parameters. support to search by groupname or groupdn.
 
 */
 func (a *Client) GetLdapGroupsSearch(params *GetLdapGroupsSearchParams, authInfo runtime.ClientAuthInfoWriter) (*GetLdapGroupsSearchOK, error) {
@@ -625,14 +1419,20 @@ func (a *Client) GetLdapGroupsSearch(params *GetLdapGroupsSearchParams, authInfo
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetLdapGroupsSearchOK), nil
-
+	success, ok := result.(*GetLdapGroupsSearchOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetLdapGroupsSearch: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetLdapUsersSearch searches available ldap users
+  GetLdapUsersSearch searches available ldap users
 
-This endpoint searches the available ldap users based on related configuration parameters. Support searched by input ladp configuration, load configuration from the system and specific filter.
+  This endpoint searches the available ldap users based on related configuration parameters. Support searched by input ladp configuration, load configuration from the system and specific filter.
 
 */
 func (a *Client) GetLdapUsersSearch(params *GetLdapUsersSearchParams, authInfo runtime.ClientAuthInfoWriter) (*GetLdapUsersSearchOK, error) {
@@ -657,14 +1457,20 @@ func (a *Client) GetLdapUsersSearch(params *GetLdapUsersSearchParams, authInfo r
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetLdapUsersSearchOK), nil
-
+	success, ok := result.(*GetLdapUsersSearchOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetLdapUsersSearch: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetLogs gets recent logs of the projects which the user is a member of
+  GetLogs gets recent logs of the projects which the user is a member of
 
-This endpoint let user see the recent operation logs of the projects which he is member of
+  This endpoint let user see the recent operation logs of the projects which he is member of
 
 */
 func (a *Client) GetLogs(params *GetLogsParams, authInfo runtime.ClientAuthInfoWriter) (*GetLogsOK, error) {
@@ -689,14 +1495,20 @@ func (a *Client) GetLogs(params *GetLogsParams, authInfo runtime.ClientAuthInfoW
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetLogsOK), nil
-
+	success, ok := result.(*GetLogsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetLogs: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetProjects lists projects
+  GetProjects lists projects
 
-This endpoint returns all projects created by Harbor, and can be filtered by project name.
+  This endpoint returns all projects created by Harbor, and can be filtered by project name.
 
 */
 func (a *Client) GetProjects(params *GetProjectsParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsOK, error) {
@@ -721,14 +1533,20 @@ func (a *Client) GetProjects(params *GetProjectsParams, authInfo runtime.ClientA
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetProjectsOK), nil
-
+	success, ok := result.(*GetProjectsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetProjects: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetProjectsProjectID returns specific project detail information
+  GetProjectsProjectID returns specific project detail information
 
-This endpoint returns specific project information by project ID.
+  This endpoint returns specific project information by project ID.
 
 */
 func (a *Client) GetProjectsProjectID(params *GetProjectsProjectIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDOK, error) {
@@ -753,14 +1571,58 @@ func (a *Client) GetProjectsProjectID(params *GetProjectsProjectIDParams, authIn
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetProjectsProjectIDOK), nil
-
+	success, ok := result.(*GetProjectsProjectIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetProjectsProjectID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetProjectsProjectIDLogs gets access logs accompany with a relevant project
+  GetProjectsProjectIDImmutabletagrules lists all immutable tag rules of current project
 
-This endpoint let user search access logs filtered by operations and date time ranges.
+  This endpoint returns the immutable tag rules of a project
+
+*/
+func (a *Client) GetProjectsProjectIDImmutabletagrules(params *GetProjectsProjectIDImmutabletagrulesParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDImmutabletagrulesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetProjectsProjectIDImmutabletagrulesParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetProjectsProjectIDImmutabletagrules",
+		Method:             "GET",
+		PathPattern:        "/projects/{project_id}/immutabletagrules",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetProjectsProjectIDImmutabletagrulesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetProjectsProjectIDImmutabletagrulesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetProjectsProjectIDImmutabletagrules: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetProjectsProjectIDLogs gets access logs accompany with a relevant project
+
+  This endpoint let user search access logs filtered by operations and date time ranges.
 
 */
 func (a *Client) GetProjectsProjectIDLogs(params *GetProjectsProjectIDLogsParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDLogsOK, error) {
@@ -785,14 +1647,20 @@ func (a *Client) GetProjectsProjectIDLogs(params *GetProjectsProjectIDLogsParams
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetProjectsProjectIDLogsOK), nil
-
+	success, ok := result.(*GetProjectsProjectIDLogsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetProjectsProjectIDLogs: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetProjectsProjectIDMembers gets all project member information
+  GetProjectsProjectIDMembers gets all project member information
 
-Get all project member information
+  Get all project member information
 */
 func (a *Client) GetProjectsProjectIDMembers(params *GetProjectsProjectIDMembersParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDMembersOK, error) {
 	// TODO: Validate the params before sending
@@ -816,14 +1684,20 @@ func (a *Client) GetProjectsProjectIDMembers(params *GetProjectsProjectIDMembers
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetProjectsProjectIDMembersOK), nil
-
+	success, ok := result.(*GetProjectsProjectIDMembersOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetProjectsProjectIDMembers: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetProjectsProjectIDMembersMid gets the project member information
+  GetProjectsProjectIDMembersMid gets the project member information
 
-Get the project member information
+  Get the project member information
 */
 func (a *Client) GetProjectsProjectIDMembersMid(params *GetProjectsProjectIDMembersMidParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDMembersMidOK, error) {
 	// TODO: Validate the params before sending
@@ -847,14 +1721,20 @@ func (a *Client) GetProjectsProjectIDMembersMid(params *GetProjectsProjectIDMemb
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetProjectsProjectIDMembersMidOK), nil
-
+	success, ok := result.(*GetProjectsProjectIDMembersMidOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetProjectsProjectIDMembersMid: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetProjectsProjectIDMetadatas gets project metadata
+  GetProjectsProjectIDMetadatas gets project metadata
 
-This endpoint returns metadata of the project specified by project ID.
+  This endpoint returns metadata of the project specified by project ID.
 
 */
 func (a *Client) GetProjectsProjectIDMetadatas(params *GetProjectsProjectIDMetadatasParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDMetadatasOK, error) {
@@ -879,14 +1759,20 @@ func (a *Client) GetProjectsProjectIDMetadatas(params *GetProjectsProjectIDMetad
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetProjectsProjectIDMetadatasOK), nil
-
+	success, ok := result.(*GetProjectsProjectIDMetadatasOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetProjectsProjectIDMetadatas: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetProjectsProjectIDMetadatasMetaName gets project metadata
+  GetProjectsProjectIDMetadatasMetaName gets project metadata
 
-This endpoint returns specified metadata of a project.
+  This endpoint returns specified metadata of a project.
 
 */
 func (a *Client) GetProjectsProjectIDMetadatasMetaName(params *GetProjectsProjectIDMetadatasMetaNameParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDMetadatasMetaNameOK, error) {
@@ -911,14 +1797,169 @@ func (a *Client) GetProjectsProjectIDMetadatasMetaName(params *GetProjectsProjec
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetProjectsProjectIDMetadatasMetaNameOK), nil
-
+	success, ok := result.(*GetProjectsProjectIDMetadatasMetaNameOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetProjectsProjectIDMetadatasMetaName: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetProjectsProjectIDSummary gets summary of the project
+  GetProjectsProjectIDRobots gets all robot accounts of specified project
 
-Get summary of the project.
+  Get all robot accounts of specified project
+*/
+func (a *Client) GetProjectsProjectIDRobots(params *GetProjectsProjectIDRobotsParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDRobotsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetProjectsProjectIDRobotsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetProjectsProjectIDRobots",
+		Method:             "GET",
+		PathPattern:        "/projects/{project_id}/robots",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetProjectsProjectIDRobotsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetProjectsProjectIDRobotsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetProjectsProjectIDRobots: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetProjectsProjectIDRobotsRobotID returns the infor of the specified robot account
+
+  Return the infor of the specified robot account.
+*/
+func (a *Client) GetProjectsProjectIDRobotsRobotID(params *GetProjectsProjectIDRobotsRobotIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDRobotsRobotIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetProjectsProjectIDRobotsRobotIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetProjectsProjectIDRobotsRobotID",
+		Method:             "GET",
+		PathPattern:        "/projects/{project_id}/robots/{robot_id}",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetProjectsProjectIDRobotsRobotIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetProjectsProjectIDRobotsRobotIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetProjectsProjectIDRobotsRobotID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetProjectsProjectIDScanner gets project level scanner
+
+  Get the scanner registration of the specified project. If no scanner registration is configured for the specified project, the system default scanner registration will be returned.
+*/
+func (a *Client) GetProjectsProjectIDScanner(params *GetProjectsProjectIDScannerParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDScannerOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetProjectsProjectIDScannerParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetProjectsProjectIDScanner",
+		Method:             "GET",
+		PathPattern:        "/projects/{project_id}/scanner",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetProjectsProjectIDScannerReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetProjectsProjectIDScannerOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetProjectsProjectIDScanner: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetProjectsProjectIDScannerCandidates gets scanner registration candidates for configurating project level scanner
+
+  Retrieve the system configured scanner registrations as candidates of setting project level scanner.
+
+*/
+func (a *Client) GetProjectsProjectIDScannerCandidates(params *GetProjectsProjectIDScannerCandidatesParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDScannerCandidatesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetProjectsProjectIDScannerCandidatesParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetProjectsProjectIDScannerCandidates",
+		Method:             "GET",
+		PathPattern:        "/projects/{project_id}/scanner/candidates",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetProjectsProjectIDScannerCandidatesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetProjectsProjectIDScannerCandidatesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetProjectsProjectIDScannerCandidates: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetProjectsProjectIDSummary gets summary of the project
+
+  Get summary of the project.
 */
 func (a *Client) GetProjectsProjectIDSummary(params *GetProjectsProjectIDSummaryParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDSummaryOK, error) {
 	// TODO: Validate the params before sending
@@ -942,14 +1983,20 @@ func (a *Client) GetProjectsProjectIDSummary(params *GetProjectsProjectIDSummary
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetProjectsProjectIDSummaryOK), nil
-
+	success, ok := result.(*GetProjectsProjectIDSummaryOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetProjectsProjectIDSummary: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetProjectsProjectIDWebhookJobs lists project webhook jobs
+  GetProjectsProjectIDWebhookJobs lists project webhook jobs
 
-This endpoint returns webhook jobs of a project.
+  This endpoint returns webhook jobs of a project.
 
 */
 func (a *Client) GetProjectsProjectIDWebhookJobs(params *GetProjectsProjectIDWebhookJobsParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDWebhookJobsOK, error) {
@@ -974,14 +2021,20 @@ func (a *Client) GetProjectsProjectIDWebhookJobs(params *GetProjectsProjectIDWeb
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetProjectsProjectIDWebhookJobsOK), nil
-
+	success, ok := result.(*GetProjectsProjectIDWebhookJobsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetProjectsProjectIDWebhookJobs: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetProjectsProjectIDWebhookLasttrigger gets project webhook policy last trigger info
+  GetProjectsProjectIDWebhookLasttrigger gets project webhook policy last trigger info
 
-This endpoint returns last trigger information of project webhook policy.
+  This endpoint returns last trigger information of project webhook policy.
 
 */
 func (a *Client) GetProjectsProjectIDWebhookLasttrigger(params *GetProjectsProjectIDWebhookLasttriggerParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDWebhookLasttriggerOK, error) {
@@ -1006,14 +2059,20 @@ func (a *Client) GetProjectsProjectIDWebhookLasttrigger(params *GetProjectsProje
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetProjectsProjectIDWebhookLasttriggerOK), nil
-
+	success, ok := result.(*GetProjectsProjectIDWebhookLasttriggerOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetProjectsProjectIDWebhookLasttrigger: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetProjectsProjectIDWebhookPolicies lists project webhook policies
+  GetProjectsProjectIDWebhookPolicies lists project webhook policies
 
-This endpoint returns webhook policies of a project.
+  This endpoint returns webhook policies of a project.
 
 */
 func (a *Client) GetProjectsProjectIDWebhookPolicies(params *GetProjectsProjectIDWebhookPoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDWebhookPoliciesOK, error) {
@@ -1038,14 +2097,20 @@ func (a *Client) GetProjectsProjectIDWebhookPolicies(params *GetProjectsProjectI
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetProjectsProjectIDWebhookPoliciesOK), nil
-
+	success, ok := result.(*GetProjectsProjectIDWebhookPoliciesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetProjectsProjectIDWebhookPolicies: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetProjectsProjectIDWebhookPoliciesPolicyID gets project webhook policy
+  GetProjectsProjectIDWebhookPoliciesPolicyID gets project webhook policy
 
-This endpoint returns specified webhook policy of a project.
+  This endpoint returns specified webhook policy of a project.
 
 */
 func (a *Client) GetProjectsProjectIDWebhookPoliciesPolicyID(params *GetProjectsProjectIDWebhookPoliciesPolicyIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetProjectsProjectIDWebhookPoliciesPolicyIDOK, error) {
@@ -1070,14 +2135,94 @@ func (a *Client) GetProjectsProjectIDWebhookPoliciesPolicyID(params *GetProjects
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetProjectsProjectIDWebhookPoliciesPolicyIDOK), nil
-
+	success, ok := result.(*GetProjectsProjectIDWebhookPoliciesPolicyIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetProjectsProjectIDWebhookPoliciesPolicyID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetRegistries lists registries
+  GetQuotas lists quotas
 
-This endpoint let user list filtered registries by name, if name is nil, list returns all registries.
+  List quotas
+*/
+func (a *Client) GetQuotas(params *GetQuotasParams, authInfo runtime.ClientAuthInfoWriter) (*GetQuotasOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetQuotasParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetQuotas",
+		Method:             "GET",
+		PathPattern:        "/quotas",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetQuotasReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetQuotasOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetQuotas: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetQuotasID gets the specified quota
+
+  Get the specified quota
+*/
+func (a *Client) GetQuotasID(params *GetQuotasIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetQuotasIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetQuotasIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetQuotasID",
+		Method:             "GET",
+		PathPattern:        "/quotas/{id}",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetQuotasIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetQuotasIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetQuotasID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetRegistries lists registries
+
+  This endpoint let user list filtered registries by name, if name is nil, list returns all registries.
 
 */
 func (a *Client) GetRegistries(params *GetRegistriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetRegistriesOK, error) {
@@ -1102,14 +2247,20 @@ func (a *Client) GetRegistries(params *GetRegistriesParams, authInfo runtime.Cli
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetRegistriesOK), nil
-
+	success, ok := result.(*GetRegistriesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetRegistries: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetRegistriesID gets registry
+  GetRegistriesID gets registry
 
-This endpoint is for get specific registry.
+  This endpoint is for get specific registry.
 */
 func (a *Client) GetRegistriesID(params *GetRegistriesIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetRegistriesIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1133,14 +2284,20 @@ func (a *Client) GetRegistriesID(params *GetRegistriesIDParams, authInfo runtime
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetRegistriesIDOK), nil
-
+	success, ok := result.(*GetRegistriesIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetRegistriesID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetRegistriesIDInfo gets registry info
+  GetRegistriesIDInfo gets registry info
 
-Get the info of one specific registry.
+  Get the info of one specific registry.
 */
 func (a *Client) GetRegistriesIDInfo(params *GetRegistriesIDInfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetRegistriesIDInfoOK, error) {
 	// TODO: Validate the params before sending
@@ -1164,14 +2321,20 @@ func (a *Client) GetRegistriesIDInfo(params *GetRegistriesIDInfoParams, authInfo
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetRegistriesIDInfoOK), nil
-
+	success, ok := result.(*GetRegistriesIDInfoOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetRegistriesIDInfo: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetRegistriesIDNamespace lists namespaces of registry
+  GetRegistriesIDNamespace lists namespaces of registry
 
-This endpoint let user list namespaces of registry according to query.
+  This endpoint let user list namespaces of registry according to query.
 
 */
 func (a *Client) GetRegistriesIDNamespace(params *GetRegistriesIDNamespaceParams, authInfo runtime.ClientAuthInfoWriter) (*GetRegistriesIDNamespaceOK, error) {
@@ -1196,14 +2359,20 @@ func (a *Client) GetRegistriesIDNamespace(params *GetRegistriesIDNamespaceParams
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetRegistriesIDNamespaceOK), nil
-
+	success, ok := result.(*GetRegistriesIDNamespaceOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetRegistriesIDNamespace: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetReplicationAdapters lists supported adapters
+  GetReplicationAdapters lists supported adapters
 
-This endpoint let user list supported adapters.
+  This endpoint let user list supported adapters.
 
 */
 func (a *Client) GetReplicationAdapters(params *GetReplicationAdaptersParams, authInfo runtime.ClientAuthInfoWriter) (*GetReplicationAdaptersOK, error) {
@@ -1228,14 +2397,20 @@ func (a *Client) GetReplicationAdapters(params *GetReplicationAdaptersParams, au
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetReplicationAdaptersOK), nil
-
+	success, ok := result.(*GetReplicationAdaptersOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetReplicationAdapters: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetReplicationExecutions lists replication executions
+  GetReplicationExecutions lists replication executions
 
-This endpoint let user list replication executions.
+  This endpoint let user list replication executions.
 
 */
 func (a *Client) GetReplicationExecutions(params *GetReplicationExecutionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetReplicationExecutionsOK, error) {
@@ -1260,14 +2435,20 @@ func (a *Client) GetReplicationExecutions(params *GetReplicationExecutionsParams
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetReplicationExecutionsOK), nil
-
+	success, ok := result.(*GetReplicationExecutionsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetReplicationExecutions: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetReplicationExecutionsID gets the execution of the replication
+  GetReplicationExecutionsID gets the execution of the replication
 
-This endpoint is for user to get one execution of the replication.
+  This endpoint is for user to get one execution of the replication.
 
 */
 func (a *Client) GetReplicationExecutionsID(params *GetReplicationExecutionsIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetReplicationExecutionsIDOK, error) {
@@ -1292,14 +2473,20 @@ func (a *Client) GetReplicationExecutionsID(params *GetReplicationExecutionsIDPa
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetReplicationExecutionsIDOK), nil
-
+	success, ok := result.(*GetReplicationExecutionsIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetReplicationExecutionsID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetReplicationExecutionsIDTasks gets the task list of one execution
+  GetReplicationExecutionsIDTasks gets the task list of one execution
 
-This endpoint is for user to get the task list of one execution.
+  This endpoint is for user to get the task list of one execution.
 
 */
 func (a *Client) GetReplicationExecutionsIDTasks(params *GetReplicationExecutionsIDTasksParams, authInfo runtime.ClientAuthInfoWriter) (*GetReplicationExecutionsIDTasksOK, error) {
@@ -1324,14 +2511,20 @@ func (a *Client) GetReplicationExecutionsIDTasks(params *GetReplicationExecution
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetReplicationExecutionsIDTasksOK), nil
-
+	success, ok := result.(*GetReplicationExecutionsIDTasksOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetReplicationExecutionsIDTasks: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetReplicationExecutionsIDTasksTaskIDLog gets the log of one task
+  GetReplicationExecutionsIDTasksTaskIDLog gets the log of one task
 
-This endpoint is for user to get the log of one task.
+  This endpoint is for user to get the log of one task.
 
 */
 func (a *Client) GetReplicationExecutionsIDTasksTaskIDLog(params *GetReplicationExecutionsIDTasksTaskIDLogParams, authInfo runtime.ClientAuthInfoWriter) (*GetReplicationExecutionsIDTasksTaskIDLogOK, error) {
@@ -1356,14 +2549,20 @@ func (a *Client) GetReplicationExecutionsIDTasksTaskIDLog(params *GetReplication
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetReplicationExecutionsIDTasksTaskIDLogOK), nil
-
+	success, ok := result.(*GetReplicationExecutionsIDTasksTaskIDLogOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetReplicationExecutionsIDTasksTaskIDLog: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetReplicationPolicies lists replication policies
+  GetReplicationPolicies lists replication policies
 
-This endpoint let user list replication policies
+  This endpoint let user list replication policies
 
 */
 func (a *Client) GetReplicationPolicies(params *GetReplicationPoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*GetReplicationPoliciesOK, error) {
@@ -1388,14 +2587,20 @@ func (a *Client) GetReplicationPolicies(params *GetReplicationPoliciesParams, au
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetReplicationPoliciesOK), nil
-
+	success, ok := result.(*GetReplicationPoliciesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetReplicationPolicies: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetReplicationPoliciesID gets replication policy
+  GetReplicationPoliciesID gets replication policy
 
-This endpoint let user get replication policy by specific ID.
+  This endpoint let user get replication policy by specific ID.
 
 */
 func (a *Client) GetReplicationPoliciesID(params *GetReplicationPoliciesIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetReplicationPoliciesIDOK, error) {
@@ -1420,14 +2625,20 @@ func (a *Client) GetReplicationPoliciesID(params *GetReplicationPoliciesIDParams
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetReplicationPoliciesIDOK), nil
-
+	success, ok := result.(*GetReplicationPoliciesIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetReplicationPoliciesID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetRepositories gets repositories accompany with relevant project and repo name
+  GetRepositories gets repositories accompany with relevant project and repo name
 
-This endpoint lets user search repositories accompanying with relevant project ID and repo name. Repositories can be sorted by repo name, creation_time, update_time in either ascending or descending order.
+  This endpoint lets user search repositories accompanying with relevant project ID and repo name. Repositories can be sorted by repo name, creation_time, update_time in either ascending or descending order.
 
 */
 func (a *Client) GetRepositories(params *GetRepositoriesParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoriesOK, error) {
@@ -1452,14 +2663,20 @@ func (a *Client) GetRepositories(params *GetRepositoriesParams, authInfo runtime
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetRepositoriesOK), nil
-
+	success, ok := result.(*GetRepositoriesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetRepositories: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetRepositoriesRepoNameLabels gets labels of a repository
+  GetRepositoriesRepoNameLabels gets labels of a repository
 
-Get labels of a repository specified by the repo_name.
+  Get labels of a repository specified by the repo_name.
 
 */
 func (a *Client) GetRepositoriesRepoNameLabels(params *GetRepositoriesRepoNameLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoriesRepoNameLabelsOK, error) {
@@ -1484,14 +2701,20 @@ func (a *Client) GetRepositoriesRepoNameLabels(params *GetRepositoriesRepoNameLa
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetRepositoriesRepoNameLabelsOK), nil
-
+	success, ok := result.(*GetRepositoriesRepoNameLabelsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetRepositoriesRepoNameLabels: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetRepositoriesRepoNameSignatures gets signature information of a repository
+  GetRepositoriesRepoNameSignatures gets signature information of a repository
 
-This endpoint aims to retrieve signature information of a repository, the data is
+  This endpoint aims to retrieve signature information of a repository, the data is
 from the nested notary instance of Harbor.
 If the repository does not have any signature information in notary, this API will
 return an empty list with response code 200, instead of 404
@@ -1519,14 +2742,20 @@ func (a *Client) GetRepositoriesRepoNameSignatures(params *GetRepositoriesRepoNa
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetRepositoriesRepoNameSignaturesOK), nil
-
+	success, ok := result.(*GetRepositoriesRepoNameSignaturesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetRepositoriesRepoNameSignatures: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetRepositoriesRepoNameTags gets tags of a relevant repository
+  GetRepositoriesRepoNameTags gets tags of a relevant repository
 
-This endpoint aims to retrieve tags from a relevant repository. If deployed with Notary, the signature property of response represents whether the image is singed or not. If the property is null, the image is unsigned.
+  This endpoint aims to retrieve tags from a relevant repository. If deployed with Notary, the signature property of response represents whether the image is singed or not. If the property is null, the image is unsigned.
 
 */
 func (a *Client) GetRepositoriesRepoNameTags(params *GetRepositoriesRepoNameTagsParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoriesRepoNameTagsOK, error) {
@@ -1551,14 +2780,20 @@ func (a *Client) GetRepositoriesRepoNameTags(params *GetRepositoriesRepoNameTags
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetRepositoriesRepoNameTagsOK), nil
-
+	success, ok := result.(*GetRepositoriesRepoNameTagsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetRepositoriesRepoNameTags: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetRepositoriesRepoNameTagsTag gets the tag of the repository
+  GetRepositoriesRepoNameTagsTag gets the tag of the repository
 
-This endpoint aims to retrieve the tag of the repository. If deployed with Notary, the signature property of response represents whether the image is singed or not. If the property is null, the image is unsigned.
+  This endpoint aims to retrieve the tag of the repository. If deployed with Notary, the signature property of response represents whether the image is singed or not. If the property is null, the image is unsigned.
 
 */
 func (a *Client) GetRepositoriesRepoNameTagsTag(params *GetRepositoriesRepoNameTagsTagParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoriesRepoNameTagsTagOK, error) {
@@ -1583,14 +2818,20 @@ func (a *Client) GetRepositoriesRepoNameTagsTag(params *GetRepositoriesRepoNameT
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetRepositoriesRepoNameTagsTagOK), nil
-
+	success, ok := result.(*GetRepositoriesRepoNameTagsTagOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetRepositoriesRepoNameTagsTag: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetRepositoriesRepoNameTagsTagLabels gets labels of an image
+  GetRepositoriesRepoNameTagsTagLabels gets labels of an image
 
-Get labels of an image specified by the repo_name and tag.
+  Get labels of an image specified by the repo_name and tag.
 
 */
 func (a *Client) GetRepositoriesRepoNameTagsTagLabels(params *GetRepositoriesRepoNameTagsTagLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoriesRepoNameTagsTagLabelsOK, error) {
@@ -1615,14 +2856,20 @@ func (a *Client) GetRepositoriesRepoNameTagsTagLabels(params *GetRepositoriesRep
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetRepositoriesRepoNameTagsTagLabelsOK), nil
-
+	success, ok := result.(*GetRepositoriesRepoNameTagsTagLabelsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetRepositoriesRepoNameTagsTagLabels: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetRepositoriesRepoNameTagsTagManifest gets manifests of a relevant repository
+  GetRepositoriesRepoNameTagsTagManifest gets manifests of a relevant repository
 
-This endpoint aims to retreive manifests from a relevant repository.
+  This endpoint aims to retreive manifests from a relevant repository.
 
 */
 func (a *Client) GetRepositoriesRepoNameTagsTagManifest(params *GetRepositoriesRepoNameTagsTagManifestParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoriesRepoNameTagsTagManifestOK, error) {
@@ -1647,31 +2894,36 @@ func (a *Client) GetRepositoriesRepoNameTagsTagManifest(params *GetRepositoriesR
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetRepositoriesRepoNameTagsTagManifestOK), nil
-
+	success, ok := result.(*GetRepositoriesRepoNameTagsTagManifestOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetRepositoriesRepoNameTagsTagManifest: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetRepositoriesRepoNameTagsTagVulnerabilityDetails gets vulnerability details of the image
+  GetRepositoriesRepoNameTagsTagScanUUIDLog gets scan log
 
-Call Clair API to get the vulnerability based on the previous successful scan.
-
+  Get the log text stream for the given artifact and scan action.
 */
-func (a *Client) GetRepositoriesRepoNameTagsTagVulnerabilityDetails(params *GetRepositoriesRepoNameTagsTagVulnerabilityDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoriesRepoNameTagsTagVulnerabilityDetailsOK, error) {
+func (a *Client) GetRepositoriesRepoNameTagsTagScanUUIDLog(params *GetRepositoriesRepoNameTagsTagScanUUIDLogParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoriesRepoNameTagsTagScanUUIDLogOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetRepositoriesRepoNameTagsTagVulnerabilityDetailsParams()
+		params = NewGetRepositoriesRepoNameTagsTagScanUUIDLogParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "GetRepositoriesRepoNameTagsTagVulnerabilityDetails",
+		ID:                 "GetRepositoriesRepoNameTagsTagScanUUIDLog",
 		Method:             "GET",
-		PathPattern:        "/repositories/{repo_name}/tags/{tag}/vulnerability/details",
-		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		PathPattern:        "/repositories/{repo_name}/tags/{tag}/scan/{uuid}/log",
+		ProducesMediaTypes: []string{"text/plain"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
 		Params:             params,
-		Reader:             &GetRepositoriesRepoNameTagsTagVulnerabilityDetailsReader{formats: a.formats},
+		Reader:             &GetRepositoriesRepoNameTagsTagScanUUIDLogReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1679,14 +2931,20 @@ func (a *Client) GetRepositoriesRepoNameTagsTagVulnerabilityDetails(params *GetR
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetRepositoriesRepoNameTagsTagVulnerabilityDetailsOK), nil
-
+	success, ok := result.(*GetRepositoriesRepoNameTagsTagScanUUIDLogOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetRepositoriesRepoNameTagsTagScanUUIDLog: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetRepositoriesTop gets public repositories which are accessed most
+  GetRepositoriesTop gets public repositories which are accessed most
 
-This endpoint aims to let users see the most popular public repositories
+  This endpoint aims to let users see the most popular public repositories
 
 */
 func (a *Client) GetRepositoriesTop(params *GetRepositoriesTopParams, authInfo runtime.ClientAuthInfoWriter) (*GetRepositoriesTopOK, error) {
@@ -1711,14 +2969,393 @@ func (a *Client) GetRepositoriesTop(params *GetRepositoriesTopParams, authInfo r
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetRepositoriesTopOK), nil
-
+	success, ok := result.(*GetRepositoriesTopOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetRepositoriesTop: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetSearch searches for projects repositories and helm charts
+  GetRetentionsID gets retention policy
 
-The Search endpoint returns information about the projects ,repositories  and helm charts offered at public status or related to the current logged in user. The response includes the project, repository list and charts in a proper display order.
+  Get Retention Policy.
+*/
+func (a *Client) GetRetentionsID(params *GetRetentionsIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetRetentionsIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRetentionsIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetRetentionsID",
+		Method:             "GET",
+		PathPattern:        "/retentions/{id}",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetRetentionsIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetRetentionsIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetRetentionsID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetRetentionsIDExecutions gets a retention job
+
+  Get a Retention job, job status may be delayed before job service schedule it up.
+*/
+func (a *Client) GetRetentionsIDExecutions(params *GetRetentionsIDExecutionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetRetentionsIDExecutionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRetentionsIDExecutionsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetRetentionsIDExecutions",
+		Method:             "GET",
+		PathPattern:        "/retentions/{id}/executions",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetRetentionsIDExecutionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetRetentionsIDExecutionsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetRetentionsIDExecutions: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetRetentionsIDExecutionsEidTasks gets retention job tasks
+
+  Get Retention job tasks, each repository as a task.
+*/
+func (a *Client) GetRetentionsIDExecutionsEidTasks(params *GetRetentionsIDExecutionsEidTasksParams, authInfo runtime.ClientAuthInfoWriter) (*GetRetentionsIDExecutionsEidTasksOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRetentionsIDExecutionsEidTasksParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetRetentionsIDExecutionsEidTasks",
+		Method:             "GET",
+		PathPattern:        "/retentions/{id}/executions/{eid}/tasks",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetRetentionsIDExecutionsEidTasksReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetRetentionsIDExecutionsEidTasksOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetRetentionsIDExecutionsEidTasks: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetRetentionsIDExecutionsEidTasksTid gets retention job task log
+
+  Get Retention job task log, tags ratain or deletion detail will be shown in a table.
+*/
+func (a *Client) GetRetentionsIDExecutionsEidTasksTid(params *GetRetentionsIDExecutionsEidTasksTidParams, authInfo runtime.ClientAuthInfoWriter) (*GetRetentionsIDExecutionsEidTasksTidOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRetentionsIDExecutionsEidTasksTidParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetRetentionsIDExecutionsEidTasksTid",
+		Method:             "GET",
+		PathPattern:        "/retentions/{id}/executions/{eid}/tasks/{tid}",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetRetentionsIDExecutionsEidTasksTidReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetRetentionsIDExecutionsEidTasksTidOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetRetentionsIDExecutionsEidTasksTid: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetRetentionsMetadatas gets retention metadatas
+
+  Get Retention Metadatas.
+*/
+func (a *Client) GetRetentionsMetadatas(params *GetRetentionsMetadatasParams, authInfo runtime.ClientAuthInfoWriter) (*GetRetentionsMetadatasOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRetentionsMetadatasParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetRetentionsMetadatas",
+		Method:             "GET",
+		PathPattern:        "/retentions/metadatas",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetRetentionsMetadatasReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetRetentionsMetadatasOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetRetentionsMetadatas: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetScanners lists scanner registrations
+
+  Returns a list of currently configured scanner registrations.
+
+*/
+func (a *Client) GetScanners(params *GetScannersParams, authInfo runtime.ClientAuthInfoWriter) (*GetScannersOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetScannersParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetScanners",
+		Method:             "GET",
+		PathPattern:        "/scanners",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetScannersReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetScannersOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetScanners: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetScannersRegistrationID gets a scanner registration details
+
+  Retruns the details of the specified scanner registration.
+
+*/
+func (a *Client) GetScannersRegistrationID(params *GetScannersRegistrationIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetScannersRegistrationIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetScannersRegistrationIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetScannersRegistrationID",
+		Method:             "GET",
+		PathPattern:        "/scanners/{registration_id}",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetScannersRegistrationIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetScannersRegistrationIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetScannersRegistrationID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetScannersRegistrationIDMetadata gets the metadata of the specified scanner registration
+
+  Get the metadata of the specified scanner registration, including the capabilities and customzied properties.
+
+*/
+func (a *Client) GetScannersRegistrationIDMetadata(params *GetScannersRegistrationIDMetadataParams, authInfo runtime.ClientAuthInfoWriter) (*GetScannersRegistrationIDMetadataOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetScannersRegistrationIDMetadataParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetScannersRegistrationIDMetadata",
+		Method:             "GET",
+		PathPattern:        "/scanners/{registration_id}/metadata",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetScannersRegistrationIDMetadataReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetScannersRegistrationIDMetadataOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetScannersRegistrationIDMetadata: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetScansAllMetrics gets the metrics of the latest scan all process
+
+  Get the metrics of the latest scan all process
+*/
+func (a *Client) GetScansAllMetrics(params *GetScansAllMetricsParams, authInfo runtime.ClientAuthInfoWriter) (*GetScansAllMetricsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetScansAllMetricsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetScansAllMetrics",
+		Method:             "GET",
+		PathPattern:        "/scans/all/metrics",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetScansAllMetricsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetScansAllMetricsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetScansAllMetrics: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetScansScheduleMetrics gets the metrics of the latest scheduled scan all process
+
+  Get the metrics of the latest scheduled scan all process
+*/
+func (a *Client) GetScansScheduleMetrics(params *GetScansScheduleMetricsParams, authInfo runtime.ClientAuthInfoWriter) (*GetScansScheduleMetricsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetScansScheduleMetricsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetScansScheduleMetrics",
+		Method:             "GET",
+		PathPattern:        "/scans/schedule/metrics",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetScansScheduleMetricsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetScansScheduleMetricsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetScansScheduleMetrics: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetSearch searches for projects repositories and helm charts
+
+  The Search endpoint returns information about the projects ,repositories  and helm charts offered at public status or related to the current logged in user. The response includes the project, repository list and charts in a proper display order.
 
 */
 func (a *Client) GetSearch(params *GetSearchParams, authInfo runtime.ClientAuthInfoWriter) (*GetSearchOK, error) {
@@ -1743,14 +3380,20 @@ func (a *Client) GetSearch(params *GetSearchParams, authInfo runtime.ClientAuthI
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetSearchOK), nil
-
+	success, ok := result.(*GetSearchOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetSearch: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetStatistics gets projects number and repositories number relevant to the user
+  GetStatistics gets projects number and repositories number relevant to the user
 
-This endpoint is aimed to statistic all of the projects number and repositories number relevant to the logined user, also the public projects number and repositories number. If the user is admin, he can also get total projects number and total repositories number.
+  This endpoint is aimed to statistic all of the projects number and repositories number relevant to the logined user, also the public projects number and repositories number. If the user is admin, he can also get total projects number and total repositories number.
 
 */
 func (a *Client) GetStatistics(params *GetStatisticsParams, authInfo runtime.ClientAuthInfoWriter) (*GetStatisticsOK, error) {
@@ -1775,14 +3418,57 @@ func (a *Client) GetStatistics(params *GetStatisticsParams, authInfo runtime.Cli
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetStatisticsOK), nil
-
+	success, ok := result.(*GetStatisticsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetStatistics: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetSystemGc gets gc results
+  GetSystemCVEWhitelist gets the system level whitelist of c v e
 
-This endpoint let user get latest ten gc results.
+  Get the system level whitelist of CVE.  This API can be called by all authenticated users.
+*/
+func (a *Client) GetSystemCVEWhitelist(params *GetSystemCVEWhitelistParams, authInfo runtime.ClientAuthInfoWriter) (*GetSystemCVEWhitelistOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSystemCVEWhitelistParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "GetSystemCVEWhitelist",
+		Method:             "GET",
+		PathPattern:        "/system/CVEWhitelist",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &GetSystemCVEWhitelistReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetSystemCVEWhitelistOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetSystemCVEWhitelist: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetSystemGc gets gc results
+
+  This endpoint let user get latest ten gc results.
 */
 func (a *Client) GetSystemGc(params *GetSystemGcParams, authInfo runtime.ClientAuthInfoWriter) (*GetSystemGcOK, error) {
 	// TODO: Validate the params before sending
@@ -1806,14 +3492,20 @@ func (a *Client) GetSystemGc(params *GetSystemGcParams, authInfo runtime.ClientA
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetSystemGcOK), nil
-
+	success, ok := result.(*GetSystemGcOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetSystemGc: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetSystemGcID gets gc status
+  GetSystemGcID gets gc status
 
-This endpoint let user get gc status filtered by specific ID.
+  This endpoint let user get gc status filtered by specific ID.
 */
 func (a *Client) GetSystemGcID(params *GetSystemGcIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetSystemGcIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1837,14 +3529,20 @@ func (a *Client) GetSystemGcID(params *GetSystemGcIDParams, authInfo runtime.Cli
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetSystemGcIDOK), nil
-
+	success, ok := result.(*GetSystemGcIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetSystemGcID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetSystemGcIDLog gets gc job log
+  GetSystemGcIDLog gets gc job log
 
-This endpoint let user get gc job logs filtered by specific ID.
+  This endpoint let user get gc job logs filtered by specific ID.
 */
 func (a *Client) GetSystemGcIDLog(params *GetSystemGcIDLogParams, authInfo runtime.ClientAuthInfoWriter) (*GetSystemGcIDLogOK, error) {
 	// TODO: Validate the params before sending
@@ -1868,14 +3566,20 @@ func (a *Client) GetSystemGcIDLog(params *GetSystemGcIDLogParams, authInfo runti
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetSystemGcIDLogOK), nil
-
+	success, ok := result.(*GetSystemGcIDLogOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetSystemGcIDLog: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetSystemGcSchedule gets gc s schedule
+  GetSystemGcSchedule gets gc s schedule
 
-This endpoint is for get schedule of gc job.
+  This endpoint is for get schedule of gc job.
 */
 func (a *Client) GetSystemGcSchedule(params *GetSystemGcScheduleParams, authInfo runtime.ClientAuthInfoWriter) (*GetSystemGcScheduleOK, error) {
 	// TODO: Validate the params before sending
@@ -1899,14 +3603,20 @@ func (a *Client) GetSystemGcSchedule(params *GetSystemGcScheduleParams, authInfo
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetSystemGcScheduleOK), nil
-
+	success, ok := result.(*GetSystemGcScheduleOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetSystemGcSchedule: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetSystemScanAllSchedule gets scan all s schedule
+  GetSystemScanAllSchedule gets scan all s schedule
 
-This endpoint is for getting a schedule for the scan all job, which scans all of images in Harbor.
+  This endpoint is for getting a schedule for the scan all job, which scans all of images in Harbor.
 */
 func (a *Client) GetSystemScanAllSchedule(params *GetSystemScanAllScheduleParams, authInfo runtime.ClientAuthInfoWriter) (*GetSystemScanAllScheduleOK, error) {
 	// TODO: Validate the params before sending
@@ -1930,14 +3640,20 @@ func (a *Client) GetSystemScanAllSchedule(params *GetSystemScanAllScheduleParams
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetSystemScanAllScheduleOK), nil
-
+	success, ok := result.(*GetSystemScanAllScheduleOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetSystemScanAllSchedule: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetSysteminfo gets general system info
+  GetSysteminfo gets general system info
 
-This API is for retrieving general system info, this can be called by anonymous request.
+  This API is for retrieving general system info, this can be called by anonymous request.
 
 */
 func (a *Client) GetSysteminfo(params *GetSysteminfoParams, authInfo runtime.ClientAuthInfoWriter) (*GetSysteminfoOK, error) {
@@ -1962,14 +3678,20 @@ func (a *Client) GetSysteminfo(params *GetSysteminfoParams, authInfo runtime.Cli
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetSysteminfoOK), nil
-
+	success, ok := result.(*GetSysteminfoOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetSysteminfo: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetSysteminfoGetcert gets default root certificate
+  GetSysteminfoGetcert gets default root certificate
 
-This endpoint is for downloading a default root certificate.
+  This endpoint is for downloading a default root certificate.
 
 */
 func (a *Client) GetSysteminfoGetcert(params *GetSysteminfoGetcertParams, authInfo runtime.ClientAuthInfoWriter) (*GetSysteminfoGetcertOK, error) {
@@ -1994,14 +3716,20 @@ func (a *Client) GetSysteminfoGetcert(params *GetSysteminfoGetcertParams, authIn
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetSysteminfoGetcertOK), nil
-
+	success, ok := result.(*GetSysteminfoGetcertOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetSysteminfoGetcert: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetSysteminfoVolumes gets system volume info total free size
+  GetSysteminfoVolumes gets system volume info total free size
 
-This endpoint is for retrieving system volume info that only provides for admin user.
+  This endpoint is for retrieving system volume info that only provides for admin user.
 
 */
 func (a *Client) GetSysteminfoVolumes(params *GetSysteminfoVolumesParams, authInfo runtime.ClientAuthInfoWriter) (*GetSysteminfoVolumesOK, error) {
@@ -2026,14 +3754,20 @@ func (a *Client) GetSysteminfoVolumes(params *GetSysteminfoVolumesParams, authIn
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetSysteminfoVolumesOK), nil
-
+	success, ok := result.(*GetSysteminfoVolumesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetSysteminfoVolumes: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetUsergroups gets all user groups information
+  GetUsergroups gets all user groups information
 
-Get all user groups information
+  Get all user groups information
 */
 func (a *Client) GetUsergroups(params *GetUsergroupsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUsergroupsOK, error) {
 	// TODO: Validate the params before sending
@@ -2057,14 +3791,20 @@ func (a *Client) GetUsergroups(params *GetUsergroupsParams, authInfo runtime.Cli
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetUsergroupsOK), nil
-
+	success, ok := result.(*GetUsergroupsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetUsergroups: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetUsergroupsGroupID gets user group information
+  GetUsergroupsGroupID gets user group information
 
-Get user group information
+  Get user group information
 */
 func (a *Client) GetUsergroupsGroupID(params *GetUsergroupsGroupIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUsergroupsGroupIDOK, error) {
 	// TODO: Validate the params before sending
@@ -2088,14 +3828,20 @@ func (a *Client) GetUsergroupsGroupID(params *GetUsergroupsGroupIDParams, authIn
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetUsergroupsGroupIDOK), nil
-
+	success, ok := result.(*GetUsergroupsGroupIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetUsergroupsGroupID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetUsers gets registered users of harbor
+  GetUsers gets registered users of harbor
 
-This endpoint is for user to search registered users, support for filtering results with username.Notice, by now this operation is only for administrator.
+  This endpoint is for user to search registered users, support for filtering results with username.Notice, by now this operation is only for administrator.
 
 */
 func (a *Client) GetUsers(params *GetUsersParams, authInfo runtime.ClientAuthInfoWriter) (*GetUsersOK, error) {
@@ -2120,14 +3866,20 @@ func (a *Client) GetUsers(params *GetUsersParams, authInfo runtime.ClientAuthInf
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetUsersOK), nil
-
+	success, ok := result.(*GetUsersOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetUsers: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetUsersCurrent gets current user info
+  GetUsersCurrent gets current user info
 
-This endpoint is to get the current user information.
+  This endpoint is to get the current user information.
 
 */
 func (a *Client) GetUsersCurrent(params *GetUsersCurrentParams, authInfo runtime.ClientAuthInfoWriter) (*GetUsersCurrentOK, error) {
@@ -2152,14 +3904,20 @@ func (a *Client) GetUsersCurrent(params *GetUsersCurrentParams, authInfo runtime
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetUsersCurrentOK), nil
-
+	success, ok := result.(*GetUsersCurrentOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetUsersCurrent: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetUsersCurrentPermissions gets current user permissions
+  GetUsersCurrentPermissions gets current user permissions
 
-This endpoint is to get the current user permissions.
+  This endpoint is to get the current user permissions.
 
 */
 func (a *Client) GetUsersCurrentPermissions(params *GetUsersCurrentPermissionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUsersCurrentPermissionsOK, error) {
@@ -2184,14 +3942,20 @@ func (a *Client) GetUsersCurrentPermissions(params *GetUsersCurrentPermissionsPa
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetUsersCurrentPermissionsOK), nil
-
+	success, ok := result.(*GetUsersCurrentPermissionsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetUsersCurrentPermissions: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetUsersSearch searches users by username email
+  GetUsersSearch searches users by username
 
-This endpoint is to search the users by username, email.
+  This endpoint is to search the users by username.
 
 */
 func (a *Client) GetUsersSearch(params *GetUsersSearchParams, authInfo runtime.ClientAuthInfoWriter) (*GetUsersSearchOK, error) {
@@ -2216,14 +3980,20 @@ func (a *Client) GetUsersSearch(params *GetUsersSearchParams, authInfo runtime.C
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetUsersSearchOK), nil
-
+	success, ok := result.(*GetUsersSearchOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetUsersSearch: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-GetUsersUserID gets a user s profile
+  GetUsersUserID gets a user s profile
 
-Get user's profile with user id.
+  Get user's profile with user id.
 
 */
 func (a *Client) GetUsersUserID(params *GetUsersUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*GetUsersUserIDOK, error) {
@@ -2248,14 +4018,20 @@ func (a *Client) GetUsersUserID(params *GetUsersUserIDParams, authInfo runtime.C
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetUsersUserIDOK), nil
-
+	success, ok := result.(*GetUsersUserIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetUsersUserID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-HeadProjects checks if the project name user provided already exists
+  HeadProjects checks if the project name user provided already exists
 
-This endpoint is used to check if the project name user provided already exist.
+  This endpoint is used to check if the project name user provided already exist.
 
 */
 func (a *Client) HeadProjects(params *HeadProjectsParams, authInfo runtime.ClientAuthInfoWriter) (*HeadProjectsOK, error) {
@@ -2280,14 +4056,205 @@ func (a *Client) HeadProjects(params *HeadProjectsParams, authInfo runtime.Clien
 	if err != nil {
 		return nil, err
 	}
-	return result.(*HeadProjectsOK), nil
-
+	success, ok := result.(*HeadProjectsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for HeadProjects: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostEmailPing tests connection and authentication with email server
+  PatchRetentionsIDExecutionsEid stops a retention job
 
-Test connection and authentication with email server.
+  Stop a Retention job, only support "stop" action now.
+*/
+func (a *Client) PatchRetentionsIDExecutionsEid(params *PatchRetentionsIDExecutionsEidParams, authInfo runtime.ClientAuthInfoWriter) (*PatchRetentionsIDExecutionsEidOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchRetentionsIDExecutionsEidParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PatchRetentionsIDExecutionsEid",
+		Method:             "PATCH",
+		PathPattern:        "/retentions/{id}/executions/{eid}",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &PatchRetentionsIDExecutionsEidReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PatchRetentionsIDExecutionsEidOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PatchRetentionsIDExecutionsEid: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PostChartrepoCharts uploads a chart file to the defult library project
+
+  Upload a chart file to the default 'library' project. Uploading together with the prov file at the same time is also supported.
+*/
+func (a *Client) PostChartrepoCharts(params *PostChartrepoChartsParams, authInfo runtime.ClientAuthInfoWriter) (*PostChartrepoChartsCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostChartrepoChartsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PostChartrepoCharts",
+		Method:             "POST",
+		PathPattern:        "/chartrepo/charts",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &PostChartrepoChartsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostChartrepoChartsCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostChartrepoCharts: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PostChartrepoRepoCharts uploads a chart file to the specified project
+
+  Upload a chart file to the specified project. With this API, the corresponding provance file can be uploaded together with chart file at once.
+*/
+func (a *Client) PostChartrepoRepoCharts(params *PostChartrepoRepoChartsParams, authInfo runtime.ClientAuthInfoWriter) (*PostChartrepoRepoChartsCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostChartrepoRepoChartsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PostChartrepoRepoCharts",
+		Method:             "POST",
+		PathPattern:        "/chartrepo/{repo}/charts",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &PostChartrepoRepoChartsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostChartrepoRepoChartsCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostChartrepoRepoCharts: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PostChartrepoRepoChartsNameVersionLabels marks label to chart
+
+  Mark label to the specified chart version.
+*/
+func (a *Client) PostChartrepoRepoChartsNameVersionLabels(params *PostChartrepoRepoChartsNameVersionLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PostChartrepoRepoChartsNameVersionLabelsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostChartrepoRepoChartsNameVersionLabelsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PostChartrepoRepoChartsNameVersionLabels",
+		Method:             "POST",
+		PathPattern:        "/chartrepo/{repo}/charts/{name}/{version}/labels",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &PostChartrepoRepoChartsNameVersionLabelsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostChartrepoRepoChartsNameVersionLabelsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostChartrepoRepoChartsNameVersionLabels: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PostChartrepoRepoProv uploads a provance file to the specified project
+
+  Upload a provance file to the specified project. The provance file should be targeted for an existing chart file.
+*/
+func (a *Client) PostChartrepoRepoProv(params *PostChartrepoRepoProvParams, authInfo runtime.ClientAuthInfoWriter) (*PostChartrepoRepoProvCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostChartrepoRepoProvParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PostChartrepoRepoProv",
+		Method:             "POST",
+		PathPattern:        "/chartrepo/{repo}/prov",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &PostChartrepoRepoProvReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostChartrepoRepoProvCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostChartrepoRepoProv: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PostEmailPing tests connection and authentication with email server
+
+  Test connection and authentication with email server.
 
 */
 func (a *Client) PostEmailPing(params *PostEmailPingParams, authInfo runtime.ClientAuthInfoWriter) (*PostEmailPingOK, error) {
@@ -2312,14 +4279,58 @@ func (a *Client) PostEmailPing(params *PostEmailPingParams, authInfo runtime.Cli
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostEmailPingOK), nil
-
+	success, ok := result.(*PostEmailPingOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostEmailPing: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostInternalSyncregistry syncs repositories from registry to d b
+  PostInternalSyncquota syncs quota from registry chart to d b
 
-This endpoint is for syncing all repositories of registry with database.
+  This endpoint is for syncing quota usage of registry/chart with database.
+
+*/
+func (a *Client) PostInternalSyncquota(params *PostInternalSyncquotaParams, authInfo runtime.ClientAuthInfoWriter) (*PostInternalSyncquotaOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostInternalSyncquotaParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PostInternalSyncquota",
+		Method:             "POST",
+		PathPattern:        "/internal/syncquota",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &PostInternalSyncquotaReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostInternalSyncquotaOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostInternalSyncquota: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PostInternalSyncregistry syncs repositories from registry to d b
+
+  This endpoint is for syncing all repositories of registry with database.
 
 */
 func (a *Client) PostInternalSyncregistry(params *PostInternalSyncregistryParams, authInfo runtime.ClientAuthInfoWriter) (*PostInternalSyncregistryOK, error) {
@@ -2344,14 +4355,20 @@ func (a *Client) PostInternalSyncregistry(params *PostInternalSyncregistryParams
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostInternalSyncregistryOK), nil
-
+	success, ok := result.(*PostInternalSyncregistryOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostInternalSyncregistry: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostLabels posts creates a label
+  PostLabels posts creates a label
 
-This endpoint let user creates a label.
+  This endpoint let user creates a label.
 
 */
 func (a *Client) PostLabels(params *PostLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PostLabelsCreated, error) {
@@ -2376,14 +4393,20 @@ func (a *Client) PostLabels(params *PostLabelsParams, authInfo runtime.ClientAut
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostLabelsCreated), nil
-
+	success, ok := result.(*PostLabelsCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostLabels: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostLdapPing pings available ldap service
+  PostLdapPing pings available ldap service
 
-This endpoint ping the available ldap service for test related configuration parameters.
+  This endpoint ping the available ldap service for test related configuration parameters.
 
 */
 func (a *Client) PostLdapPing(params *PostLdapPingParams, authInfo runtime.ClientAuthInfoWriter) (*PostLdapPingOK, error) {
@@ -2408,14 +4431,20 @@ func (a *Client) PostLdapPing(params *PostLdapPingParams, authInfo runtime.Clien
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostLdapPingOK), nil
-
+	success, ok := result.(*PostLdapPingOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostLdapPing: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostLdapUsersImport imports selected available ldap users
+  PostLdapUsersImport imports selected available ldap users
 
-This endpoint adds the selected available ldap users to harbor based on related configuration parameters from the system. System will try to guess the user email address and realname, add to harbor user information.
+  This endpoint adds the selected available ldap users to harbor based on related configuration parameters from the system. System will try to guess the user email address and realname, add to harbor user information.
 If have errors when import user, will return the list of importing failed uid and the failed reason.
 
 */
@@ -2441,14 +4470,20 @@ func (a *Client) PostLdapUsersImport(params *PostLdapUsersImportParams, authInfo
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostLdapUsersImportOK), nil
-
+	success, ok := result.(*PostLdapUsersImportOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostLdapUsersImport: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostProjects creates a new project
+  PostProjects creates a new project
 
-This endpoint is for user to create a new project.
+  This endpoint is for user to create a new project.
 
 */
 func (a *Client) PostProjects(params *PostProjectsParams, authInfo runtime.ClientAuthInfoWriter) (*PostProjectsCreated, error) {
@@ -2473,14 +4508,58 @@ func (a *Client) PostProjects(params *PostProjectsParams, authInfo runtime.Clien
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostProjectsCreated), nil
-
+	success, ok := result.(*PostProjectsCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostProjects: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostProjectsProjectIDMembers creates project member
+  PostProjectsProjectIDImmutabletagrules adds an immutable tag rule to current project
 
-Create project member relationship, the member can be one of the user_member and group_member,  The user_member need to specify user_id or username. If the user already exist in harbor DB, specify the user_id,  If does not exist in harbor DB, it will SearchAndOnBoard the user. The group_member need to specify id or ldap_group_dn. If the group already exist in harbor DB. specify the user group's id,  If does not exist, it will SearchAndOnBoard the group.
+  This endpoint add an immutable tag rule to the project
+
+*/
+func (a *Client) PostProjectsProjectIDImmutabletagrules(params *PostProjectsProjectIDImmutabletagrulesParams, authInfo runtime.ClientAuthInfoWriter) (*PostProjectsProjectIDImmutabletagrulesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostProjectsProjectIDImmutabletagrulesParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PostProjectsProjectIDImmutabletagrules",
+		Method:             "POST",
+		PathPattern:        "/projects/{project_id}/immutabletagrules",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &PostProjectsProjectIDImmutabletagrulesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostProjectsProjectIDImmutabletagrulesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostProjectsProjectIDImmutabletagrules: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PostProjectsProjectIDMembers creates project member
+
+  Create project member relationship, the member can be one of the user_member and group_member,  The user_member need to specify user_id or username. If the user already exist in harbor DB, specify the user_id,  If does not exist in harbor DB, it will SearchAndOnBoard the user. The group_member need to specify id or ldap_group_dn. If the group already exist in harbor DB. specify the user group's id,  If does not exist, it will SearchAndOnBoard the group.
 */
 func (a *Client) PostProjectsProjectIDMembers(params *PostProjectsProjectIDMembersParams, authInfo runtime.ClientAuthInfoWriter) (*PostProjectsProjectIDMembersCreated, error) {
 	// TODO: Validate the params before sending
@@ -2504,14 +4583,20 @@ func (a *Client) PostProjectsProjectIDMembers(params *PostProjectsProjectIDMembe
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostProjectsProjectIDMembersCreated), nil
-
+	success, ok := result.(*PostProjectsProjectIDMembersCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostProjectsProjectIDMembers: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostProjectsProjectIDMetadatas adds metadata for the project
+  PostProjectsProjectIDMetadatas adds metadata for the project
 
-This endpoint is aimed to add metadata of a project.
+  This endpoint is aimed to add metadata of a project.
 
 */
 func (a *Client) PostProjectsProjectIDMetadatas(params *PostProjectsProjectIDMetadatasParams, authInfo runtime.ClientAuthInfoWriter) (*PostProjectsProjectIDMetadatasOK, error) {
@@ -2536,14 +4621,57 @@ func (a *Client) PostProjectsProjectIDMetadatas(params *PostProjectsProjectIDMet
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostProjectsProjectIDMetadatasOK), nil
-
+	success, ok := result.(*PostProjectsProjectIDMetadatasOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostProjectsProjectIDMetadatas: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostProjectsProjectIDWebhookPolicies creates project webhook policy
+  PostProjectsProjectIDRobots creates a robot account for project
 
-This endpoint create a webhook policy if the project does not have one.
+  Create a robot account for project
+*/
+func (a *Client) PostProjectsProjectIDRobots(params *PostProjectsProjectIDRobotsParams, authInfo runtime.ClientAuthInfoWriter) (*PostProjectsProjectIDRobotsCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostProjectsProjectIDRobotsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PostProjectsProjectIDRobots",
+		Method:             "POST",
+		PathPattern:        "/projects/{project_id}/robots",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &PostProjectsProjectIDRobotsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostProjectsProjectIDRobotsCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostProjectsProjectIDRobots: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PostProjectsProjectIDWebhookPolicies creates project webhook policy
+
+  This endpoint create a webhook policy if the project does not have one.
 
 */
 func (a *Client) PostProjectsProjectIDWebhookPolicies(params *PostProjectsProjectIDWebhookPoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*PostProjectsProjectIDWebhookPoliciesCreated, error) {
@@ -2568,14 +4696,20 @@ func (a *Client) PostProjectsProjectIDWebhookPolicies(params *PostProjectsProjec
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostProjectsProjectIDWebhookPoliciesCreated), nil
-
+	success, ok := result.(*PostProjectsProjectIDWebhookPoliciesCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostProjectsProjectIDWebhookPolicies: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostProjectsProjectIDWebhookPoliciesTest tests project webhook connection
+  PostProjectsProjectIDWebhookPoliciesTest tests project webhook connection
 
-This endpoint tests webhook connection of a project.
+  This endpoint tests webhook connection of a project.
 
 */
 func (a *Client) PostProjectsProjectIDWebhookPoliciesTest(params *PostProjectsProjectIDWebhookPoliciesTestParams, authInfo runtime.ClientAuthInfoWriter) (*PostProjectsProjectIDWebhookPoliciesTestOK, error) {
@@ -2600,14 +4734,20 @@ func (a *Client) PostProjectsProjectIDWebhookPoliciesTest(params *PostProjectsPr
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostProjectsProjectIDWebhookPoliciesTestOK), nil
-
+	success, ok := result.(*PostProjectsProjectIDWebhookPoliciesTestOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostProjectsProjectIDWebhookPoliciesTest: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostRegistries creates a new registry
+  PostRegistries creates a new registry
 
-This endpoint is for user to create a new registry.
+  This endpoint is for user to create a new registry.
 
 */
 func (a *Client) PostRegistries(params *PostRegistriesParams, authInfo runtime.ClientAuthInfoWriter) (*PostRegistriesCreated, error) {
@@ -2632,14 +4772,20 @@ func (a *Client) PostRegistries(params *PostRegistriesParams, authInfo runtime.C
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostRegistriesCreated), nil
-
+	success, ok := result.(*PostRegistriesCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostRegistries: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostRegistriesPing pings status of a registry
+  PostRegistriesPing pings status of a registry
 
-This endpoint checks status of a registry, the registry can be given by ID or URL (together with credential)
+  This endpoint checks status of a registry, the registry can be given by ID or URL (together with credential)
 
 */
 func (a *Client) PostRegistriesPing(params *PostRegistriesPingParams, authInfo runtime.ClientAuthInfoWriter) (*PostRegistriesPingOK, error) {
@@ -2664,14 +4810,20 @@ func (a *Client) PostRegistriesPing(params *PostRegistriesPingParams, authInfo r
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostRegistriesPingOK), nil
-
+	success, ok := result.(*PostRegistriesPingOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostRegistriesPing: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostReplicationExecutions starts one execution of the replication
+  PostReplicationExecutions starts one execution of the replication
 
-This endpoint is for user to start one execution of the replication.
+  This endpoint is for user to start one execution of the replication.
 
 */
 func (a *Client) PostReplicationExecutions(params *PostReplicationExecutionsParams, authInfo runtime.ClientAuthInfoWriter) (*PostReplicationExecutionsCreated, error) {
@@ -2696,14 +4848,20 @@ func (a *Client) PostReplicationExecutions(params *PostReplicationExecutionsPara
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostReplicationExecutionsCreated), nil
-
+	success, ok := result.(*PostReplicationExecutionsCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostReplicationExecutions: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostReplicationPolicies creates a replication policy
+  PostReplicationPolicies creates a replication policy
 
-This endpoint let user create a replication policy
+  This endpoint let user create a replication policy
 
 */
 func (a *Client) PostReplicationPolicies(params *PostReplicationPoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*PostReplicationPoliciesCreated, error) {
@@ -2728,14 +4886,20 @@ func (a *Client) PostReplicationPolicies(params *PostReplicationPoliciesParams, 
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostReplicationPoliciesCreated), nil
-
+	success, ok := result.(*PostReplicationPoliciesCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostReplicationPolicies: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostRepositoriesRepoNameLabels adds a label to the repository
+  PostRepositoriesRepoNameLabels adds a label to the repository
 
-Add a label to the repository.
+  Add a label to the repository.
 
 */
 func (a *Client) PostRepositoriesRepoNameLabels(params *PostRepositoriesRepoNameLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PostRepositoriesRepoNameLabelsOK, error) {
@@ -2760,14 +4924,20 @@ func (a *Client) PostRepositoriesRepoNameLabels(params *PostRepositoriesRepoName
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostRepositoriesRepoNameLabelsOK), nil
-
+	success, ok := result.(*PostRepositoriesRepoNameLabelsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostRepositoriesRepoNameLabels: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostRepositoriesRepoNameTags retags an image
+  PostRepositoriesRepoNameTags retags an image
 
-This endpoint tags an existing image with another tag in this repo, source images can be in different repos or projects.
+  This endpoint tags an existing image with another tag in this repo, source images can be in different repos or projects.
 
 */
 func (a *Client) PostRepositoriesRepoNameTags(params *PostRepositoriesRepoNameTagsParams, authInfo runtime.ClientAuthInfoWriter) (*PostRepositoriesRepoNameTagsOK, error) {
@@ -2792,14 +4962,20 @@ func (a *Client) PostRepositoriesRepoNameTags(params *PostRepositoriesRepoNameTa
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostRepositoriesRepoNameTagsOK), nil
-
+	success, ok := result.(*PostRepositoriesRepoNameTagsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostRepositoriesRepoNameTags: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostRepositoriesRepoNameTagsTagLabels adds a label to image
+  PostRepositoriesRepoNameTagsTagLabels adds a label to image
 
-Add a label to the image.
+  Add a label to the image.
 
 */
 func (a *Client) PostRepositoriesRepoNameTagsTagLabels(params *PostRepositoriesRepoNameTagsTagLabelsParams, authInfo runtime.ClientAuthInfoWriter) (*PostRepositoriesRepoNameTagsTagLabelsOK, error) {
@@ -2824,17 +5000,23 @@ func (a *Client) PostRepositoriesRepoNameTagsTagLabels(params *PostRepositoriesR
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostRepositoriesRepoNameTagsTagLabelsOK), nil
-
+	success, ok := result.(*PostRepositoriesRepoNameTagsTagLabelsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostRepositoriesRepoNameTagsTagLabels: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostRepositoriesRepoNameTagsTagScan scans the image
+  PostRepositoriesRepoNameTagsTagScan scans the image
 
-Trigger jobservice to call Clair API to scan the image identified by the repo_name and tag.  Only project admins have permission to scan images under the project.
+  Trigger a scan targeting the artifact identified by the repo_name and tag.
 
 */
-func (a *Client) PostRepositoriesRepoNameTagsTagScan(params *PostRepositoriesRepoNameTagsTagScanParams, authInfo runtime.ClientAuthInfoWriter) (*PostRepositoriesRepoNameTagsTagScanOK, error) {
+func (a *Client) PostRepositoriesRepoNameTagsTagScan(params *PostRepositoriesRepoNameTagsTagScanParams, authInfo runtime.ClientAuthInfoWriter) (*PostRepositoriesRepoNameTagsTagScanAccepted, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostRepositoriesRepoNameTagsTagScanParams()
@@ -2856,14 +5038,135 @@ func (a *Client) PostRepositoriesRepoNameTagsTagScan(params *PostRepositoriesRep
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostRepositoriesRepoNameTagsTagScanOK), nil
-
+	success, ok := result.(*PostRepositoriesRepoNameTagsTagScanAccepted)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostRepositoriesRepoNameTagsTagScan: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostSystemGcSchedule creates a gc schedule
+  PostRetentions creates retention policy
 
-This endpoint is for update gc schedule.
+  Create Retention Policy, you can reference metadatas API for the policy model.
+You can check project metadatas to find whether a retention policy is already binded.
+This method should only be called when no retention policy binded to project yet.
+
+*/
+func (a *Client) PostRetentions(params *PostRetentionsParams, authInfo runtime.ClientAuthInfoWriter) (*PostRetentionsCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostRetentionsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PostRetentions",
+		Method:             "POST",
+		PathPattern:        "/retentions",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &PostRetentionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostRetentionsCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostRetentions: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PostRetentionsIDExecutions triggers a retention job
+
+  Trigger a Retention job, if dry_run is True, nothing would be deleted actually.
+*/
+func (a *Client) PostRetentionsIDExecutions(params *PostRetentionsIDExecutionsParams, authInfo runtime.ClientAuthInfoWriter) (*PostRetentionsIDExecutionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostRetentionsIDExecutionsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PostRetentionsIDExecutions",
+		Method:             "POST",
+		PathPattern:        "/retentions/{id}/executions",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &PostRetentionsIDExecutionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostRetentionsIDExecutionsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostRetentionsIDExecutions: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PostScannersPing tests scanner registration settings
+
+  Pings scanner adapter to test endpoint URL and authorization settings.
+
+*/
+func (a *Client) PostScannersPing(params *PostScannersPingParams, authInfo runtime.ClientAuthInfoWriter) (*PostScannersPingOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostScannersPingParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PostScannersPing",
+		Method:             "POST",
+		PathPattern:        "/scanners/ping",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &PostScannersPingReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostScannersPingOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostScannersPing: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PostSystemGcSchedule creates a gc schedule
+
+  This endpoint is for update gc schedule.
 
 */
 func (a *Client) PostSystemGcSchedule(params *PostSystemGcScheduleParams, authInfo runtime.ClientAuthInfoWriter) (*PostSystemGcScheduleOK, error) {
@@ -2888,14 +5191,57 @@ func (a *Client) PostSystemGcSchedule(params *PostSystemGcScheduleParams, authIn
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostSystemGcScheduleOK), nil
-
+	success, ok := result.(*PostSystemGcScheduleOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostSystemGcSchedule: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostSystemScanAllSchedule creates a schedule or a manual trigger for the scan all job
+  PostSystemOidcPing tests the o ID c endpoint
 
-This endpoint is for creating a schedule or a manual trigger for the scan all job, which scans all of images in Harbor.
+  Test the OIDC endpoint, the setting of the endpoint is provided in the request.  This API can only be called by system admin.
+*/
+func (a *Client) PostSystemOidcPing(params *PostSystemOidcPingParams, authInfo runtime.ClientAuthInfoWriter) (*PostSystemOidcPingOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostSystemOidcPingParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PostSystemOidcPing",
+		Method:             "POST",
+		PathPattern:        "/system/oidc/ping",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &PostSystemOidcPingReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostSystemOidcPingOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostSystemOidcPing: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PostSystemScanAllSchedule creates a schedule or a manual trigger for the scan all job
+
+  This endpoint is for creating a schedule or a manual trigger for the scan all job, which scans all of images in Harbor.
 
 */
 func (a *Client) PostSystemScanAllSchedule(params *PostSystemScanAllScheduleParams, authInfo runtime.ClientAuthInfoWriter) (*PostSystemScanAllScheduleOK, error) {
@@ -2920,14 +5266,20 @@ func (a *Client) PostSystemScanAllSchedule(params *PostSystemScanAllSchedulePara
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostSystemScanAllScheduleOK), nil
-
+	success, ok := result.(*PostSystemScanAllScheduleOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostSystemScanAllSchedule: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostUsergroups creates user group
+  PostUsergroups creates user group
 
-Create user group information
+  Create user group information
 */
 func (a *Client) PostUsergroups(params *PostUsergroupsParams, authInfo runtime.ClientAuthInfoWriter) (*PostUsergroupsCreated, error) {
 	// TODO: Validate the params before sending
@@ -2951,14 +5303,20 @@ func (a *Client) PostUsergroups(params *PostUsergroupsParams, authInfo runtime.C
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostUsergroupsCreated), nil
-
+	success, ok := result.(*PostUsergroupsCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostUsergroups: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostUsers creates a new user account
+  PostUsers creates a new user account
 
-This endpoint is to create a user if the user does not already exist.
+  This endpoint is to create a user if the user does not already exist.
 
 */
 func (a *Client) PostUsers(params *PostUsersParams, authInfo runtime.ClientAuthInfoWriter) (*PostUsersCreated, error) {
@@ -2983,48 +5341,20 @@ func (a *Client) PostUsers(params *PostUsersParams, authInfo runtime.ClientAuthI
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostUsersCreated), nil
-
+	success, ok := result.(*PostUsersCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PostUsers: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PostUsersUserIDGenCliSecret generates new c l i secret for a user
+  PutConfigurations modifies system configurations
 
-This endpoint let user generate a new CLI secret for himself.  This API only works when auth mode is set to 'OIDC'.
-Once this API returns with successful status, the old secret will be invalid, as there will be only one CLI secret
-for a user.  The new secret will be returned in the response.
-
-*/
-func (a *Client) PostUsersUserIDGenCliSecret(params *PostUsersUserIDGenCliSecretParams, authInfo runtime.ClientAuthInfoWriter) (*PostUsersUserIDGenCliSecretOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPostUsersUserIDGenCliSecretParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "PostUsersUserIDGenCliSecret",
-		Method:             "POST",
-		PathPattern:        "/users/{user_id}/gen_cli_secret",
-		ProducesMediaTypes: []string{"application/json", "text/plain"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http", "https"},
-		Params:             params,
-		Reader:             &PostUsersUserIDGenCliSecretReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*PostUsersUserIDGenCliSecretOK), nil
-
-}
-
-/*
-PutConfigurations modifies system configurations
-
-This endpoint is for modifying system configurations that only provides for admin user.
+  This endpoint is for modifying system configurations that only provides for admin user.
 
 */
 func (a *Client) PutConfigurations(params *PutConfigurationsParams, authInfo runtime.ClientAuthInfoWriter) (*PutConfigurationsOK, error) {
@@ -3049,14 +5379,58 @@ func (a *Client) PutConfigurations(params *PutConfigurationsParams, authInfo run
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PutConfigurationsOK), nil
-
+	success, ok := result.(*PutConfigurationsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutConfigurations: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PutLabelsID updates the label properties
+  PutInternalSwitchquota enables or disable quota
 
-This endpoint let user update label properties.
+  This endpoint is for enable/disable quota. When quota is disabled, no resource require/release in image/chart push and delete.
+
+*/
+func (a *Client) PutInternalSwitchquota(params *PutInternalSwitchquotaParams, authInfo runtime.ClientAuthInfoWriter) (*PutInternalSwitchquotaOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPutInternalSwitchquotaParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PutInternalSwitchquota",
+		Method:             "PUT",
+		PathPattern:        "/internal/switchquota",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &PutInternalSwitchquotaReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PutInternalSwitchquotaOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutInternalSwitchquota: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PutLabelsID updates the label properties
+
+  This endpoint let user update label properties.
 
 */
 func (a *Client) PutLabelsID(params *PutLabelsIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutLabelsIDOK, error) {
@@ -3081,14 +5455,20 @@ func (a *Client) PutLabelsID(params *PutLabelsIDParams, authInfo runtime.ClientA
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PutLabelsIDOK), nil
-
+	success, ok := result.(*PutLabelsIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutLabelsID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PutProjectsProjectID updates properties for a selected project
+  PutProjectsProjectID updates properties for a selected project
 
-This endpoint is aimed to update the properties of a project.
+  This endpoint is aimed to update the properties of a project.
 
 */
 func (a *Client) PutProjectsProjectID(params *PutProjectsProjectIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutProjectsProjectIDOK, error) {
@@ -3113,14 +5493,55 @@ func (a *Client) PutProjectsProjectID(params *PutProjectsProjectIDParams, authIn
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PutProjectsProjectIDOK), nil
-
+	success, ok := result.(*PutProjectsProjectIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutProjectsProjectID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PutProjectsProjectIDMembersMid updates project member
+  PutProjectsProjectIDImmutabletagrulesID updates the immutable tag rule or enable or disable the rule
+*/
+func (a *Client) PutProjectsProjectIDImmutabletagrulesID(params *PutProjectsProjectIDImmutabletagrulesIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutProjectsProjectIDImmutabletagrulesIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPutProjectsProjectIDImmutabletagrulesIDParams()
+	}
 
-Update project member relationship
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PutProjectsProjectIDImmutabletagrulesID",
+		Method:             "PUT",
+		PathPattern:        "/projects/{project_id}/immutabletagrules/{id}",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &PutProjectsProjectIDImmutabletagrulesIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PutProjectsProjectIDImmutabletagrulesIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutProjectsProjectIDImmutabletagrulesID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PutProjectsProjectIDMembersMid updates project member
+
+  Update project member relationship
 */
 func (a *Client) PutProjectsProjectIDMembersMid(params *PutProjectsProjectIDMembersMidParams, authInfo runtime.ClientAuthInfoWriter) (*PutProjectsProjectIDMembersMidOK, error) {
 	// TODO: Validate the params before sending
@@ -3144,14 +5565,20 @@ func (a *Client) PutProjectsProjectIDMembersMid(params *PutProjectsProjectIDMemb
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PutProjectsProjectIDMembersMidOK), nil
-
+	success, ok := result.(*PutProjectsProjectIDMembersMidOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutProjectsProjectIDMembersMid: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PutProjectsProjectIDMetadatasMetaName updates metadata of a project
+  PutProjectsProjectIDMetadatasMetaName updates metadata of a project
 
-This endpoint is aimed to update the metadata of a project.
+  This endpoint is aimed to update the metadata of a project.
 
 */
 func (a *Client) PutProjectsProjectIDMetadatasMetaName(params *PutProjectsProjectIDMetadatasMetaNameParams, authInfo runtime.ClientAuthInfoWriter) (*PutProjectsProjectIDMetadatasMetaNameOK, error) {
@@ -3176,14 +5603,57 @@ func (a *Client) PutProjectsProjectIDMetadatasMetaName(params *PutProjectsProjec
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PutProjectsProjectIDMetadatasMetaNameOK), nil
-
+	success, ok := result.(*PutProjectsProjectIDMetadatasMetaNameOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutProjectsProjectIDMetadatasMetaName: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PutProjectsProjectIDWebhookPoliciesPolicyID updates webhook policy of a project
+  PutProjectsProjectIDRobotsRobotID updates status of robot account
 
-This endpoint is aimed to update the webhook policy of a project.
+  Used to disable/enable a specified robot account.
+*/
+func (a *Client) PutProjectsProjectIDRobotsRobotID(params *PutProjectsProjectIDRobotsRobotIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutProjectsProjectIDRobotsRobotIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPutProjectsProjectIDRobotsRobotIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PutProjectsProjectIDRobotsRobotID",
+		Method:             "PUT",
+		PathPattern:        "/projects/{project_id}/robots/{robot_id}",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &PutProjectsProjectIDRobotsRobotIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PutProjectsProjectIDRobotsRobotIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutProjectsProjectIDRobotsRobotID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PutProjectsProjectIDWebhookPoliciesPolicyID updates webhook policy of a project
+
+  This endpoint is aimed to update the webhook policy of a project.
 
 */
 func (a *Client) PutProjectsProjectIDWebhookPoliciesPolicyID(params *PutProjectsProjectIDWebhookPoliciesPolicyIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutProjectsProjectIDWebhookPoliciesPolicyIDOK, error) {
@@ -3208,14 +5678,57 @@ func (a *Client) PutProjectsProjectIDWebhookPoliciesPolicyID(params *PutProjects
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PutProjectsProjectIDWebhookPoliciesPolicyIDOK), nil
-
+	success, ok := result.(*PutProjectsProjectIDWebhookPoliciesPolicyIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutProjectsProjectIDWebhookPoliciesPolicyID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PutRegistriesID updates a given registry
+  PutQuotasID updates the specified quota
 
-This endpoint is for update a given registry.
+  Update hard limits of the specified quota
+*/
+func (a *Client) PutQuotasID(params *PutQuotasIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutQuotasIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPutQuotasIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PutQuotasID",
+		Method:             "PUT",
+		PathPattern:        "/quotas/{id}",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &PutQuotasIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PutQuotasIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutQuotasID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PutRegistriesID updates a given registry
+
+  This endpoint is for update a given registry.
 
 */
 func (a *Client) PutRegistriesID(params *PutRegistriesIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutRegistriesIDOK, error) {
@@ -3240,14 +5753,20 @@ func (a *Client) PutRegistriesID(params *PutRegistriesIDParams, authInfo runtime
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PutRegistriesIDOK), nil
-
+	success, ok := result.(*PutRegistriesIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutRegistriesID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PutReplicationExecutionsID stops the execution of the replication
+  PutReplicationExecutionsID stops the execution of the replication
 
-This endpoint is for user to stop one execution of the replication.
+  This endpoint is for user to stop one execution of the replication.
 
 */
 func (a *Client) PutReplicationExecutionsID(params *PutReplicationExecutionsIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutReplicationExecutionsIDOK, error) {
@@ -3272,14 +5791,20 @@ func (a *Client) PutReplicationExecutionsID(params *PutReplicationExecutionsIDPa
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PutReplicationExecutionsIDOK), nil
-
+	success, ok := result.(*PutReplicationExecutionsIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutReplicationExecutionsID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PutReplicationPoliciesID updates the replication policy
+  PutReplicationPoliciesID updates the replication policy
 
-This endpoint let user update policy.
+  This endpoint let user update policy.
 
 */
 func (a *Client) PutReplicationPoliciesID(params *PutReplicationPoliciesIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutReplicationPoliciesIDOK, error) {
@@ -3304,14 +5829,20 @@ func (a *Client) PutReplicationPoliciesID(params *PutReplicationPoliciesIDParams
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PutReplicationPoliciesIDOK), nil
-
+	success, ok := result.(*PutReplicationPoliciesIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutReplicationPoliciesID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PutRepositoriesRepoName updates description of the repository
+  PutRepositoriesRepoName updates description of the repository
 
-This endpoint is used to update description of the repository.
+  This endpoint is used to update description of the repository.
 
 */
 func (a *Client) PutRepositoriesRepoName(params *PutRepositoriesRepoNameParams, authInfo runtime.ClientAuthInfoWriter) (*PutRepositoriesRepoNameOK, error) {
@@ -3336,14 +5867,97 @@ func (a *Client) PutRepositoriesRepoName(params *PutRepositoriesRepoNameParams, 
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PutRepositoriesRepoNameOK), nil
-
+	success, ok := result.(*PutRepositoriesRepoNameOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutRepositoriesRepoName: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PutSystemGcSchedule updates gc s schedule
+  PutRetentionsID updates retention policy
 
-This endpoint is for update gc schedule.
+  Update Retention Policy, you can reference metadatas API for the policy model.
+You can check project metadatas to find whether a retention policy is already binded.
+This method should only be called when retention policy has already binded to project.
+
+*/
+func (a *Client) PutRetentionsID(params *PutRetentionsIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutRetentionsIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPutRetentionsIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PutRetentionsID",
+		Method:             "PUT",
+		PathPattern:        "/retentions/{id}",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &PutRetentionsIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PutRetentionsIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutRetentionsID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PutSystemCVEWhitelist updates the system level whitelist of c v e
+
+  This API overwrites the system level whitelist of CVE with the list in request body.  Only system Admin has permission to call this API.
+*/
+func (a *Client) PutSystemCVEWhitelist(params *PutSystemCVEWhitelistParams, authInfo runtime.ClientAuthInfoWriter) (*PutSystemCVEWhitelistOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPutSystemCVEWhitelistParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PutSystemCVEWhitelist",
+		Method:             "PUT",
+		PathPattern:        "/system/CVEWhitelist",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &PutSystemCVEWhitelistReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PutSystemCVEWhitelistOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutSystemCVEWhitelist: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PutSystemGcSchedule updates gc s schedule
+
+  This endpoint is for update gc schedule.
 
 */
 func (a *Client) PutSystemGcSchedule(params *PutSystemGcScheduleParams, authInfo runtime.ClientAuthInfoWriter) (*PutSystemGcScheduleOK, error) {
@@ -3368,14 +5982,20 @@ func (a *Client) PutSystemGcSchedule(params *PutSystemGcScheduleParams, authInfo
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PutSystemGcScheduleOK), nil
-
+	success, ok := result.(*PutSystemGcScheduleOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutSystemGcSchedule: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PutSystemScanAllSchedule updates scan all s schedule
+  PutSystemScanAllSchedule updates scan all s schedule
 
-This endpoint is for updating the schedule of scan all job, which scans all of images in Harbor.
+  This endpoint is for updating the schedule of scan all job, which scans all of images in Harbor.
 
 */
 func (a *Client) PutSystemScanAllSchedule(params *PutSystemScanAllScheduleParams, authInfo runtime.ClientAuthInfoWriter) (*PutSystemScanAllScheduleOK, error) {
@@ -3400,14 +6020,20 @@ func (a *Client) PutSystemScanAllSchedule(params *PutSystemScanAllScheduleParams
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PutSystemScanAllScheduleOK), nil
-
+	success, ok := result.(*PutSystemScanAllScheduleOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutSystemScanAllSchedule: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PutUsergroupsGroupID updates group information
+  PutUsergroupsGroupID updates group information
 
-Update user group information
+  Update user group information
 */
 func (a *Client) PutUsergroupsGroupID(params *PutUsergroupsGroupIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutUsergroupsGroupIDOK, error) {
 	// TODO: Validate the params before sending
@@ -3431,14 +6057,20 @@ func (a *Client) PutUsergroupsGroupID(params *PutUsergroupsGroupIDParams, authIn
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PutUsergroupsGroupIDOK), nil
-
+	success, ok := result.(*PutUsergroupsGroupIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutUsergroupsGroupID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PutUsersUserID updates a registered user to change his profile
+  PutUsersUserID updates a registered user to change his profile
 
-This endpoint let a registered user change his profile.
+  This endpoint let a registered user change his profile.
 
 */
 func (a *Client) PutUsersUserID(params *PutUsersUserIDParams, authInfo runtime.ClientAuthInfoWriter) (*PutUsersUserIDOK, error) {
@@ -3463,14 +6095,60 @@ func (a *Client) PutUsersUserID(params *PutUsersUserIDParams, authInfo runtime.C
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PutUsersUserIDOK), nil
-
+	success, ok := result.(*PutUsersUserIDOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutUsersUserID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PutUsersUserIDPassword changes the password on a user that already exists
+  PutUsersUserIDCliSecret sets c l i secret for a user
 
-This endpoint is for user to update password. Users with the admin role can change any user's password. Guest users can change only their own password.
+  This endpoint let user generate a new CLI secret for himself.  This API only works when auth mode is set to 'OIDC'.
+Once this API returns with successful status, the old secret will be invalid, as there will be only one CLI secret
+for a user.
+
+*/
+func (a *Client) PutUsersUserIDCliSecret(params *PutUsersUserIDCliSecretParams, authInfo runtime.ClientAuthInfoWriter) (*PutUsersUserIDCliSecretOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPutUsersUserIDCliSecretParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PutUsersUserIDCliSecret",
+		Method:             "PUT",
+		PathPattern:        "/users/{user_id}/cli_secret",
+		ProducesMediaTypes: []string{"application/json", "text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &PutUsersUserIDCliSecretReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PutUsersUserIDCliSecretOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutUsersUserIDCliSecret: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PutUsersUserIDPassword changes the password on a user that already exists
+
+  This endpoint is for user to update password. Users with the admin role can change any user's password. Guest users can change only their own password.
 
 */
 func (a *Client) PutUsersUserIDPassword(params *PutUsersUserIDPasswordParams, authInfo runtime.ClientAuthInfoWriter) (*PutUsersUserIDPasswordOK, error) {
@@ -3495,14 +6173,20 @@ func (a *Client) PutUsersUserIDPassword(params *PutUsersUserIDPasswordParams, au
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PutUsersUserIDPasswordOK), nil
-
+	success, ok := result.(*PutUsersUserIDPasswordOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutUsersUserIDPassword: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
-PutUsersUserIDSysadmin updates a registered user to change to be an administrator of harbor
+  PutUsersUserIDSysadmin updates a registered user to change to be an administrator of harbor
 
-This endpoint let a registered user change to be an administrator
+  This endpoint let a registered user change to be an administrator
 of Harbor.
 
 */
@@ -3528,8 +6212,14 @@ func (a *Client) PutUsersUserIDSysadmin(params *PutUsersUserIDSysadminParams, au
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PutUsersUserIDSysadminOK), nil
-
+	success, ok := result.(*PutUsersUserIDSysadminOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PutUsersUserIDSysadmin: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 // SetTransport changes the transport on the client

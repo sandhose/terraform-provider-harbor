@@ -21,35 +21,30 @@ type PutUsersUserIDPasswordReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PutUsersUserIDPasswordReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPutUsersUserIDPasswordOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewPutUsersUserIDPasswordBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 401:
 		result := NewPutUsersUserIDPasswordUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewPutUsersUserIDPasswordForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewPutUsersUserIDPasswordInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {

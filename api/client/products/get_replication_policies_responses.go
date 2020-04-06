@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetReplicationPoliciesReader is a Reader for the GetReplicationPolicies structure.
@@ -24,35 +24,30 @@ type GetReplicationPoliciesReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetReplicationPoliciesReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetReplicationPoliciesOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetReplicationPoliciesBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 401:
 		result := NewGetReplicationPoliciesUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetReplicationPoliciesForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetReplicationPoliciesInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -80,6 +75,10 @@ type GetReplicationPoliciesOK struct {
 
 func (o *GetReplicationPoliciesOK) Error() string {
 	return fmt.Sprintf("[GET /replication/policies][%d] getReplicationPoliciesOK  %+v", 200, o.Payload)
+}
+
+func (o *GetReplicationPoliciesOK) GetPayload() []*models.ReplicationPolicy {
+	return o.Payload
 }
 
 func (o *GetReplicationPoliciesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

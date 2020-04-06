@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetConfigurationsReader is a Reader for the GetConfigurations structure.
@@ -24,28 +24,24 @@ type GetConfigurationsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetConfigurationsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetConfigurationsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 401:
 		result := NewGetConfigurationsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetConfigurationsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetConfigurationsInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -73,6 +69,10 @@ type GetConfigurationsOK struct {
 
 func (o *GetConfigurationsOK) Error() string {
 	return fmt.Sprintf("[GET /configurations][%d] getConfigurationsOK  %+v", 200, o.Payload)
+}
+
+func (o *GetConfigurationsOK) GetPayload() *models.ConfigurationsResponse {
+	return o.Payload
 }
 
 func (o *GetConfigurationsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

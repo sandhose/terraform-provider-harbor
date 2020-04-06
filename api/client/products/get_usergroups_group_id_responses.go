@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetUsergroupsGroupIDReader is a Reader for the GetUsergroupsGroupID structure.
@@ -24,42 +24,36 @@ type GetUsergroupsGroupIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetUsergroupsGroupIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetUsergroupsGroupIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewGetUsergroupsGroupIDBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 401:
 		result := NewGetUsergroupsGroupIDUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewGetUsergroupsGroupIDForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewGetUsergroupsGroupIDNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetUsergroupsGroupIDInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -87,6 +81,10 @@ type GetUsergroupsGroupIDOK struct {
 
 func (o *GetUsergroupsGroupIDOK) Error() string {
 	return fmt.Sprintf("[GET /usergroups/{group_id}][%d] getUsergroupsGroupIdOK  %+v", 200, o.Payload)
+}
+
+func (o *GetUsergroupsGroupIDOK) GetPayload() *models.UserGroup {
+	return o.Payload
 }
 
 func (o *GetUsergroupsGroupIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

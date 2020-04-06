@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetRegistriesReader is a Reader for the GetRegistries structure.
@@ -24,21 +24,18 @@ type GetRegistriesReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetRegistriesReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetRegistriesOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 401:
 		result := NewGetRegistriesUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetRegistriesInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +63,10 @@ type GetRegistriesOK struct {
 
 func (o *GetRegistriesOK) Error() string {
 	return fmt.Sprintf("[GET /registries][%d] getRegistriesOK  %+v", 200, o.Payload)
+}
+
+func (o *GetRegistriesOK) GetPayload() []*models.Registry {
+	return o.Payload
 }
 
 func (o *GetRegistriesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

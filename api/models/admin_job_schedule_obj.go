@@ -7,7 +7,6 @@ package models
 
 import (
 	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/swag"
 )
 
@@ -18,7 +17,9 @@ type AdminJobScheduleObj struct {
 	// A cron expression, a time-based job scheduler.
 	Cron string `json:"cron,omitempty"`
 
-	// The schedule type. The valid values are hourly, daily， weekly, custom and None. 'None' means to cancel the schedule.
+	// The schedule type. The valid values are 'Hourly', 'Daily', 'Weekly', 'Custom', 'Manually' and 'None'.
+	// 'Manually' means to trigger it right away and 'None' means to cancel the schedule.
+	//
 	Type string `json:"type,omitempty"`
 }
 

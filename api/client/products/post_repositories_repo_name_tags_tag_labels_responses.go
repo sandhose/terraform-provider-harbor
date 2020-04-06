@@ -21,28 +21,24 @@ type PostRepositoriesRepoNameTagsTagLabelsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PostRepositoriesRepoNameTagsTagLabelsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPostRepositoriesRepoNameTagsTagLabelsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 401:
 		result := NewPostRepositoriesRepoNameTagsTagLabelsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewPostRepositoriesRepoNameTagsTagLabelsForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewPostRepositoriesRepoNameTagsTagLabelsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {

@@ -21,28 +21,18 @@ type HeadProjectsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *HeadProjectsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewHeadProjectsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
-	case 401:
-		result := NewHeadProjectsUnauthorized()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
-
 	case 404:
 		result := NewHeadProjectsNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewHeadProjectsInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -72,27 +62,6 @@ func (o *HeadProjectsOK) Error() string {
 }
 
 func (o *HeadProjectsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	return nil
-}
-
-// NewHeadProjectsUnauthorized creates a HeadProjectsUnauthorized with default headers values
-func NewHeadProjectsUnauthorized() *HeadProjectsUnauthorized {
-	return &HeadProjectsUnauthorized{}
-}
-
-/*HeadProjectsUnauthorized handles this case with default header values.
-
-User need to log in first.
-*/
-type HeadProjectsUnauthorized struct {
-}
-
-func (o *HeadProjectsUnauthorized) Error() string {
-	return fmt.Sprintf("[HEAD /projects][%d] headProjectsUnauthorized ", 401)
-}
-
-func (o *HeadProjectsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

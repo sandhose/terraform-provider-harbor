@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetRepositoriesRepoNameSignaturesReader is a Reader for the GetRepositoriesRepoNameSignatures structure.
@@ -24,14 +24,12 @@ type GetRepositoriesRepoNameSignaturesReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetRepositoriesRepoNameSignaturesReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetRepositoriesRepoNameSignaturesOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 500:
 		result := NewGetRepositoriesRepoNameSignaturesInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -59,6 +57,10 @@ type GetRepositoriesRepoNameSignaturesOK struct {
 
 func (o *GetRepositoriesRepoNameSignaturesOK) Error() string {
 	return fmt.Sprintf("[GET /repositories/{repo_name}/signatures][%d] getRepositoriesRepoNameSignaturesOK  %+v", 200, o.Payload)
+}
+
+func (o *GetRepositoriesRepoNameSignaturesOK) GetPayload() []*models.RepoSignature {
+	return o.Payload
 }
 
 func (o *GetRepositoriesRepoNameSignaturesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

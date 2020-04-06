@@ -13,7 +13,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/sandhose/terraform-provider-harbor/api/models"
+	"github.com/sandhose/terraform-provider-harbor/api/models"
 )
 
 // GetRepositoriesRepoNameTagsTagManifestReader is a Reader for the GetRepositoriesRepoNameTagsTagManifest structure.
@@ -24,21 +24,18 @@ type GetRepositoriesRepoNameTagsTagManifestReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetRepositoriesRepoNameTagsTagManifestReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetRepositoriesRepoNameTagsTagManifestOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 404:
 		result := NewGetRepositoriesRepoNameTagsTagManifestNotFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 500:
 		result := NewGetRepositoriesRepoNameTagsTagManifestInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +63,10 @@ type GetRepositoriesRepoNameTagsTagManifestOK struct {
 
 func (o *GetRepositoriesRepoNameTagsTagManifestOK) Error() string {
 	return fmt.Sprintf("[GET /repositories/{repo_name}/tags/{tag}/manifest][%d] getRepositoriesRepoNameTagsTagManifestOK  %+v", 200, o.Payload)
+}
+
+func (o *GetRepositoriesRepoNameTagsTagManifestOK) GetPayload() *models.Manifest {
+	return o.Payload
 }
 
 func (o *GetRepositoriesRepoNameTagsTagManifestOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

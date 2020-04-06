@@ -21,37 +21,38 @@ type DeleteRepositoriesRepoNameReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteRepositoriesRepoNameReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteRepositoriesRepoNameOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	case 400:
 		result := NewDeleteRepositoriesRepoNameBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 401:
 		result := NewDeleteRepositoriesRepoNameUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 403:
 		result := NewDeleteRepositoriesRepoNameForbidden()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return nil, result
-
 	case 404:
 		result := NewDeleteRepositoriesRepoNameNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 412:
+		result := NewDeleteRepositoriesRepoNamePreconditionFailed()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -163,6 +164,27 @@ func (o *DeleteRepositoriesRepoNameNotFound) Error() string {
 }
 
 func (o *DeleteRepositoriesRepoNameNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewDeleteRepositoriesRepoNamePreconditionFailed creates a DeleteRepositoriesRepoNamePreconditionFailed with default headers values
+func NewDeleteRepositoriesRepoNamePreconditionFailed() *DeleteRepositoriesRepoNamePreconditionFailed {
+	return &DeleteRepositoriesRepoNamePreconditionFailed{}
+}
+
+/*DeleteRepositoriesRepoNamePreconditionFailed handles this case with default header values.
+
+Precondition Failed.
+*/
+type DeleteRepositoriesRepoNamePreconditionFailed struct {
+}
+
+func (o *DeleteRepositoriesRepoNamePreconditionFailed) Error() string {
+	return fmt.Sprintf("[DELETE /repositories/{repo_name}][%d] deleteRepositoriesRepoNamePreconditionFailed ", 412)
+}
+
+func (o *DeleteRepositoriesRepoNamePreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
