@@ -1,28 +1,33 @@
+project_name: terraform-provider-harbor
 before:
   hooks:
     - go mod download
+
 builds:
-- id: terraform-provider-harbor
-  binary: terraform-provider-harbor
-  env:
-  - CGO_ENABLED=0
-  goos:
-  - windows
-  - darwin
-  - linux
-  ignore:
-  - goarch: 386
+  - binary: "{{ .ProjectName }}_{{ .Version }}"
+    env:
+    - CGO_ENABLED=0
+    goos:
+    - windows
+    - darwin
+    - linux
+    ignore:
+    - goarch: 386
+
 archives:
-- replacements:
-    darwin: Darwin
-    linux: Linux
-    windows: Windows
-    386: i386
-    amd64: x86_64
+  - name_template: "{{ .Binary }}_{{ .Os }}_{{ .Arch }}"
+    format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - none*
+
 checksum:
-  name_template: 'checksums.txt'
+   name_template: "{{ .ProjectName }}_{{ .Tag }}_checksums.txt"
+
 snapshot:
   name_template: "{{ .Tag }}-next"
+
 changelog:
   sort: asc
   filters:
