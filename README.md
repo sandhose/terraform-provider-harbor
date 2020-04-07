@@ -10,8 +10,8 @@ The API client is generated using [`go-swagger`](https://github.com/go-swagger/g
 
 # Installation
 
-1. `make build`
-2. provider should now be available as `$GOPATH/bin/terraform-provider-harbor`
+- Fetch the binary from the [releases](https://github.com/sandhose/terraform-provider-harbor/releases).
+- Install it in your Terraform plugin directory (`~/.terraform.d/plugins/`), see <https://www.terraform.io/docs/configuration/providers.html#third-party-plugins>
 
 # License
 
