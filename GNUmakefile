@@ -2,13 +2,12 @@ TEST?=$$(go list ./...)
 GOFMT_FILES?=$$(find . -name '*.go')
 WEBSITE_REPO=github.com/sandhose/terraform-provider-harbor
 PKG_NAME=harbor
-VERSION=$(shell git describe --tags --always)
 HARBOR_VERSION=1.10.1
 
 default: build
 
 build: fmtcheck
-	go install -ldflags="-X github.com/terraform-providers/terraform-provider-harbor/version.ProviderVersion=$(VERSION)"
+	go install
 
 test: fmtcheck
 	go test -i $(TEST) || exit 1
