@@ -4,7 +4,7 @@ before:
     - go mod download
 
 builds:
-  - binary: "{{ .ProjectName }}_{{ .Version }}"
+  - binary: "{{ .ProjectName }}_v{{ .Version }}"
     env:
     - CGO_ENABLED=0
     goos:
